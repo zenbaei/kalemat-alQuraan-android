@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.zenbaei.kalematAlQuraan.component">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value="org.zenbaei.kalematAlQuraan.component.search.SearchHandlerActivity" />
+
+        <activity
+            android:name=".surah.view.SurahActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ayah.view.AyahActivity" />
+
+        <activity android:name=".ayah.view.SingleAyahActivity" />
+
+        <!-- Search results activity -->
+        <activity
+            android:name=".search.SearchHandlerActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".ayah.view.AyahActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+        <!-- Provides search suggestions for words and their definitions. -->
+        <provider android:name=".ayah.contentProvider.AyahContentProvider"
+            android:authorities="com.example.android.searchabledict.DictionaryProvider" />
+
+    </application>
+
+</manifest>

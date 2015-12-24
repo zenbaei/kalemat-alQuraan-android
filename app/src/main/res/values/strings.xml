@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">كلمات القرآن</string>
+    <string name="action_search">بحث</string>
+    <string name="search_hint">بحث ...</string>
+    <string name="ayah">الآية</string>
+    <string name="kalemah">الكلمة</string>
+    <string name="tafsir">التفسير</string>
+    <string name="surah">سورة</string>
+    <string name="ayahWithColon">الآية:</string>
+    <string name="kalemahWithColon">الكلمة:</string>
+    <string name="tafsirWithColon">التفسير:</string>
+    <string name="action_settings">Settings</string>
+    <string name="settings_description">Settings Description</string>
+</resources>
