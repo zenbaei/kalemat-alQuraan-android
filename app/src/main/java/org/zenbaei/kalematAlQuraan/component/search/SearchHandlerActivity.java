@@ -4,35 +4,39 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.ayah.adapter.AyahArrayAdapter;
 import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
 import org.zenbaei.kalematAlQuraan.component.ayah.contentProvider.AyahContentProvider;
 import org.zenbaei.kalematAlQuraan.component.ayah.entity.Ayah;
 import org.zenbaei.kalematAlQuraan.component.ayah.view.SingleAyahActivity;
-import org.zenbaei.kalematAlQuraan.component.surah.entity.Surah;
 
 import java.util.List;
 
 public class SearchHandlerActivity extends AppCompatActivity {
 
-    private String query;
     private AyahService ayahService;
+    private TextView mTextView;
+    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.container_list);
+        setContentView(R.layout.search);
 
         // get the action bar
         ActionBar actionBar = getSupportActionBar();
@@ -41,6 +45,9 @@ public class SearchHandlerActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         ayahService = new AyahService(this);
+
+        mTextView = (TextView) findViewById(R.id.searchText);
+        mListView = (ListView) findViewById(R.id.searchList);
 
         handleIntent(getIntent());
     }
@@ -76,17 +83,7 @@ public class SearchHandlerActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         searchView.setSearchableInfo(searchManager
                 .getSearchableInfo(getComponentName()));
-        searchView.setIconifiedByDefault(false);
         return super.onCreateOptionsMenu(menu);
-    }
-
-    private boolean doSearch(String query) {
-        List<Ayah> ayahList = ayahService.findAyahJoinSurahByNumberOrKalemahAsList(query);
-
-        AyahArrayAdapter ayahArrayAdapter = new AyahArrayAdapter(this, R.layout.search_result, ayahList.toArray(new Ayah[0]));
-        ListView listView = (ListView) findViewById(R.id.emptyListView);
-        listView.setAdapter(ayahArrayAdapter);
-        return true;
     }
 
     /**
@@ -100,18 +97,17 @@ public class SearchHandlerActivity extends AppCompatActivity {
 
         if (cursor == null) {
             // There are no results
-            //mTextView.setText(getString(R.string.no_results, new Object[] {query}));
-            String s  = null;
+            mTextView.setText(getString(R.string.no_results, new Object[] {query}));
         } else {
             // Display the number of results
-/*            int count = cursor.getCount();
+            int count = cursor.getCount();
             String countString = getResources().getQuantityString(R.plurals.search_results,
-                    count, new Object[] {count, query});*/
-          //  mTextView.setText(countString);
+                    count, new Object[] {count, query});
+            mTextView.setText(countString);
 
             // Specify the columns we want to display in the result
-            String[] from = new String[] { "ayah._ID",
-                    Ayah.KALEMAH_COLUMN, Surah.NAME_COLUMN};
+            String[] from = new String[] {KalematDatabase.AYAH_NUMBER,
+                    KalematDatabase.KALEMAH, KalematDatabase.SURAH};
 
             // Specify the corresponding layout elements where we want the columns to go
             int[] to = new int[] { R.id.ayahNumberTextView,
@@ -119,7 +115,23 @@ public class SearchHandlerActivity extends AppCompatActivity {
 
             // Create a simple cursor adapter for the definitions and apply them to the ListView
             SimpleCursorAdapter words = new SimpleCursorAdapter(this,
-                    R.layout.search_result, cursor, from, to);
+                    R.layout.result, cursor, from, to);
+
+            mListView.setAdapter(words);
+
+            // Define the on-click listener for the list items
+            mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    // Build the Intent used to open WordActivity with a specific word Uri
+                    Intent wordIntent = new Intent(getApplicationContext(), SingleAyahActivity.class);
+                    Uri data = Uri.withAppendedPath(AyahContentProvider.CONTENT_URI,
+                            String.valueOf(id));
+                    wordIntent.setData(data);
+                    startActivity(wordIntent);
+                }
+            });
 
         }
     }

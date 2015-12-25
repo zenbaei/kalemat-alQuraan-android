@@ -36,11 +36,7 @@ public class AyahActivity extends AppCompatActivity {
 
     private int currentPage = 1;
 
-    private int searchCurrentPage = 1;
-
     private int pageCount;
-
-    private int searchPageCount;
 
     private int ayahColWidth = 10;
 
@@ -52,23 +48,12 @@ public class AyahActivity extends AppCompatActivity {
 
     private long surahId;
 
+    private long languageId = 1;
+
     private String surahName;
-
-    private boolean searchOpened;
-
-    private EditText searchEditText;
-
-    private MenuItem menuSearchButton;
-
-    private List<Ayah> filteredAyahList;
 
     private List<Ayah> ayahList;
 
-    private long languageId = 1;
-
-    private enum SearchContext {AYAH, KALEMAH}
-
-    private SearchContext searchContext;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -87,22 +72,6 @@ public class AyahActivity extends AppCompatActivity {
         process();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // TODO: 11/18/2015 close database
-    }
-
-
-    private void executeMenuCloseAction() {
-        searchEditText.getText().clear();
-    }
-
     private int from(int currentPage) {
         return currentPage * maxRowPerPage - maxRowPerPage;
     }
@@ -111,26 +80,11 @@ public class AyahActivity extends AppCompatActivity {
         return maxRowPerPage;
     }
 
-    private void closeSearchBar() {
-
-        // Remove custom view.
-        getActionBar().setDisplayShowCustomEnabled(false);
-
-        // Change search icon accordingly.
-        // menuCloseButton.setIcon(iconOpenSearch);
-        searchOpened = false;
-
-    }
-/*
-    private MoviesListAdapter getListAdapter() {
-        return (MoviesListAdapter) mMoviesLv.getAdapter();
-    }*/
-
 
     private void setTableLayout() {
 
         //set surah header name
-        ((TextView) findViewById(R.id.surahName)).setText(String.format("%s %s", "سورة", surahName));
+        ((TextView) findViewById(R.id.surahName)).setText(getString(R.string.surah, new Object[]{surahName}));
 
         //get TableLayout
         TableLayout ayahTafsirTable = (TableLayout) findViewById(R.id.ayahTafsirTable);
@@ -147,14 +101,7 @@ public class AyahActivity extends AppCompatActivity {
         //horizontal line
         ayahTafsirTable.addView(getHorizontalLine());
 
-        List<Ayah> list = null;
-
-        if (isPrepareForRenderingMainPage())
-            list = ayahList;
-        else
-            list = filteredAyahList;
-
-        for (Ayah ayah : list) {
+        for (Ayah ayah : ayahList) {
             //new TableRow
             TableRow tableRow = new TableRow(this);
 
@@ -207,50 +154,20 @@ public class AyahActivity extends AppCompatActivity {
         //get next TextView
         TextView pagingNextTextView = (TextView) findViewById(R.id.pagingNextTextView);
 
-        int curPage = isPrepareForRenderingMainPage() ? currentPage : searchCurrentPage;
-        int pgCount = isPrepareForRenderingMainPage() ? pageCount : searchPageCount;
-
         //set paging contect
-        pagingTextView.setText(String.format("%s %s %s", curPage, "من", pgCount)); //to do use bundle instead of من
+        pagingTextView.setText(String.format("%s %s %s", currentPage, "من", pageCount)); //to do use bundle instead of من
 
         //dim Previous if first page
-        if (curPage == 1)
+        if (currentPage == 1)
             pagingPreviousTextView.setEnabled(false);
         else
             pagingPreviousTextView.setEnabled(true);
 
         //dim Next if last page
-        if (curPage == pgCount)
+        if (currentPage == pageCount)
             pagingNextTextView.setEnabled(false);
         else
             pagingNextTextView.setEnabled(true);
-    }
-
-
-    private void setToolbarLayout() {
-       /* Toolbar toolbar = (Toolbar) findViewById(R.id.search_toolbar);
-        setSupportActionBar(toolbar);
-
-        // Set custom view on action bar.
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setCustomView(R.layout.search_view);*/
-
-        // Change search icon accordingly.
-        //menuCloseButton.setIcon(R.drawable.close_icon);
-
-        getActionBar().hide();
-
-        listenOnSearchText();
-    }
-
-
-    private void listenOnSearchText() {
-        // Search edit text field setup.
-        //  searchEditText = (EditText) getActionBar().getCustomView()
-        //         .findViewById(R.id.searchText);
-        searchEditText.addTextChangedListener(new SearchWatcher());
-        searchEditText.requestFocus();
     }
 
     public TableRow getHorizontalLine() {
@@ -341,9 +258,9 @@ public class AyahActivity extends AppCompatActivity {
 
 
         //set content
-        ayah.setText("الآية");
-        kalemah.setText("الكلمة");
-        tafsir.setText("التفسير");
+        ayah.setText(getString(R.string.ayah));
+        kalemah.setText(getString(R.string.kalemah));
+        tafsir.setText(getString(R.string.tafsir));
 
         //set color
         ayah.setBackgroundColor(getResources().getColor(R.color.lightPink));
@@ -355,33 +272,11 @@ public class AyahActivity extends AppCompatActivity {
         kalemah.setMaxWidth(kalemahColWidth);
         tafsir.setMaxWidth(tafsirColWidth);
 
-        //add onClick event to allow search
-        ayah.setClickable(true);
-        kalemah.setClickable(true);
-
-        //ayah on click behavior
-        ayah.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ayahOnClickListener();
-            }
-        });
-
-        //kalemah onClick behavior
-        kalemah.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                kalemahOnClickListener();
-            }
-        });
-
         //add TextView to TableRow and add vertical line after every TextView
         headerRow.addView(ayah);
-        //    headerRow.addView(getSearchImageView(searchImage));
         headerRow.addView(getVerticalLine(true));
 
         headerRow.addView(kalemah);
-        //    headerRow.addView(getSearchImageView(searchImage));
         headerRow.addView(getVerticalLine(true));
 
         headerRow.addView(tafsir);
@@ -391,25 +286,11 @@ public class AyahActivity extends AppCompatActivity {
 
     private void doSearch() {
         //retrieve surah tafsir
-        if (isPrepareForRenderingMainPage())
-            ayahList = ayahService.findBySurahIdLanguageId(surahId, languageId, from(currentPage), to());
-        else
-            filteredAyahList = searchContext.equals(SearchContext.AYAH) ?
-                    ayahService.findByAyahNumberLanguageId(Long.parseLong(getSearchTextValue()), languageId, from(searchCurrentPage), to(), false)
-                    :
-                    ayahService.findByKalemahLanguageId(getSearchTextValue(), languageId, from(searchCurrentPage), to(), true);
-
-
+        ayahList = ayahService.findBySurahIdLanguageId(surahId, languageId, from(currentPage), to());
     }
 
     private void retrievePageCount() {
-        if (isPrepareForRenderingMainPage())
-            pageCount = getNumberOfPages(ayahService.getCountBySurahId(surahId, false), maxRowPerPage);
-        else
-            searchPageCount = searchContext.equals(SearchContext.AYAH) ?
-                    getNumberOfPages(ayahService.getCountByAyahNumber(Long.parseLong(getSearchTextValue()), false), maxRowPerPage)
-                    :
-                    getNumberOfPages(ayahService.getCountByKalemah(getSearchTextValue(), true), maxRowPerPage);
+        pageCount = getNumberOfPages(ayahService.getCountBySurahId(surahId, false), maxRowPerPage);
     }
 
     private void process() {
@@ -425,11 +306,7 @@ public class AyahActivity extends AppCompatActivity {
      * @param view
      */
     public void previousPageListener(View view) {
-        if (isPrepareForRenderingMainPage())
-            currentPage--;
-        else
-            searchCurrentPage--;
-
+        currentPage--;
         process();
     }
 
@@ -439,51 +316,10 @@ public class AyahActivity extends AppCompatActivity {
      * @param view
      */
     public void nextPageListener(View view) {
-        if (isPrepareForRenderingMainPage())
-            currentPage++;
-        else
-            searchCurrentPage++;
-
+        currentPage++;
         process();
     }
 
-
-    private void setActionBarLabel() {
-        if (!searchOpened || !isSearchTextEmpty()) {
-            getActionBar().setDisplayShowTitleEnabled(false);
-            return;
-        }
-
-        getActionBar().setTitle(searchContext.toString());
-        getActionBar().setDisplayShowTitleEnabled(true);
-    }
-
-    /**
-     * Responsible for handling changes in search edit text.
-     */
-    class SearchWatcher implements TextWatcher {
-
-        @Override
-        public void beforeTextChanged(CharSequence c, int i, int i2, int i3) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence c, int i, int i2, int i3) {
-
-        }
-
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-            searchOpened = true;
-            setActionBarLabel();
-            retrievePageCount();
-            process();
-        }
-
-
-    }
 
     public int getNumberOfPages(int rowCount, int maxRowPerPage) {
         if (rowCount <= maxRowPerPage)
@@ -497,49 +333,6 @@ public class AyahActivity extends AppCompatActivity {
         divide = Math.ceil(divide);
 
         return divide.intValue();
-    }
-
-    private boolean isSearchTextEmpty() {
-        if (searchEditText.getText() == null)
-            return true;
-
-        boolean result = searchEditText.getText().toString().trim().isEmpty();
-
-        return result;
-    }
-
-    private boolean isPrepareForRenderingMainPage() {
-        if (!searchOpened || searchOpened && isSearchTextEmpty())
-            return true;
-        else //searchOpened = true
-            return false;
-    }
-
-    private String getSearchTextValue() {
-        if (searchEditText.getText() == null)
-            return "";
-        return searchEditText.getText().toString().trim();
-    }
-
-    private void ayahOnClickListener() {
-        searchContext = SearchContext.AYAH;
-        showActionBar();
-        setActionBarLabel();
-    }
-
-    private void kalemahOnClickListener() {
-        searchContext = SearchContext.KALEMAH;
-        showActionBar();
-        setActionBarLabel();
-    }
-
-    private void showActionBar() {
-        getActionBar().show();
-        searchOpened = true;
-    }
-
-    private void hideActionBar() {
-        getActionBar().hide();
     }
 
     @Override

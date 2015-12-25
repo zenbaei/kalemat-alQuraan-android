@@ -31,7 +31,6 @@ import java.util.List;
 public class SurahActivity extends AppCompatActivity {
 
     private List<Surah> surahList;
-    private AyahService ayahService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +54,6 @@ public class SurahActivity extends AppCompatActivity {
                 startKalemahTafsirActivity(position);
             }
         });
-
-        ayahService = new AyahService(this);
     }
 
     @Override
@@ -69,7 +66,6 @@ public class SurahActivity extends AppCompatActivity {
         searchView.setSearchableInfo(searchManager
                 .getSearchableInfo(getComponentName()));
 
-       searchView.setIconifiedByDefault(false);
         return super.onCreateOptionsMenu(menu);
     }
 

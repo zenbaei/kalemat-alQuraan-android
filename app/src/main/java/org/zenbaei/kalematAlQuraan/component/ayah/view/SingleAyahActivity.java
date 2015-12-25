@@ -54,7 +54,7 @@ public class SingleAyahActivity extends AppCompatActivity {
             int kIndex = cursor.getColumnIndexOrThrow(KalematDatabase.KALEMAH);
             int tIndex = cursor.getColumnIndexOrThrow(KalematDatabase.TAFSIR);
 
-            surah.setText(String.format("%s %s",getString(R.string.surah), cursor.getString(sIndex)));
+            surah.setText(getString(R.string.surah, new Object[]{cursor.getString(sIndex)}));
             number.setText(cursor.getString(nIndex));
             kalemah.setText(cursor.getString(kIndex));
             tafsir.setText(cursor.getString(tIndex));
@@ -70,7 +70,6 @@ public class SingleAyahActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         searchView.setSearchableInfo(searchManager
                 .getSearchableInfo(getComponentName()));
-        searchView.setIconifiedByDefault(false);
 
         return true;
     }

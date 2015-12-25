@@ -5,10 +5,23 @@
     <string name="ayah">الآية</string>
     <string name="kalemah">الكلمة</string>
     <string name="tafsir">التفسير</string>
-    <string name="surah">سورة</string>
+    <string name="surah">سورة %s</string>
     <string name="ayahWithColon">الآية:</string>
     <string name="kalemahWithColon">الكلمة:</string>
     <string name="tafsirWithColon">التفسير:</string>
     <string name="action_settings">Settings</string>
     <string name="settings_description">Settings Description</string>
+
+    <!-- General instructions in the main activity. -->
+    <string name="search_instructions">Use the search box in the Action Bar to look up a word</string>
+
+    <!-- Shown above search results when we receive a search request. -->
+    <plurals name="search_results">
+        <item quantity="one">%1$d نتيجة بحث كلمة: \"%2$s\" </item>
+        <item quantity="other">%1$d نتائج بحث كلمة: \"%2$s\" </item>
+    </plurals>
+
+    <!-- Search failure message. -->
+    <string name="no_results">لا توجد نتائج بحث لكلمة \"%s\"</string>
+
 </resources>

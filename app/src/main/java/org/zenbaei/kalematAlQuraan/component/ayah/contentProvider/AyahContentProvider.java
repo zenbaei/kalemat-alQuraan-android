@@ -114,8 +114,15 @@ public class AyahContentProvider extends ContentProvider {
 
     private Cursor search(String query) {
         query = query.toLowerCase();
-        return null;
+        String[] columns = new String[]{
+                BaseColumns._ID,
+                KalematDatabase.AYAH_NUMBER,
+                KalematDatabase.KALEMAH,
+                KalematDatabase.SURAH};
+
+        return mKalemat.getWordMatches(query, columns);
     }
+
 
     private Cursor getWord(Uri uri) {
         String rowId = uri.getLastPathSegment();
