@@ -19,17 +19,12 @@ import android.widget.TextView;
 
 import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
 import org.zenbaei.kalematAlQuraan.component.R;
-import org.zenbaei.kalematAlQuraan.component.ayah.adapter.AyahArrayAdapter;
 import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
-import org.zenbaei.kalematAlQuraan.component.ayah.contentProvider.AyahContentProvider;
-import org.zenbaei.kalematAlQuraan.component.ayah.entity.Ayah;
+import org.zenbaei.kalematAlQuraan.component.ayah.contentProvider.KalematContentProvider;
 import org.zenbaei.kalematAlQuraan.component.ayah.view.SingleAyahActivity;
-
-import java.util.List;
 
 public class SearchHandlerActivity extends AppCompatActivity {
 
-    private AyahService ayahService;
     private TextView mTextView;
     private ListView mListView;
 
@@ -39,12 +34,10 @@ public class SearchHandlerActivity extends AppCompatActivity {
         setContentView(R.layout.search);
 
         // get the action bar
-        ActionBar actionBar = getSupportActionBar();
+      //  ActionBar actionBar = getSupportActionBar();
 
         // Enabling Back navigation on Action Bar icon
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
-        ayahService = new AyahService(this);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
 
         mTextView = (TextView) findViewById(R.id.searchText);
         mListView = (ListView) findViewById(R.id.searchList);
@@ -67,6 +60,7 @@ public class SearchHandlerActivity extends AppCompatActivity {
             Intent wordIntent = new Intent(this, SingleAyahActivity.class);
             wordIntent.setData(intent.getData());
             startActivity(wordIntent);
+            finish();
         } else if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             // handles a search query
             String query = intent.getStringExtra(SearchManager.QUERY);
@@ -92,7 +86,7 @@ public class SearchHandlerActivity extends AppCompatActivity {
      */
     private void showResults(String query) {
 
-        Cursor cursor = managedQuery(AyahContentProvider.CONTENT_URI, null, null,
+        Cursor cursor = managedQuery(KalematContentProvider.CONTENT_URI, null, null,
                 new String[]{query}, null);
 
         if (cursor == null) {
@@ -126,7 +120,7 @@ public class SearchHandlerActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     // Build the Intent used to open WordActivity with a specific word Uri
                     Intent wordIntent = new Intent(getApplicationContext(), SingleAyahActivity.class);
-                    Uri data = Uri.withAppendedPath(AyahContentProvider.CONTENT_URI,
+                    Uri data = Uri.withAppendedPath(KalematContentProvider.CONTENT_URI,
                             String.valueOf(id));
                     wordIntent.setData(data);
                     startActivity(wordIntent);

@@ -32,11 +32,20 @@ public class SurahActivity extends AppCompatActivity {
 
     private List<Surah> surahList;
 
+    private SearchView searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.surah);
         setSurahListView();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        searchView.setQuery("", false);
+        searchView.setIconified(true);
     }
 
     private void setSurahListView() {
@@ -62,7 +71,7 @@ public class SurahActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         searchView.setSearchableInfo(searchManager
                 .getSearchableInfo(getComponentName()));
 

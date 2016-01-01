@@ -16,7 +16,7 @@ import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
 /**
  * Created by Islam on 12/23/2015.
  */
-public class AyahContentProvider extends ContentProvider {
+public class KalematContentProvider extends ContentProvider {
 
     private KalematDatabase mKalemat;
     private AyahService ayahService;

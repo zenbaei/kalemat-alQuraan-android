@@ -4,6 +4,8 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.MotionEventCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.text.Editable;
@@ -11,6 +13,7 @@ import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -38,7 +41,7 @@ public class AyahActivity extends AppCompatActivity {
 
     private int pageCount;
 
-    private int ayahColWidth = 10;
+    private int ayahColWidth = 5;
 
     private int kalemahColWidth = 50;
 
@@ -54,6 +57,11 @@ public class AyahActivity extends AppCompatActivity {
 
     private List<Ayah> ayahList;
 
+    private float x1, x2;
+
+    static final int MIN_DISTANCE = 150;
+
+    private SearchView searchView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,6 +79,14 @@ public class AyahActivity extends AppCompatActivity {
         retrievePageCount();
         process();
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        searchView.setQuery("", false);
+        searchView.setIconified(true);
+    }
+
 
     private int from(int currentPage) {
         return currentPage * maxRowPerPage - maxRowPerPage;
@@ -150,13 +166,13 @@ public class AyahActivity extends AppCompatActivity {
         //get paging TextView
         TextView pagingTextView = (TextView) findViewById(R.id.pagingTextView);
         //get previous TextView
-        TextView pagingPreviousTextView = (TextView) findViewById(R.id.pagingPreviousTextView);
+        //    TextView pagingPreviousTextView = (TextView) findViewById(R.id.pagingPreviousTextView);
         //get next TextView
-        TextView pagingNextTextView = (TextView) findViewById(R.id.pagingNextTextView);
+        //   TextView pagingNextTextView = (TextView) findViewById(R.id.pagingNextTextView);
 
         //set paging contect
         pagingTextView.setText(String.format("%s %s %s", currentPage, "من", pageCount)); //to do use bundle instead of من
-
+        /*
         //dim Previous if first page
         if (currentPage == 1)
             pagingPreviousTextView.setEnabled(false);
@@ -168,6 +184,7 @@ public class AyahActivity extends AppCompatActivity {
             pagingNextTextView.setEnabled(false);
         else
             pagingNextTextView.setEnabled(true);
+            */
     }
 
     public TableRow getHorizontalLine() {
@@ -248,7 +265,7 @@ public class AyahActivity extends AppCompatActivity {
         TableRow headerRow = new TableRow(this);
 
         //set TableRow width & height
-        headerRow.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+        headerRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT));
 
         //create TextView
@@ -268,7 +285,7 @@ public class AyahActivity extends AppCompatActivity {
         tafsir.setBackgroundColor(getResources().getColor(R.color.lightPink));
 
         //set max width
-        ayah.setMaxWidth(ayahColWidth);
+        ayah.setWidth(ayahColWidth);
         kalemah.setMaxWidth(kalemahColWidth);
         tafsir.setMaxWidth(tafsirColWidth);
 
@@ -303,9 +320,12 @@ public class AyahActivity extends AppCompatActivity {
     /**
      * pagingPreviousTextView onClick Listener
      *
-     * @param view
+     * @param
      */
-    public void previousPageListener(View view) {
+    public void previousPageListener() {
+        if (currentPage == 1)
+            return;
+
         currentPage--;
         process();
     }
@@ -313,9 +333,12 @@ public class AyahActivity extends AppCompatActivity {
     /**
      * pagingNextTextView onClick Listener
      *
-     * @param view
+     * @param
      */
-    public void nextPageListener(View view) {
+    public void nextPageListener() {
+        if (currentPage == pageCount)
+            return;
+
         currentPage++;
         process();
     }
@@ -341,14 +364,37 @@ public class AyahActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         searchView.setSearchableInfo(searchManager
                 .getSearchableInfo(getComponentName()));
 
         return super.onCreateOptionsMenu(menu);
     }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        int action = MotionEventCompat.getActionMasked(event);
+
+        switch (action) {
+            case (MotionEvent.ACTION_UP):
+                x1 = event.getX();
+                return true;
+            case MotionEvent.ACTION_DOWN:
+                x2 = event.getX();
+                float deltaX = x2 - x1;
+                if (Math.abs(deltaX) > MIN_DISTANCE) {
+                    previousPageListener();
+                } else {
+                    nextPageListener();
+                }
+                return true;
+            default:
+                return super.onTouchEvent(event);
+        }
+    }
+
+
 }
-
-
-
 

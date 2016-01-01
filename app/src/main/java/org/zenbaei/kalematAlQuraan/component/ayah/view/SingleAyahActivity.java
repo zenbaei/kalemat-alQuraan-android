@@ -25,17 +25,38 @@ import org.zenbaei.kalematAlQuraan.component.search.SearchHandlerActivity;
  */
 public class SingleAyahActivity extends AppCompatActivity {
 
+    private SearchView searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_ayah);
+        process();
+    }
 
-        // get the action bar
-        ActionBar actionBar = getSupportActionBar();
 
-        // Enabling Back navigation on Action Bar icon
-        actionBar.setDisplayHomeAsUpEnabled(true);
+    @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        searchView.setQuery("", false);
+        searchView.setIconified(true);
+        process();
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        searchView.setSearchableInfo(searchManager
+                .getSearchableInfo(getComponentName()));
+
+        return true;
+    }
+
+    private void process() {
         Uri uri = getIntent().getData();
         Cursor cursor = managedQuery(uri, null, null, null, null);
 
@@ -58,32 +79,6 @@ public class SingleAyahActivity extends AppCompatActivity {
             number.setText(cursor.getString(nIndex));
             kalemah.setText(cursor.getString(kIndex));
             tafsir.setText(cursor.getString(tIndex));
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
-        searchView.setSearchableInfo(searchManager
-                .getSearchableInfo(getComponentName()));
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Intent intent = new Intent(this, SearchHandlerActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
-            default:
-                return false;
         }
     }
 }
