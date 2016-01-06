@@ -4,18 +4,13 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -41,11 +36,11 @@ public class AyahActivity extends AppCompatActivity {
 
     private int pageCount;
 
-    private int ayahColWidth = 5;
+    private int ayahColWidth;
 
-    private int kalemahColWidth = 50;
+    private int kalemahColWidth;
 
-    private int tafsirColWidth = 400;
+    private int tafsirColWidth;
 
     private int rowTopPadding = 30;
 
@@ -59,7 +54,9 @@ public class AyahActivity extends AppCompatActivity {
 
     private float x1, x2;
 
-    static final int MIN_DISTANCE = 150;
+    private float y1, y2;
+
+    private int screenWidth;
 
     private SearchView searchView;
 
@@ -75,9 +72,20 @@ public class AyahActivity extends AppCompatActivity {
         this.surahId = getIntent().getLongExtra("surahId", 0);
         this.surahName = getIntent().getStringExtra("surahName");
 
+        calculateColumnSizes();
+
         //  setToolbarLayout();
         retrievePageCount();
         process();
+    }
+
+    private void calculateColumnSizes() {
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        screenWidth = metrics.widthPixels - 2; //2 for the 2 vertical lines
+        ayahColWidth = screenWidth * 15 / 100;
+        kalemahColWidth = screenWidth * 30 / 100;
+        tafsirColWidth = screenWidth * 55 / 100;
     }
 
     @Override
@@ -134,7 +142,9 @@ public class AyahActivity extends AppCompatActivity {
             TextView textView4Tafsir = new TextView(this);
 
             //set max width to wrap content
-            textView4Tafsir.setMaxWidth(tafsirColWidth);
+            textView4Ayah.setWidth(ayahColWidth);
+            textView4Kalemah.setWidth(kalemahColWidth);
+            textView4Tafsir.setWidth(tafsirColWidth);
 
             //add text to tableRow
             tableRow.addView(textView4Ayah);
@@ -149,7 +159,8 @@ public class AyahActivity extends AppCompatActivity {
             textView4Tafsir.setText(ayah.getTafsir().getTafsir());
 
             //align ayah to center
-            textView4Ayah.setGravity(Gravity.CENTER);
+            textView4Ayah.setGravity(Gravity.RIGHT);
+            textView4Ayah.setPadding(0,0,2,0);
 
             //set text color
             textView4Kalemah.setTextColor(getResources().getColor(R.color.red));
@@ -286,8 +297,10 @@ public class AyahActivity extends AppCompatActivity {
 
         //set max width
         ayah.setWidth(ayahColWidth);
-        kalemah.setMaxWidth(kalemahColWidth);
-        tafsir.setMaxWidth(tafsirColWidth);
+        kalemah.setWidth(kalemahColWidth);
+        tafsir.setWidth(tafsirColWidth);
+
+        ayah.setPadding(0,0,2,0);
 
         //add TextView to TableRow and add vertical line after every TextView
         headerRow.addView(ayah);
@@ -373,28 +386,47 @@ public class AyahActivity extends AppCompatActivity {
 
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(MotionEvent touchevent) {
+        switch (touchevent.getAction()) {
+            // when user first touches the screen we get x and y coordinate
+            case MotionEvent.ACTION_DOWN: {
+                x1 = touchevent.getX();
+                y1 = touchevent.getY();
+                break;
+            }
+            case MotionEvent.ACTION_UP: {
+                x2 = touchevent.getX();
+                y2 = touchevent.getY();
 
-        int action = MotionEventCompat.getActionMasked(event);
-
-        switch (action) {
-            case (MotionEvent.ACTION_UP):
-                x1 = event.getX();
-                return true;
-            case MotionEvent.ACTION_DOWN:
-                x2 = event.getX();
-                float deltaX = x2 - x1;
-                if (Math.abs(deltaX) > MIN_DISTANCE) {
-                    previousPageListener();
-                } else {
+                //if left to right sweep event on screen
+                if (x1 < x2) {
                     nextPageListener();
                 }
-                return true;
-            default:
-                return super.onTouchEvent(event);
+
+                // if right to left sweep event on screen
+                if (x1 > x2) {
+                    previousPageListener();
+                }
+                /*
+                // if UP to Down sweep event on screen
+                if (y1 < y2) {
+                    //Toast.makeText(this, "UP to Down Swap Performed", Toast.LENGTH_LONG).show();
+                }
+
+                //if Down to UP sweep event on screen
+                if (y1 > y2) {
+                    // Toast.makeText(this, "Down to UP Swap Performed", Toast.LENGTH_LONG).show();
+                }*/
+                break;
+            }
         }
+        return false;
     }
 
 
 }
+
+
+
+
 
