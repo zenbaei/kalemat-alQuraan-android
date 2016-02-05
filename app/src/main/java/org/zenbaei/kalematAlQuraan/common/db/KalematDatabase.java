@@ -113,13 +113,13 @@ public class KalematDatabase {
     /**
      * Returns a Cursor positioned at the word specified by rowId
      *
-     * @param rowId id of word to retrieve
+     * @param rowId   id of word to retrieve
      * @param columns The columns to include, if null then all are included
      * @return Cursor positioned to matching word, or null if not found.
      */
     public Cursor getWord(String rowId, String[] columns) {
         String selection = "rowid = ?";
-        String[] selectionArgs = new String[] {rowId};
+        String[] selectionArgs = new String[]{rowId};
 
         return query(selection, selectionArgs, columns);
 
@@ -193,14 +193,19 @@ public class KalematDatabase {
 
         @Override
         public void onOpen(SQLiteDatabase db) {
-         //      onCreate(db);
         }
 
         /**
          * Starts a thread to load the database table with words
          */
         private void loadKalemat() {
-            new Thread(new Runnable() {
+            try {
+                //loadWords();
+                insertData();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+           /* new Thread(new Runnable() {
                 public void run() {
                     try {
                         //loadWords();
@@ -209,7 +214,7 @@ public class KalematDatabase {
                         throw new RuntimeException(e);
                     }
                 }
-            }).start();
+            }).start();*/
         }
 
         private void executeDatabaseCreateStatements() {
@@ -253,22 +258,13 @@ public class KalematDatabase {
 
         private void insertData() throws IOException {
             BufferedReader in =
-                    new BufferedReader(new InputStreamReader(mHelperContext.getResources().openRawResource(R.raw.bakarah), "UTF-8"));
-
-            List<String> list = new ArrayList<String>();
-            list.add("INSERT INTO LANGUAGES VALUES(1,'ARABIC');");
-            list.add("INSERT INTO SURAH VALUES(1, 'الفاتحة');");
-            list.add("INSERT INTO SURAH VALUES(2, 'البقرة');");
-            for (String s : list) {
-                Log.i(TAG, s);
-                mDatabase.execSQL(s);
-            }
+                    new BufferedReader(new InputStreamReader(mHelperContext.getResources().openRawResource(R.raw.kalemat), "UTF-8"));
 
             String str = null;
             while ((str = in.readLine()) != null) {
                 if (str.isEmpty() || str.contains("--"))
                     continue;
-                Log.i(TAG, str);
+                Log.d(TAG, str);
                 mDatabase.execSQL(str);
             }
 

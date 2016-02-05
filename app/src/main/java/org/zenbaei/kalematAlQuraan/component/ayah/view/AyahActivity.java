@@ -2,31 +2,39 @@ package org.zenbaei.kalematAlQuraan.component.ayah.view;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.Menu;
-import android.view.MotionEvent;
+import android.view.MenuItem;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
+import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
+import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
 import org.zenbaei.kalematAlQuraan.component.ayah.entity.Ayah;
-import org.zenbaei.kalematAlQuraan.component.R;
+import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
 
 import java.util.List;
 
 /**
  * Created by Islam on 11/18/2015.
  */
-public class AyahActivity extends AppCompatActivity {
+public class AyahActivity extends AppCompatActivity {// implements GestureDetector.OnGestureListener {
 
     private AyahService ayahService;
 
@@ -52,18 +60,29 @@ public class AyahActivity extends AppCompatActivity {
 
     private List<Ayah> ayahList;
 
-    private float x1, x2;
-
-    private float y1, y2;
-
     private int screenWidth;
 
     private SearchView searchView;
+
+    private ScaleGestureDetector mScaleDetector;
+
+    private GestureDetectorCompat mDetector;
+
+    private float mScaleFactor = 1.f;
+
+    private RelativeLayout relativeLayout;
+
+    private final String TAG = "AyahActivity";
+
+    private TableLayout ayahTafsirTable;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ayah);
+
+        relativeLayout = (RelativeLayout) findViewById(R.id.ayahLinearLayout);
 
         //initialize DAO
         ayahService = new AyahService(this);
@@ -72,11 +91,56 @@ public class AyahActivity extends AppCompatActivity {
         this.surahId = getIntent().getLongExtra("surahId", 0);
         this.surahName = getIntent().getStringExtra("surahName");
 
+        addGestureListner();
+
+        // Create our ScaleGestureDetector
+        // mScaleDetector = new ScaleGestureDetector(getApplicationContext(), new ScaleListener());
+
+        //  mDetector = new GestureDetectorCompat(this, this);
+
+
         calculateColumnSizes();
 
         //  setToolbarLayout();
         retrievePageCount();
         process();
+    }
+
+    private void addGestureListner() {
+        RelativeLayout myView = (RelativeLayout) findViewById(R.id.ayahLinearLayout);
+
+        myView.setOnTouchListener(new OnSwipeTouchListener(this) {
+
+            @Override
+
+            public void onSwipeDown() {
+
+                // Toast.makeText(MainActivity.this, "Down", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+            @Override
+
+            public void onSwipeLeft() {
+                previousPage();
+            }
+
+
+            @Override
+
+            public void onSwipeUp() {
+                //Toast.makeText(MainActivity.this, "Up", Toast.LENGTH_SHORT).show();
+            }
+
+
+            @Override
+
+            public void onSwipeRight() {
+                nextPage();
+            }
+
+        });
     }
 
     private void calculateColumnSizes() {
@@ -105,13 +169,13 @@ public class AyahActivity extends AppCompatActivity {
     }
 
 
-    private void setTableLayout() {
+    private void addTableLayout() {
 
         //set surah header name
         ((TextView) findViewById(R.id.surahName)).setText(getString(R.string.surah, new Object[]{surahName}));
 
         //get TableLayout
-        TableLayout ayahTafsirTable = (TableLayout) findViewById(R.id.ayahTafsirTable);
+        ayahTafsirTable = (TableLayout) findViewById(R.id.ayahTableLayout);
 
         //clear the table on every render
         ayahTafsirTable.removeAllViewsInLayout();
@@ -125,6 +189,11 @@ public class AyahActivity extends AppCompatActivity {
         //horizontal line
         ayahTafsirTable.addView(getHorizontalLine());
 
+        setTableContent();
+
+    }
+
+    private void setTableContent() {
         for (Ayah ayah : ayahList) {
             //new TableRow
             TableRow tableRow = new TableRow(this);
@@ -141,10 +210,6 @@ public class AyahActivity extends AppCompatActivity {
             TextView textView4Kalemah = new TextView(this);
             TextView textView4Tafsir = new TextView(this);
 
-            //set max width to wrap content
-            textView4Ayah.setWidth(ayahColWidth);
-            textView4Kalemah.setWidth(kalemahColWidth);
-            textView4Tafsir.setWidth(tafsirColWidth);
 
             //add text to tableRow
             tableRow.addView(textView4Ayah);
@@ -153,6 +218,11 @@ public class AyahActivity extends AppCompatActivity {
             tableRow.addView(getVerticalLine(false));
             tableRow.addView(textView4Tafsir);
 
+            //set max width to wrap content
+            textView4Ayah.setWidth(ayahColWidth);
+            textView4Kalemah.setWidth(kalemahColWidth);
+            textView4Tafsir.setWidth(tafsirColWidth);
+
             //set text
             textView4Ayah.setText(String.valueOf(ayah.getNumber()));
             textView4Kalemah.setText(ayah.getKalemah());
@@ -160,42 +230,26 @@ public class AyahActivity extends AppCompatActivity {
 
             //align ayah to center
             textView4Ayah.setGravity(Gravity.RIGHT);
-            textView4Ayah.setPadding(0,0,2,0);
 
             //set text color
             textView4Kalemah.setTextColor(getResources().getColor(R.color.red));
 
             //set text padding
             textView4Ayah.setPadding(0, rowTopPadding, 0, 0);
-            textView4Kalemah.setPadding(0, rowTopPadding, 0, 0);
-            textView4Tafsir.setPadding(0, rowTopPadding, 0, 0);
+            textView4Kalemah.setPadding(3, rowTopPadding, 0, 0);
+            textView4Tafsir.setPadding(2, rowTopPadding, 0, 0);
         }
-
     }
 
-    private void setPagingLayout() {
+    private void addPagingView() {
         //get paging TextView
         TextView pagingTextView = (TextView) findViewById(R.id.pagingTextView);
-        //get previous TextView
-        //    TextView pagingPreviousTextView = (TextView) findViewById(R.id.pagingPreviousTextView);
-        //get next TextView
-        //   TextView pagingNextTextView = (TextView) findViewById(R.id.pagingNextTextView);
 
-        //set paging contect
-        pagingTextView.setText(String.format("%s %s %s", currentPage, "من", pageCount)); //to do use bundle instead of من
-        /*
-        //dim Previous if first page
-        if (currentPage == 1)
-            pagingPreviousTextView.setEnabled(false);
-        else
-            pagingPreviousTextView.setEnabled(true);
+        //set paging content
+        pagingTextView.setText(String.format("%s %s %s", currentPage, getString(R.string.from), pageCount));
 
-        //dim Next if last page
-        if (currentPage == pageCount)
-            pagingNextTextView.setEnabled(false);
-        else
-            pagingNextTextView.setEnabled(true);
-            */
+        //bold
+        pagingTextView.setTypeface(null, Typeface.BOLD);
     }
 
     public TableRow getHorizontalLine() {
@@ -280,9 +334,9 @@ public class AyahActivity extends AppCompatActivity {
                 LayoutParams.WRAP_CONTENT));
 
         //create TextView
-        TextView ayah = new TextView(this);
-        TextView kalemah = new TextView(this);
-        TextView tafsir = new TextView(this);
+        TextView ayah = new TextView(this, null);
+        TextView kalemah = new TextView(this, null);
+        TextView tafsir = new TextView(this, null);
 
 
         //set content
@@ -300,7 +354,7 @@ public class AyahActivity extends AppCompatActivity {
         kalemah.setWidth(kalemahColWidth);
         tafsir.setWidth(tafsirColWidth);
 
-        ayah.setPadding(0,0,2,0);
+        ayah.setPadding(0, 0, 2, 0);
 
         //add TextView to TableRow and add vertical line after every TextView
         headerRow.addView(ayah);
@@ -325,8 +379,8 @@ public class AyahActivity extends AppCompatActivity {
 
     private void process() {
         doSearch();
-        setTableLayout();
-        setPagingLayout();
+        addTableLayout();
+        addPagingView();
     }
 
 
@@ -335,7 +389,7 @@ public class AyahActivity extends AppCompatActivity {
      *
      * @param
      */
-    public void previousPageListener() {
+    public void previousPage() {
         if (currentPage == 1)
             return;
 
@@ -348,7 +402,7 @@ public class AyahActivity extends AppCompatActivity {
      *
      * @param
      */
-    public void nextPageListener() {
+    public void nextPage() {
         if (currentPage == pageCount)
             return;
 
@@ -384,48 +438,108 @@ public class AyahActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == R.id.action_about) {
+            showDialog();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.about))
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.thanks), null);
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    public void goToSurahIndex(View view) {
+        Intent intent = new Intent(getApplicationContext(), SurahActivity.class);
+        startActivity(intent);
+    }
+/*
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        this.mDetector.onTouchEvent(event);
+        // Be sure to call the superclass implementation
+        boolean consumed = super.onTouchEvent(event);
+
+        if (!consumed)
+            mScaleDetector.onTouchEvent(event);
+
+        return true;
+    }
 
     @Override
-    public boolean onTouchEvent(MotionEvent touchevent) {
-        switch (touchevent.getAction()) {
-            // when user first touches the screen we get x and y coordinate
-            case MotionEvent.ACTION_DOWN: {
-                x1 = touchevent.getX();
-                y1 = touchevent.getY();
-                break;
-            }
-            case MotionEvent.ACTION_UP: {
-                x2 = touchevent.getX();
-                y2 = touchevent.getY();
+    public boolean onDown(MotionEvent e) {
+        return true;
+    }
 
-                //if left to right sweep event on screen
-                if (x1 < x2) {
-                    nextPageListener();
-                }
+    @Override
+    public void onShowPress(MotionEvent e) {
 
-                // if right to left sweep event on screen
-                if (x1 > x2) {
-                    previousPageListener();
-                }
-                /*
-                // if UP to Down sweep event on screen
-                if (y1 < y2) {
-                    //Toast.makeText(this, "UP to Down Swap Performed", Toast.LENGTH_LONG).show();
-                }
+    }
 
-                //if Down to UP sweep event on screen
-                if (y1 > y2) {
-                    // Toast.makeText(this, "Down to UP Swap Performed", Toast.LENGTH_LONG).show();
-                }*/
-                break;
-            }
-        }
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
         return false;
     }
 
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return false;
+    }
 
+    @Override
+    public void onLongPress(MotionEvent e) {
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        return false;
+    }
+
+    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+            mScaleFactor *= detector.getScaleFactor();
+
+            Log.i("onScale", String.valueOf(detector.getPreviousSpan()));
+            Log.i("onScale", String.valueOf(detector.getPreviousSpanX()));
+            Log.i("onScale", String.valueOf(detector.getPreviousSpanY()));
+
+            //  float
+
+            if (mScaleFactor > 1) {
+                Log.i("onScale", "Zooming In");
+                relativeLayout.setScaleX(mScaleFactor);
+                relativeLayout.setScaleY(mScaleFactor);
+            } else {
+                Log.i("onScale", "Zooming Out");
+                //mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
+                relativeLayout.setScaleX(1f);
+                relativeLayout.setScaleY(1f);
+            }
+
+
+            // Don't let the object get too small or too large.
+            //     mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
+
+            //  zoom(2f,2f,new PointF(0,0));
+            //findViewById(R.id.ayahTafsirTable).invalidate();
+            return true;
+        }
+
+    }*/
 }
-
 
 
 

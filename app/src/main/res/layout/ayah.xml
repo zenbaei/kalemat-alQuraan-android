@@ -1,52 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ayahLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow"
-    android:orientation="vertical">
+    android:background="@color/yellow">
 
-    <TextView
-        android:id="@+id/surahName"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textColor="@color/red"
-        android:textDirection="ltr" />
+        android:layout_alignParentTop="true">
 
-    <TableLayout
-        android:id="@+id/ayahTafsirTable"
+        <TextView
+            android:id="@+id/surahName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/red"
+            android:textDirection="ltr" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:onClick="goToSurahIndex"
+            android:padding="10dp"
+            android:text="@string/index"
+            android:textStyle="bold" />
+
+        <TableLayout
+            android:id="@+id/ayahTableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/surahName"
+            android:layoutDirection="rtl"
+            android:padding="10dp"
+            android:shrinkColumns="*"
+            android:stretchColumns="*"
+            android:textDirection="rtl">
+
+            <!--<TableRow>
+                <TextView android:width="5dp" android:text="الاية" />
+                <TextView android:maxWidth="20dp" android:text="islam ibrahim zenbaei abd el baki mohamed foaddfgsdfgsfgfgdsfg" />
+                <TextView android:maxWidth="50dp" android:text="allah akbar la elah ela allah subahn allahsdfasdfadf" />
+            </TableRow>
+    -->
+
+        </TableLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layoutDirection="rtl"
-        android:padding="10dp"
-        android:shrinkColumns="*"
-        android:stretchColumns="*"
-        android:textDirection="rtl">
-
-        <!--<TableRow>
-            <TextView android:width="5dp" android:text="الاية" />
-            <TextView android:maxWidth="20dp" android:text="islam ibrahim zenbaei abd el baki mohamed foaddfgsdfgsfgfgdsfg" />
-            <TextView android:maxWidth="50dp" android:text="allah akbar la elah ela allah subahn allahsdfasdfadf" />
-        </TableRow>
--->
-
-    </TableLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:orientation="horizontal">
+        android:layout_alignParentBottom="true">
 
         <!--<TextView-->
-            <!--android:id="@+id/pagingNextTextView"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:clickable="true"-->
-            <!--android:gravity="right"-->
-            <!--android:text="&lt; " />-->
+        <!--android:id="@+id/pagingNextTextView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:clickable="true"-->
+        <!--android:gravity="right"-->
+        <!--android:text="&lt; " />-->
 
         <TextView
             android:id="@+id/pagingTextView"
@@ -54,19 +69,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:paddingBottom="10dp"
             android:text="paging" />
 
-<!--        <TextView
-            android:id="@+id/pagingPreviousTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="left"
-            android:onClick="previousPageListener"
-            android:text=" &gt;" />-->
+        <!--        <TextView
+                    android:id="@+id/pagingPreviousTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:gravity="left"
+                    android:onClick="previousPageListener"
+                    android:text=" &gt;" />-->
 
 
-    </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
 
-</LinearLayout>
