@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
     android:layoutDirection="rtl"
     android:orientation="vertical"
-    android:textDirection="rtl">
+    android:textDirection="rtl" android:id="@+id/singleAyahRoot">
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <TextView
@@ -20,56 +21,79 @@
             android:textColor="@color/red" />
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout android:paddingTop="60dp"
+        android:id="@+id/first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/header"
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/ayah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ayahWithColon" />
+            android:padding="10dp"
+            android:text="@string/ayahWithColon"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/singleAyahNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/ayah"
             android:maxLength="3"
-            android:padding="20dip" />
-    </LinearLayout>
+            android:padding="10dp"
+            android:textSize="20dp" />
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout android:paddingTop="20dp"
+        android:id="@+id/second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/first"
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/kalemah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/kalemahWithColon" />
+            android:padding="10dp"
+            android:text="@string/kalemahWithColon"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/singleAyahKalemah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="20dip"
-            android:textColor="@color/red" />
-    </LinearLayout>
+            android:layout_toLeftOf="@+id/kalemah"
+            android:padding="10dp"
+            android:textColor="@color/red"
+            android:textSize="20dp" />
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout android:paddingTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/second"
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tafsir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tafsirWithColon" />
+            android:padding="10dp"
+            android:text="@string/tafsirWithColon"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/singleAyahTafsir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="20dip" />
-    </LinearLayout>
-</LinearLayout>
+            android:layout_toLeftOf="@+id/tafsir"
+            android:padding="10dp"
+            android:textSize="20dp" />
+    </RelativeLayout>
+</RelativeLayout>

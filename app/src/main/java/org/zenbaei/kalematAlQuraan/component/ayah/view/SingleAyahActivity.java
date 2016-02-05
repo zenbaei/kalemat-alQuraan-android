@@ -15,11 +15,16 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
+import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.component.R;
+import org.zenbaei.kalematAlQuraan.component.author.IntroActivity;
 import org.zenbaei.kalematAlQuraan.component.search.SearchHandlerActivity;
+import org.zenbaei.kalematAlQuraan.component.surah.entity.Surah;
+import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
 
 /**
  * Created by Islam on 12/24/2015.
@@ -33,6 +38,42 @@ public class SingleAyahActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_ayah);
         process();
+        addGestureListner();
+    }
+
+    private void addGestureListner() {
+        RelativeLayout myView = (RelativeLayout) findViewById(R.id.singleAyahRoot);
+
+        myView.setOnTouchListener(new OnSwipeTouchListener(this) {
+
+            @Override
+
+            public void onSwipeDown() {
+
+                // Toast.makeText(MainActivity.this, "Down", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+            @Override
+
+            public void onSwipeLeft() {
+            }
+
+
+            @Override
+
+            public void onSwipeUp() {
+                //Toast.makeText(MainActivity.this, "Up", Toast.LENGTH_SHORT).show();
+            }
+
+
+            @Override
+
+            public void onSwipeRight() {
+            }
+
+        });
     }
 
 
@@ -71,7 +112,7 @@ public class SingleAyahActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void showDialog(){
+    private void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(getString(R.string.about))
                 .setCancelable(false)

@@ -45,8 +45,8 @@
         android:layout_below="@id/date"
         android:gravity="center"
         android:paddingLeft="40dp"
-        android:paddingTop="20dp"
+        android:paddingTop="10dp"
         android:text="@string/author_2"
-        android:textStyle="bold"  android:textColor="@color/red"/>
+        android:textStyle="bold" />
 
 </RelativeLayout>
