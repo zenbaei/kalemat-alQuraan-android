@@ -2,9 +2,11 @@ package org.zenbaei.kalematAlQuraan.component.surah.view;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
@@ -12,9 +14,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
+import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.component.R;
+import org.zenbaei.kalematAlQuraan.component.author.IntroActivity;
+import org.zenbaei.kalematAlQuraan.component.author.NotesActivity;
 import org.zenbaei.kalematAlQuraan.component.ayah.adapter.AyahArrayAdapter;
 import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
 import org.zenbaei.kalematAlQuraan.component.ayah.entity.Ayah;
@@ -39,6 +46,44 @@ public class SurahActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.surah);
         setSurahListView();
+        addGestureListner();
+    }
+
+    private void addGestureListner() {
+        ListView myView = (ListView) findViewById(R.id.surahListView);
+
+        myView.setOnTouchListener(new OnSwipeTouchListener(this) {
+
+            @Override
+
+            public void onSwipeDown() {
+
+                // Toast.makeText(MainActivity.this, "Down", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+            @Override
+
+            public void onSwipeLeft() {
+            }
+
+
+            @Override
+
+            public void onSwipeUp() {
+                //Toast.makeText(MainActivity.this, "Up", Toast.LENGTH_SHORT).show();
+            }
+
+
+            @Override
+
+            public void onSwipeRight() {
+                Intent intent = new Intent(getApplicationContext(), NotesActivity.class);
+                startActivity(intent);
+            }
+
+        });
     }
 
     @Override
@@ -85,12 +130,20 @@ public class SurahActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_about) {
+            showDialog();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.about))
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.thanks), null);
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     private void startKalemahTafsirActivity(int position) {
