@@ -49,4 +49,16 @@
         android:text="@string/author_2"
         android:textStyle="bold" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="next"
+        android:padding="20dp"
+        android:text="@string/next"
+        android:textColor="@color/red"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
 </RelativeLayout>

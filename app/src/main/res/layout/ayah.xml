@@ -15,17 +15,17 @@
             android:id="@+id/surahName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:padding="10dp"
-            android:textColor="@color/red"
-            android:textDirection="ltr" />
+            android:textColor="@color/red" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
             android:onClick="goToSurahIndex"
             android:padding="10dp"
-            android:text="@string/index"
+            android:text="@string/back"
             android:textStyle="bold" />
 
         <TableLayout

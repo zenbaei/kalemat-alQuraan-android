@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RelativeLayout;
 
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
@@ -44,8 +45,7 @@ public class IntroActivity extends AppCompatActivity {
             @Override
 
             public void onSwipeLeft() {
-                Intent intent = new Intent(getApplicationContext(), NotesActivity.class);
-                startActivity(intent);
+                startNextActivity();
             }
 
 
@@ -96,5 +96,14 @@ public class IntroActivity extends AppCompatActivity {
                 .setPositiveButton(getString(R.string.thanks), null);
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    public void next(View view){
+        startNextActivity();
+    }
+
+    private void startNextActivity(){
+        Intent intent = new Intent(getApplicationContext(), NotesActivity.class);
+        startActivity(intent);
     }
 }

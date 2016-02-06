@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/authorRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/yellow"
-    tools:context=".author.AuthorActivity" android:id="@+id/authorRoot">
+    android:layoutDirection="rtl"
+    android:textDirection="rtl"
+    tools:context=".author.AuthorActivity">
 
     <TextView
         android:id="@+id/book_name"
@@ -16,8 +15,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:paddingTop="15dp"
         android:text="@string/app_name"
-        android:textSize="50dp" android:textColor="@color/red"
+        android:textColor="@color/red"
+        android:textSize="50dp"
         android:textStyle="bold" />
 
     <TextView
@@ -28,8 +29,8 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="@string/book_name_2"
-        android:textSize="30dp"
-        android:textColor="@color/red"/>
+        android:textColor="@color/red"
+        android:textSize="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -39,5 +40,17 @@
         android:gravity="center"
         android:text="@string/author"
         android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="next"
+        android:padding="20dp"
+        android:text="@string/next"
+        android:textColor="@color/red"
+        android:textSize="15dp"
         android:textStyle="bold" />
 </RelativeLayout>

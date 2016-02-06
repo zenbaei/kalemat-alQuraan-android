@@ -12,6 +12,7 @@ import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.author.AuthorActivity;
 import org.zenbaei.kalematAlQuraan.component.ayah.view.AyahActivity;
+import org.zenbaei.kalematAlQuraan.component.surah.business.SurahService;
 import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
 
 /**
@@ -30,6 +31,7 @@ public class ProgressActivity extends AppCompatActivity {
         setContentView(R.layout.progress);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressText = (TextView) findViewById(R.id.progressText);
+        progressText.setText(getString(R.string.loading_data));
         MyTask myTask = new MyTask();
         myTask.execute();
     }
@@ -37,12 +39,17 @@ public class ProgressActivity extends AppCompatActivity {
     class MyTask extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
-            progressText.setText(getString(R.string.loading_data));
         }
 
         @Override
         protected String doInBackground(String... params) {
-            KalematDatabase k = new KalematDatabase(getApplicationContext());
+                try {
+                    SurahService surahService = new SurahService(getApplicationContext());
+                    surahService.findAll();
+                } catch (Exception ex) {
+
+                }
+
             return "completed";
         }
 

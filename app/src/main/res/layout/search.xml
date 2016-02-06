@@ -1,23 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/searchRoot"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <TextView
-        android:id="@+id/searchText"
-        android:textColor="?android:textColorPrimary"
-        android:textSize="17dp"
-        android:background="@android:drawable/title_bar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/title_bar">
+
+        <TextView
+            android:id="@+id/searchText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:onClick="back"
+            android:text="@string/back"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="15dp" />
+    </RelativeLayout>
+
     <ListView
         android:id="@+id/searchList"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
-</LinearLayout>
-<!--<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+</LinearLayout><!--<ListView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/emptyListView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

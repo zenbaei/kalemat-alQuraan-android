@@ -15,6 +15,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -64,13 +65,13 @@ public class SingleAyahActivity extends AppCompatActivity {
             @Override
 
             public void onSwipeUp() {
-                //Toast.makeText(MainActivity.this, "Up", Toast.LENGTH_SHORT).show();
             }
 
 
             @Override
 
             public void onSwipeRight() {
+                finish();
             }
 
         });
@@ -145,5 +146,9 @@ public class SingleAyahActivity extends AppCompatActivity {
             kalemah.setText(cursor.getString(kIndex));
             tafsir.setText(cursor.getString(tIndex));
         }
+    }
+
+    public void back(View view){
+        finish();
     }
 }

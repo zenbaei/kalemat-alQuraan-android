@@ -9,12 +9,14 @@
     <string name="ayahWithColon">الآية:</string>
     <string name="kalemahWithColon">الكلمة:</string>
     <string name="tafsirWithColon">التفسير:</string>
-    <string name="action_about">بخصوص</string>
+    <string name="action_about">حول البرنامج</string>
     <string name="settings_description">Settings Description</string>
     <string name="loading_data">جاري تحميل البيانات</string>
     <string name="from">من</string>
     <string name="author">لفضيلة الأستاذ الشيخ\nحسنين محمد مخلوف</string>
-    <string name="book_name_2">تفسير وبيان</string>
+    <string name="book_name_2">تفسير و بيان</string>
+    <string name="back">الرجوع</string>
+    <string name="next">&lt;&lt;</string>
 
 
     <!-- Shown above search results when we receive a search request. -->

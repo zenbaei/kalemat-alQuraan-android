@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/singleAyahRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
     android:layoutDirection="rtl"
     android:orientation="vertical"
-    android:textDirection="rtl" android:id="@+id/singleAyahRoot">
+    android:textDirection="rtl">
 
     <RelativeLayout
         android:id="@+id/header"
@@ -13,20 +14,35 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/singleAyahSurah"
+            android:id="@+id/sindleAyahBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:padding="10dp"
-            android:textColor="@color/red" />
+            android:onClick="back"
+            android:padding="5dp"
+            android:text="@string/back"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/singleAyahSurah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:paddingTop="60dp"
+            android:textColor="@color/red"
+            android:textSize="30dp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
-    <RelativeLayout android:paddingTop="60dp"
+    <RelativeLayout
         android:id="@+id/first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/header"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="60dp">
 
         <TextView
             android:id="@+id/ayah"
@@ -47,12 +63,13 @@
             android:textSize="20dp" />
     </RelativeLayout>
 
-    <RelativeLayout android:paddingTop="20dp"
+    <RelativeLayout
         android:id="@+id/second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/first"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
 
         <TextView
             android:id="@+id/kalemah"
@@ -73,11 +90,12 @@
             android:textSize="20dp" />
     </RelativeLayout>
 
-    <RelativeLayout android:paddingTop="20dp"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/second"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
 
         <TextView
             android:id="@+id/tafsir"

@@ -53,6 +53,6 @@ public class Surah extends AbstractEntity {
 
     @Override
     public String toString() {
-        return this.name;
+        return this.id +"- "+  this.name;
     }
 }

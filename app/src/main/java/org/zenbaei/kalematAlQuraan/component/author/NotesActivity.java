@@ -8,10 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RelativeLayout;
 
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.component.R;
+import org.zenbaei.kalematAlQuraan.component.surah.entity.Surah;
 import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
 
 /**
@@ -43,8 +45,7 @@ public class NotesActivity extends AppCompatActivity {
             @Override
 
             public void onSwipeLeft() {
-                Intent intent = new Intent(getApplicationContext(), SurahActivity.class);
-                startActivity(intent);
+                startNextActivity();
             }
 
 
@@ -95,5 +96,14 @@ public class NotesActivity extends AppCompatActivity {
                 .setPositiveButton(getString(R.string.thanks), null);
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    public void next(View view){
+        startNextActivity();
+    }
+
+    private void startNextActivity(){
+        Intent intent = new Intent(getApplicationContext(), SurahActivity.class);
+        startActivity(intent);
     }
 }

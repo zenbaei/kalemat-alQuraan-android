@@ -12,6 +12,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RelativeLayout;
 
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
@@ -46,8 +47,7 @@ public class AuthorActivity extends AppCompatActivity {
             @Override
 
             public void onSwipeLeft() {
-                Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
-                startActivity(intent);
+                startNextActivity();
             }
 
 
@@ -61,7 +61,6 @@ public class AuthorActivity extends AppCompatActivity {
             @Override
 
             public void onSwipeRight() {
-
             }
 
         });
@@ -97,6 +96,15 @@ public class AuthorActivity extends AppCompatActivity {
                 .setPositiveButton(getString(R.string.thanks), null);
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    public void next(View view){
+        startNextActivity();
+    }
+
+    private void startNextActivity(){
+        Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
+        startActivity(intent);
     }
 
 }

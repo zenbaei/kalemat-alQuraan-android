@@ -16,10 +16,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
+import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
 import org.zenbaei.kalematAlQuraan.component.ayah.contentProvider.KalematContentProvider;
@@ -45,6 +48,42 @@ public class SearchHandlerActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.searchList);
 
         handleIntent(getIntent());
+        addGestureListner();
+    }
+
+    private void addGestureListner() {
+        ListView myView = (ListView) findViewById(R.id.searchList);
+
+        myView.setOnTouchListener(new OnSwipeTouchListener(this) {
+
+            @Override
+
+            public void onSwipeDown() {
+
+                // Toast.makeText(MainActivity.this, "Down", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+            @Override
+
+            public void onSwipeLeft() {
+            }
+
+
+            @Override
+
+            public void onSwipeUp() {
+            }
+
+
+            @Override
+
+            public void onSwipeRight() {
+                finish();
+            }
+
+        });
     }
 
     @Override
@@ -69,6 +108,7 @@ public class SearchHandlerActivity extends AppCompatActivity {
             showResults(query);
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -153,5 +193,9 @@ public class SearchHandlerActivity extends AppCompatActivity {
             });
 
         }
+    }
+
+    public void back(View view){
+        finish();
     }
 }
