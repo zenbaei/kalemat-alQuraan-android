@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.component.R;
@@ -157,7 +159,7 @@ public class SurahActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startKalemahTafsirActivity(position);
+                startKalemahTafsirActivity(((TextView) view).getText().toString());
             }
         });
     }
@@ -198,8 +200,21 @@ public class SurahActivity extends AppCompatActivity {
         alert.show();
     }
 
-    private void startKalemahTafsirActivity(int position) {
-        Surah surah = surahList.get(position);
+    private void startKalemahTafsirActivity(String selectedSurah) {
+        if (selectedSurah == null || selectedSurah.isEmpty()) {
+            Log.e("SurahActivity", "Selected Surah has null value.");
+        }
+
+        Surah surah = null;
+        for (Surah s : surahList) {
+            if (s.toString().equals(selectedSurah))
+                surah = s;
+        }
+
+        if (surah == null) {
+            Log.e("SurahActivity", String.format("Surah name %s is not found.", selectedSurah));
+        }
+
         Intent intent = new Intent(getApplicationContext(), AyahActivity.class);
         intent.putExtra("surahId", surah.getId());
         intent.putExtra("surahName", surah.getName());
