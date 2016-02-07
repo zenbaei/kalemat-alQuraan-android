@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +19,7 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
@@ -34,7 +36,7 @@ import java.util.List;
 /**
  * Created by Islam on 11/18/2015.
  */
-public class AyahActivity extends AppCompatActivity {// implements GestureDetector.OnGestureListener {
+public class AyahActivity extends AppCompatActivity {//}  implements GestureDetector.OnGestureListener {
 
     private AyahService ayahService;
 
@@ -76,13 +78,17 @@ public class AyahActivity extends AppCompatActivity {// implements GestureDetect
 
     private TableLayout ayahTafsirTable;
 
+    private ScrollView scrollView;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ayah);
 
-        relativeLayout = (RelativeLayout) findViewById(R.id.ayahLinearLayout);
+        relativeLayout = (RelativeLayout) findViewById(R.id.ayahRoot);
+
+        scrollView = (ScrollView) findViewById(R.id.ayahScrollRoot);
 
         //initialize DAO
         ayahService = new AyahService(this);
@@ -107,9 +113,7 @@ public class AyahActivity extends AppCompatActivity {// implements GestureDetect
     }
 
     private void addGestureListner() {
-        RelativeLayout myView = (RelativeLayout) findViewById(R.id.ayahLinearLayout);
-
-        myView.setOnTouchListener(new OnSwipeTouchListener(this) {
+        scrollView.setOnTouchListener(new OnSwipeTouchListener(this) {
 
             @Override
 
@@ -146,10 +150,12 @@ public class AyahActivity extends AppCompatActivity {// implements GestureDetect
     private void calculateColumnSizes() {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        screenWidth = metrics.widthPixels - 2; //2 for the 2 vertical lines
+        screenWidth = metrics.widthPixels - 40; //2 for the 2 vertical lines + 20 for table padding...
         ayahColWidth = screenWidth * 15 / 100;
         kalemahColWidth = screenWidth * 30 / 100;
         tafsirColWidth = screenWidth * 55 / 100;
+        int total = ayahColWidth + kalemahColWidth + tafsirColWidth;
+        Log.d("AayahActivity", "Screen Width: " + screenWidth + "Column sizes: " + total);
     }
 
     @Override
@@ -177,17 +183,20 @@ public class AyahActivity extends AppCompatActivity {// implements GestureDetect
         //get TableLayout
         ayahTafsirTable = (TableLayout) findViewById(R.id.ayahTableLayout);
 
+        TableLayout ayahHeaderTableLayout = (TableLayout) findViewById(R.id.ayahHeaderTableLayout);
+
         //clear the table on every render
+        ayahHeaderTableLayout.removeAllViewsInLayout();
         ayahTafsirTable.removeAllViewsInLayout();
 
         //horizontal line
-        ayahTafsirTable.addView(getHorizontalLine());
+        ayahHeaderTableLayout.addView(getHorizontalLine());
 
         //header row
-        ayahTafsirTable.addView(getHeaderRow());
+        ayahHeaderTableLayout.addView(getHeaderRow());
 
         //horizontal line
-        ayahTafsirTable.addView(getHorizontalLine());
+        ayahHeaderTableLayout.addView(getHorizontalLine());
 
         setTableContent();
 
@@ -212,11 +221,14 @@ public class AyahActivity extends AppCompatActivity {// implements GestureDetect
 
 
             //add text to tableRow
-            tableRow.addView(textView4Ayah);
+            tableRow.addView(textView4Tafsir);
             tableRow.addView(getVerticalLine(false));
+
             tableRow.addView(textView4Kalemah);
             tableRow.addView(getVerticalLine(false));
-            tableRow.addView(textView4Tafsir);
+
+            tableRow.addView(textView4Ayah);
+
 
             //set max width to wrap content
             textView4Ayah.setWidth(ayahColWidth);
@@ -228,16 +240,20 @@ public class AyahActivity extends AppCompatActivity {// implements GestureDetect
             textView4Kalemah.setText(ayah.getKalemah());
             textView4Tafsir.setText(ayah.getTafsir().getTafsir());
 
-            //align ayah to center
-            textView4Ayah.setGravity(Gravity.RIGHT);
-
             //set text color
             textView4Kalemah.setTextColor(getResources().getColor(R.color.red));
 
             //set text padding
-            textView4Ayah.setPadding(0, rowTopPadding, 0, 0);
-            textView4Kalemah.setPadding(3, rowTopPadding, 0, 0);
-            textView4Tafsir.setPadding(2, rowTopPadding, 0, 0);
+            textView4Ayah.setPadding(0, rowTopPadding, 10, 0);
+            textView4Kalemah.setPadding(3, rowTopPadding, 10, 0);
+            textView4Tafsir.setPadding(2, rowTopPadding, 10, 0);
+
+            textView4Ayah.setGravity(Gravity.RIGHT);
+
+            //text size
+            textView4Ayah.setTextSize(15);
+            textView4Kalemah.setTextSize(15);
+            textView4Tafsir.setTextSize(15);
         }
     }
 
@@ -354,16 +370,20 @@ public class AyahActivity extends AppCompatActivity {// implements GestureDetect
         kalemah.setWidth(kalemahColWidth);
         tafsir.setWidth(tafsirColWidth);
 
-        ayah.setPadding(0, 0, 2, 0);
+
+        //set text padding
+        ayah.setPadding(0, 0, 5, 0);
+        kalemah.setPadding(0, 0, 2, 0);
+        tafsir.setPadding(0, 0, 2, 0);
 
         //add TextView to TableRow and add vertical line after every TextView
-        headerRow.addView(ayah);
+        headerRow.addView(tafsir);
         headerRow.addView(getVerticalLine(true));
 
         headerRow.addView(kalemah);
         headerRow.addView(getVerticalLine(true));
 
-        headerRow.addView(tafsir);
+        headerRow.addView(ayah);
 
         return headerRow;
     }
@@ -452,7 +472,7 @@ public class AyahActivity extends AppCompatActivity {// implements GestureDetect
         return super.onOptionsItemSelected(item);
     }
 
-    private void showDialog(){
+    private void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(getString(R.string.about))
                 .setCancelable(false)
@@ -520,13 +540,13 @@ public class AyahActivity extends AppCompatActivity {// implements GestureDetect
 
             if (mScaleFactor > 1) {
                 Log.i("onScale", "Zooming In");
-                relativeLayout.setScaleX(mScaleFactor);
-                relativeLayout.setScaleY(mScaleFactor);
+                ayahTafsirTable.setScaleX(mScaleFactor);
+                ayahTafsirTable.setScaleY(mScaleFactor);
             } else {
                 Log.i("onScale", "Zooming Out");
                 //mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
-                relativeLayout.setScaleX(1f);
-                relativeLayout.setScaleY(1f);
+                ayahTafsirTable.setScaleX(1f);
+                ayahTafsirTable.setScaleY(1f);
             }
 
 

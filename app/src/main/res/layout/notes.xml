@@ -3,9 +3,7 @@
     android:id="@+id/notesRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow"
-    android:layoutDirection="rtl"
-    android:textDirection="rtl">
+    android:background="@color/yellow">
 
     <TextView
         android:id="@+id/notes_1"
@@ -25,6 +23,7 @@
         android:layout_below="@id/notes_1"
         android:padding="10dp"
         android:paddingLeft="20dp"
+        android:textSize="15dp"
         android:text="@string/notes_2" />
 
 
@@ -33,10 +32,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:gravity="right"
         android:onClick="next"
         android:padding="20dp"
         android:text="@string/next"
-        android:textColor="@color/red"
         android:textSize="15dp"
         android:textStyle="bold" />
 </RelativeLayout>

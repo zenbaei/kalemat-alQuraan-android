@@ -153,4 +153,9 @@ public class SurahActivity extends AppCompatActivity {
         intent.putExtra("surahName", surah.getName());
         startActivity(intent);
     }
+
+    public void back(View view){
+        Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
+        startActivity(intent);
+    }
 }

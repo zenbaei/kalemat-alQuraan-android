@@ -218,41 +218,41 @@ public class KalematDatabase {
         }
 
         private void executeDatabaseCreateStatements() {
-            Log.i(TAG, "Creating Tables...");
+            Log.d(TAG, "Creating Tables...");
 
-            Log.i(TAG, FTS_TABLE_CREATE);
+            Log.d(TAG, FTS_TABLE_CREATE);
             mDatabase.execSQL(FTS_TABLE_CREATE);
 
-            Log.i(TAG, Surah.DATABASE_CREATE);
+            Log.d(TAG, Surah.DATABASE_CREATE);
             mDatabase.execSQL(Surah.DATABASE_CREATE);
 
-            Log.i(TAG, Ayah.DATABASE_CREATE);
+            Log.d(TAG, Ayah.DATABASE_CREATE);
             mDatabase.execSQL(Ayah.DATABASE_CREATE);
 
-            Log.i(TAG, Tafsir.DATABASE_CREATE);
+            Log.d(TAG, Tafsir.DATABASE_CREATE);
             mDatabase.execSQL(Tafsir.DATABASE_CREATE);
 
-            Log.i(TAG, Language.DATABASE_CREATE);
+            Log.d(TAG, Language.DATABASE_CREATE);
             mDatabase.execSQL(Language.DATABASE_CREATE);
         }
 
         private void executeDatabaseDropStatements() {
-            Log.i(TAG, "Dropping Tables...");
+            Log.d(TAG, "Dropping Tables...");
 
             String virutalTable = String.format("DROP TABLE IF EXISTS %s;", FTS_VIRTUAL_TABLE);
-            Log.i(TAG, virutalTable);
+            Log.d(TAG, virutalTable);
             mDatabase.execSQL(virutalTable);
 
-            Log.i(TAG, Tafsir.DATABASE_DROP);
+            Log.d(TAG, Tafsir.DATABASE_DROP);
             mDatabase.execSQL(Tafsir.DATABASE_DROP);
 
-            Log.i(TAG, Language.DATABASE_DROP);
+            Log.d(TAG, Language.DATABASE_DROP);
             mDatabase.execSQL(Language.DATABASE_DROP);
 
-            Log.i(TAG, Ayah.DATABASE_DROP);
+            Log.d(TAG, Ayah.DATABASE_DROP);
             mDatabase.execSQL(Ayah.DATABASE_DROP);
 
-            Log.i(TAG, Surah.DATABASE_DROP);
+            Log.d(TAG, Surah.DATABASE_DROP);
             mDatabase.execSQL(Surah.DATABASE_DROP);
         }
 
@@ -300,9 +300,9 @@ public class KalematDatabase {
          * @return rowId or -1 if failed
          */
         public void addWordsToSuggestionsTable() {
-            Log.i(TAG, String.format("Inserting into %s table...", FTS_VIRTUAL_TABLE));
+            Log.d(TAG, String.format("Inserting into %s table...", FTS_VIRTUAL_TABLE));
             for (ContentValues initialValues : getKalematView()) {
-                Log.i(TAG, String.format("Kalemah= %s, Surah= %s, Number= %s, Tafsir= %s", initialValues.get(KALEMAH), initialValues.get(SURAH), initialValues.get(AYAH_NUMBER), initialValues.get(TAFSIR)));
+                Log.d(TAG, String.format("Kalemah= %s, Surah= %s, Number= %s, Tafsir= %s", initialValues.get(KALEMAH), initialValues.get(SURAH), initialValues.get(AYAH_NUMBER), initialValues.get(TAFSIR)));
                 mDatabase.insert(FTS_VIRTUAL_TABLE, null, initialValues);
             }
         }
@@ -328,7 +328,7 @@ public class KalematDatabase {
                     String.format("a.%s = t.%s", Ayah.ID_COLUMN, Tafsir.AYAH_ID_COLUMN),
                     String.format("a.%s, a.%s", Ayah.SURAH_ID_COLUMN, Ayah.ID_COLUMN)
             );
-            Log.i(TAG, sql);
+            Log.d(TAG, sql);
             return getKalematView(mDatabase.rawQuery(sql, null));
         }
 

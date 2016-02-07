@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
-    android:layoutDirection="rtl"
-    android:textDirection="rtl"
     tools:context=".author.AuthorActivity">
 
     <TextView
@@ -43,14 +41,14 @@
         android:textStyle="bold" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:gravity="right"
         android:onClick="next"
         android:padding="20dp"
         android:text="@string/next"
-        android:textColor="@color/red"
         android:textSize="15dp"
         android:textStyle="bold" />
 </RelativeLayout>

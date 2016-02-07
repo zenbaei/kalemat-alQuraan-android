@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ayahLinearLayout"
+    android:id="@+id/ayahRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow">
 
     <RelativeLayout
+        android:id="@+id/titleRoot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true">
@@ -16,7 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:padding="10dp"
+            android:paddingRight="15dp"
+            android:paddingTop="15dp"
             android:textColor="@color/red" />
 
         <TextView
@@ -24,32 +26,32 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:onClick="goToSurahIndex"
-            android:padding="10dp"
-            android:text="@string/back"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:text="@string/backToIndex"
             android:textStyle="bold" />
 
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/headerRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleRoot">
+
         <TableLayout
-            android:id="@+id/ayahTableLayout"
+            android:id="@+id/ayahHeaderTableLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/surahName"
-            android:layoutDirection="rtl"
-            android:padding="10dp"
-            android:shrinkColumns="*"
-            android:stretchColumns="*"
-            android:textDirection="rtl">
-
-            <!--<TableRow>
-                <TextView android:width="5dp" android:text="الاية" />
-                <TextView android:maxWidth="20dp" android:text="islam ibrahim zenbaei abd el baki mohamed foaddfgsdfgsfgfgdsfg" />
-                <TextView android:maxWidth="50dp" android:text="allah akbar la elah ela allah subahn allahsdfasdfadf" />
-            </TableRow>
-    -->
-
-        </TableLayout>
+            android:paddingBottom="2dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"/>
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/footerRoot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
@@ -84,5 +86,35 @@
 
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/contentRoot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/footerRoot"
+        android:layout_below="@id/headerRoot">
+
+        <ScrollView android:id="@+id/ayahScrollRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical">
+
+            <TableLayout
+                android:id="@+id/ayahTableLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/surahName"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:shrinkColumns="*">
+
+
+
+            </TableLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+
 </RelativeLayout>
 

@@ -15,8 +15,8 @@
     <string name="from">من</string>
     <string name="author">لفضيلة الأستاذ الشيخ\nحسنين محمد مخلوف</string>
     <string name="book_name_2">تفسير و بيان</string>
-    <string name="back">الرجوع</string>
-    <string name="next">&lt;&lt;</string>
+    <string name="back">رجـــوع</string>
+    <string name="next">&gt;&gt;</string>
 
 
     <!-- Shown above search results when we receive a search request. -->
@@ -38,7 +38,8 @@
 3. اتّبعنا في ضبط الكلمات رواية الإمام أبي عمر حفص ابن سليمان بن المغيرة الأسديّ الكوفي المتوفى سنة 180 هـ لقراءة الإمام أبي بكر عاصم بن أبي عبد الرحمن عبد الله ابن حبيب السّلميّ، المتوفى سنة 47 هـ عن حفاظ القرآن من الصّحابة رضي الله عنهم عثمان بن عفّان ، و عليّ بن أبي طالب ، و زيد بن ثابت ، و عبد الله بن مسعود ، أُبيّ بن كعب
  - رضي الله عنهم- عن النّبي صلى الله عليه و سلم ، عن الرّوح الأمين جبريل عليه السّلام ، عن ربّ العالمين جلّ جلاله و هي رواية متواترة التلاوة ، و حفظا و ضبطا و تدوينا.
 </string>
-    <string name="index">فهرس السور</string>
+    <string name="backToIndex">الرجوع إلى الفهرس</string>
+    <string name="backToIntro">الرجوع إلى المقدمة</string>
     <string name="about">عند ملاحظة أي خطأ بالكتاب او البرنامج برجاء مراسلتي على zenbaei@gmail.com.\n\nتنبيه: قد لا تظهر نتيجة للبحث في الآيات بسبب عدم مطابقة علامات الإعراب.</string>
     <string name="thanks">شكرا لكم</string>
 

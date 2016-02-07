@@ -2,31 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="rtl"
     android:orientation="horizontal"
-    android:padding="2dip"
-    android:textDirection="rtl">
+    android:padding="2dip">
 
     <TextView
         android:id="@+id/ayahNumberTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:maxLength="3"
-        android:padding="4dip" />
+        android:padding="10dip"
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/kalemahTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="4dip"
-        android:textColor="@color/red" />
+        android:padding="10dip"
+        android:textColor="@color/red"
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/surahNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:padding="4dip"
+        android:padding="10dip"
+        android:textSize="15dp"
         android:textStyle="bold" />
+
 </RelativeLayout>
