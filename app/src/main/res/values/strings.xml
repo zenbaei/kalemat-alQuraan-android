@@ -17,6 +17,7 @@
     <string name="book_name_2">تفسير و بيان</string>
     <string name="back">رجـــوع</string>
     <string name="next">&gt;&gt;</string>
+    <string name="searchSurah">بحث في السور</string>
 
 
     <!-- Shown above search results when we receive a search request. -->

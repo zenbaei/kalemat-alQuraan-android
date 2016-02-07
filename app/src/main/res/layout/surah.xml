@@ -7,15 +7,29 @@
     android:background="@color/yellow"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/sindleAyahBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:onClick="back"
-        android:padding="10dp"
-        android:text="@string/backToIntro"
-        android:textStyle="bold" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/sindleAyahBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:onClick="back"
+            android:padding="10dp"
+            android:text="@string/backToIntro"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/surahSearch"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:hint="@string/searchSurah"
+            android:textColorHint="@color/gray" android:maxLength="20"
+            android:textSize="15dp" />
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/surahListView"

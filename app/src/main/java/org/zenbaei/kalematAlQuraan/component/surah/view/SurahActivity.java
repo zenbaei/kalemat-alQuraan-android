@@ -9,11 +9,14 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -30,6 +33,7 @@ import org.zenbaei.kalematAlQuraan.component.search.SearchHandlerActivity;
 import org.zenbaei.kalematAlQuraan.component.surah.business.SurahService;
 import org.zenbaei.kalematAlQuraan.component.surah.entity.Surah;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,12 +45,60 @@ public class SurahActivity extends AppCompatActivity {
 
     private SearchView searchView;
 
+    private ArrayAdapter surahArrayAdapter;
+
+    private ListView listView;
+
+    private EditText surahSearchText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.surah);
+
+        listView = (ListView) findViewById(R.id.surahListView);
+
         setSurahListView();
+        setEditTextListener();
         addGestureListner();
+    }
+
+    private void setEditTextListener() {
+        surahSearchText = (EditText) findViewById(R.id.surahSearch);
+        surahSearchText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterSurahList(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    private void filterSurahList(CharSequence s) {
+        if (s.toString().trim().isEmpty()) {
+            listView.setAdapter(surahArrayAdapter);
+            return;
+        }
+
+        List<Surah> filteredSurahList = new ArrayList<>();
+
+        for (Surah surah : surahList) {
+            if (surah.getName().contains(s.toString().trim()))
+                filteredSurahList.add(surah);
+        }
+
+        ArrayAdapter<Surah> adapter = new ArrayAdapter<Surah>(this,
+                R.layout.text_view, filteredSurahList);
+        listView.setAdapter(adapter);
     }
 
     private void addGestureListner() {
@@ -91,17 +143,17 @@ public class SurahActivity extends AppCompatActivity {
         super.onRestart();
         searchView.setQuery("", false);
         searchView.setIconified(true);
+        listView.setAdapter(surahArrayAdapter);
+        surahSearchText.setText(null);
     }
 
     private void setSurahListView() {
-        ListView listView = (ListView) findViewById(R.id.surahListView);
-
         SurahService surahService = new SurahService(this);
         surahList = surahService.findAll();
 
-        ArrayAdapter<Surah> adapter = new ArrayAdapter<Surah>(this,
+        surahArrayAdapter = new ArrayAdapter<Surah>(this,
                 R.layout.text_view, surahList);
-        listView.setAdapter(adapter);
+        listView.setAdapter(surahArrayAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -137,7 +189,7 @@ public class SurahActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void showDialog(){
+    private void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(getString(R.string.about))
                 .setCancelable(false)
@@ -154,7 +206,7 @@ public class SurahActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void back(View view){
+    public void back(View view) {
         Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
         startActivity(intent);
     }
