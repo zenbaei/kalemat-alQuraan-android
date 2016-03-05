@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.component.R;
@@ -28,7 +29,7 @@ import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
 import org.zenbaei.kalematAlQuraan.component.ayah.contentProvider.KalematContentProvider;
 import org.zenbaei.kalematAlQuraan.component.ayah.view.SingleAyahActivity;
 
-public class SearchHandlerActivity extends AppCompatActivity {
+public class SearchHandlerActivity extends BaseActivity {
 
     private TextView mTextView;
     private ListView mListView;
@@ -39,7 +40,7 @@ public class SearchHandlerActivity extends AppCompatActivity {
         setContentView(R.layout.search);
 
         // get the action bar
-      //  ActionBar actionBar = getSupportActionBar();
+        //  ActionBar actionBar = getSupportActionBar();
 
         // Enabling Back navigation on Action Bar icon
         //actionBar.setDisplayHomeAsUpEnabled(true);
@@ -68,12 +69,14 @@ public class SearchHandlerActivity extends AppCompatActivity {
             @Override
 
             public void onSwipeLeft() {
+                finish();
             }
 
 
             @Override
 
             public void onSwipeUp() {
+
             }
 
 
@@ -122,31 +125,9 @@ public class SearchHandlerActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id == R.id.action_about) {
-            showDialog();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void showDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.about))
-                .setCancelable(false)
-                .setPositiveButton(getString(R.string.thanks), null);
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
-
     /**
      * Searches the dictionary and displays results for the given query.
+     *
      * @param query The search query
      */
     private void showResults(String query) {
@@ -156,21 +137,22 @@ public class SearchHandlerActivity extends AppCompatActivity {
 
         if (cursor == null) {
             // There are no results
-            mTextView.setText(getString(R.string.no_results, new Object[] {query}));
+            mTextView.setText(getString(R.string.no_results, new Object[]{query}));
         } else {
             // Display the number of results
             int count = cursor.getCount();
-            String countString = getResources().getQuantityString(R.plurals.search_results,
-                    count, new Object[] {count, query});
+            String countString = getStringByCount(count, query);
+
+
             mTextView.setText(countString);
 
             // Specify the columns we want to display in the result
-            String[] from = new String[] {KalematDatabase.AYAH_NUMBER,
+            String[] from = new String[]{KalematDatabase.AYAH_NUMBER,
                     KalematDatabase.KALEMAH, KalematDatabase.SURAH};
 
             // Specify the corresponding layout elements where we want the columns to go
-            int[] to = new int[] { R.id.ayahNumberTextView,
-                    R.id.kalemahTextView, R.id.surahNameTextView };
+            int[] to = new int[]{R.id.ayahNumberTextView,
+                    R.id.kalemahTextView, R.id.surahNameTextView};
 
             // Create a simple cursor adapter for the definitions and apply them to the ListView
             SimpleCursorAdapter words = new SimpleCursorAdapter(this,
@@ -195,7 +177,18 @@ public class SearchHandlerActivity extends AppCompatActivity {
         }
     }
 
-    public void back(View view){
+    private String getStringByCount(int count, String query) {
+        if (count == 1)
+            return String.format(getResources().getString(R.string.one), query);
+        else if (count == 2)
+            return String.format(getResources().getString(R.string.two), query);
+        else if (count <= 10)
+            return String.format(getResources().getString(R.string.three_to_ten), query, count);
+        else
+            return String.format(getResources().getString(R.string.other), query, count);
+    }
+
+    public void back(View view) {
         finish();
     }
 }

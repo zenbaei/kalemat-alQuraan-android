@@ -1,5 +1,6 @@
 package org.zenbaei.kalematAlQuraan.component.surah.view;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -22,7 +24,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.author.IntroActivity;
@@ -41,7 +45,7 @@ import java.util.List;
 /**
  * Created by Islam on 12/11/2015.
  */
-public class SurahActivity extends AppCompatActivity {
+public class SurahActivity extends BaseActivity {
 
     private List<Surah> surahList;
 
@@ -53,16 +57,22 @@ public class SurahActivity extends AppCompatActivity {
 
     private EditText surahSearchText;
 
+    private LinearLayout surahRoot;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.surah);
+
+        surahRoot = (LinearLayout) findViewById(R.id.surahRoot);
 
         listView = (ListView) findViewById(R.id.surahListView);
 
         setSurahListView();
         setEditTextListener();
         addGestureListner();
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
     private void setEditTextListener() {
@@ -104,40 +114,8 @@ public class SurahActivity extends AppCompatActivity {
     }
 
     private void addGestureListner() {
-        ListView myView = (ListView) findViewById(R.id.surahListView);
-
-        myView.setOnTouchListener(new OnSwipeTouchListener(this) {
-
-            @Override
-
-            public void onSwipeDown() {
-
-                // Toast.makeText(MainActivity.this, "Down", Toast.LENGTH_SHORT).show();
-
-            }
-
-
-            @Override
-
-            public void onSwipeLeft() {
-            }
-
-
-            @Override
-
-            public void onSwipeUp() {
-                //Toast.makeText(MainActivity.this, "Up", Toast.LENGTH_SHORT).show();
-            }
-
-
-            @Override
-
-            public void onSwipeRight() {
-                Intent intent = new Intent(getApplicationContext(), NotesActivity.class);
-                startActivity(intent);
-            }
-
-        });
+        surahRoot.setOnTouchListener(new OnSwipe(this));
+        listView.setOnTouchListener(new OnSwipe(this));
     }
 
     @Override
@@ -147,6 +125,7 @@ public class SurahActivity extends AppCompatActivity {
         searchView.setIconified(true);
         listView.setAdapter(surahArrayAdapter);
         surahSearchText.setText(null);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
     private void setSurahListView() {
@@ -177,28 +156,6 @@ public class SurahActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id == R.id.action_about) {
-            showDialog();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void showDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.about))
-                .setCancelable(false)
-                .setPositiveButton(getString(R.string.thanks), null);
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
 
     private void startKalemahTafsirActivity(String selectedSurah) {
         if (selectedSurah == null || selectedSurah.isEmpty()) {
@@ -224,5 +181,25 @@ public class SurahActivity extends AppCompatActivity {
     public void back(View view) {
         Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
         startActivity(intent);
+    }
+
+    class OnSwipe extends OnSwipeTouchListener {
+        OnSwipe(Context context) {
+            super(context);
+        }
+
+        @Override
+
+        public void onSwipeLeft() {
+            Intent intent = new Intent(getApplicationContext(), NotesActivity.class);
+            startActivity(intent);
+        }
+
+
+        @Override
+
+        public void onSwipeRight() {
+            Toast.makeText(SurahActivity.this, R.string.surahOnSwipeRightHint, Toast.LENGTH_SHORT).show();
+        }
     }
 }

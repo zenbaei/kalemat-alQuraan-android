@@ -24,15 +24,16 @@
         android:layout_below="@id/allah"
         android:gravity="right"
         android:padding="10dp"
-        android:textSize="15dp"
-        android:text="@string/intro" />
+        android:text="@string/intro"
+        android:textSize="15dp" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_below="@id/intro"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:gravity="center"
         android:padding="5dp"
         android:text="@string/sign" />
@@ -40,24 +41,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_below="@id/date"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:paddingLeft="40dp"
-        android:paddingTop="10dp"
+        android:paddingTop="2dp"
         android:text="@string/author_2"
         android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:gravity="right"
         android:onClick="next"
         android:padding="20dp"
-        android:text="@string/next"
-        android:textSize="15dp"
-        android:textStyle="bold" />
+        android:src="@drawable/ic_next" />
 
 </RelativeLayout>

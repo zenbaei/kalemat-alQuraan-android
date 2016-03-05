@@ -11,14 +11,6 @@
         android:layout_height="wrap_content"
         android:background="@android:drawable/title_bar">
 
-        <TextView
-            android:id="@+id/searchText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="17dp"
-            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/back"
@@ -29,6 +21,18 @@
             android:text="@string/back"
             android:textColor="?android:textColorPrimary"
             android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/searchText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/back"
+            android:paddingTop="5dp"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 
     <ListView

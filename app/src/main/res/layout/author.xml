@@ -40,15 +40,11 @@
         android:textSize="20dp"
         android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="fill_parent"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:gravity="right"
         android:onClick="next"
         android:padding="20dp"
-        android:text="@string/next"
-        android:textSize="15dp"
-        android:textStyle="bold" />
+        android:src="@drawable/ic_next" />
 </RelativeLayout>

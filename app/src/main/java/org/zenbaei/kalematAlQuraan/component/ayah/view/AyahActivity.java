@@ -4,7 +4,9 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
@@ -24,8 +26,11 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
+import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListenerIgnoreDown;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
 import org.zenbaei.kalematAlQuraan.component.ayah.entity.Ayah;
@@ -33,10 +38,11 @@ import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
 
 import java.util.List;
 
+
 /**
  * Created by Islam on 11/18/2015.
  */
-public class AyahActivity extends AppCompatActivity {//}  implements GestureDetector.OnGestureListener {
+public class AyahActivity extends BaseActivity {//}  implements GestureDetector.OnGestureListener {
 
     private AyahService ayahService;
 
@@ -80,6 +86,7 @@ public class AyahActivity extends AppCompatActivity {//}  implements GestureDete
 
     private ScrollView scrollView;
 
+    private Handler handler = new Handler();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -109,34 +116,32 @@ public class AyahActivity extends AppCompatActivity {//}  implements GestureDete
 
         //  setToolbarLayout();
         retrievePageCount();
-        process();
+
+        handler.post(new DoWork());
     }
 
     private void addGestureListner() {
-        scrollView.setOnTouchListener(new OnSwipeTouchListener(this) {
+        relativeLayout.setOnTouchListener(new OnSwipeTouchListener(this) {
 
             @Override
-
-            public void onSwipeDown() {
-
-                // Toast.makeText(MainActivity.this, "Down", Toast.LENGTH_SHORT).show();
-
-            }
-
-
-            @Override
-
             public void onSwipeLeft() {
                 previousPage();
             }
 
-
             @Override
 
-            public void onSwipeUp() {
-                //Toast.makeText(MainActivity.this, "Up", Toast.LENGTH_SHORT).show();
+            public void onSwipeRight() {
+                nextPage();
             }
 
+        });
+
+        scrollView.setOnTouchListener(new OnSwipeTouchListenerIgnoreDown(this) {
+
+            @Override
+            public void onSwipeLeft() {
+                previousPage();
+            }
 
             @Override
 
@@ -397,12 +402,6 @@ public class AyahActivity extends AppCompatActivity {//}  implements GestureDete
         pageCount = getNumberOfPages(ayahService.getCountBySurahId(surahId, false), maxRowPerPage);
     }
 
-    private void process() {
-        doSearch();
-        addTableLayout();
-        addPagingView();
-    }
-
 
     /**
      * pagingPreviousTextView onClick Listener
@@ -410,11 +409,13 @@ public class AyahActivity extends AppCompatActivity {//}  implements GestureDete
      * @param
      */
     public void previousPage() {
-        if (currentPage == 1)
+        if (currentPage == 1) {
+            Toast.makeText(this, R.string.ayahOnSwipeLeftHint, Toast.LENGTH_SHORT).show();
             return;
+        }
 
         currentPage--;
-        process();
+        handler.post(new DoWork());
     }
 
     /**
@@ -423,11 +424,12 @@ public class AyahActivity extends AppCompatActivity {//}  implements GestureDete
      * @param
      */
     public void nextPage() {
-        if (currentPage == pageCount)
+        if (currentPage == pageCount) {
+            Toast.makeText(this, R.string.ayahOnSwipeRightHint, Toast.LENGTH_SHORT).show();
             return;
-
+        }
         currentPage++;
-        process();
+        handler.post(new DoWork());
     }
 
 
@@ -456,29 +458,6 @@ public class AyahActivity extends AppCompatActivity {//}  implements GestureDete
                 .getSearchableInfo(getComponentName()));
 
         return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id == R.id.action_about) {
-            showDialog();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void showDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.about))
-                .setCancelable(false)
-                .setPositiveButton(getString(R.string.thanks), null);
-        AlertDialog alert = builder.create();
-        alert.show();
     }
 
     public void goToSurahIndex(View view) {
@@ -559,6 +538,16 @@ public class AyahActivity extends AppCompatActivity {//}  implements GestureDete
         }
 
     }*/
+
+    class DoWork implements Runnable {
+        @Override
+        public void run() {
+            doSearch();
+            addTableLayout();
+            addPagingView();
+        }
+    }
+
 }
 
 

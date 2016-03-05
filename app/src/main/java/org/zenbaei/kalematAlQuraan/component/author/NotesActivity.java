@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.surah.entity.Surah;
@@ -19,7 +20,7 @@ import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
 /**
  * Created by Islam on 2/5/2016.
  */
-public class NotesActivity extends AppCompatActivity {
+public class NotesActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class NotesActivity extends AppCompatActivity {
 
             @Override
 
-            public void onSwipeLeft() {
+            public void onSwipeRight() {
                 startNextActivity();
             }
 
@@ -58,7 +59,7 @@ public class NotesActivity extends AppCompatActivity {
 
             @Override
 
-            public void onSwipeRight() {
+            public void onSwipeLeft() {
                 Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
                 startActivity(intent);
             }
@@ -73,29 +74,6 @@ public class NotesActivity extends AppCompatActivity {
         menu.findItem(R.id.action_search).setVisible(false);
 
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id == R.id.action_about) {
-            showDialog();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void showDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.about))
-                .setCancelable(false)
-                .setPositiveButton(getString(R.string.thanks), null);
-        AlertDialog alert = builder.create();
-        alert.show();
     }
 
     public void next(View view){

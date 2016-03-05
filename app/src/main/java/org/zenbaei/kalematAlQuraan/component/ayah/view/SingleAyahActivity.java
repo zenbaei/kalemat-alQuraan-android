@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.component.R;
@@ -30,7 +31,7 @@ import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
 /**
  * Created by Islam on 12/24/2015.
  */
-public class SingleAyahActivity extends AppCompatActivity {
+public class SingleAyahActivity extends BaseActivity {
 
     private SearchView searchView;
 
@@ -59,6 +60,7 @@ public class SingleAyahActivity extends AppCompatActivity {
             @Override
 
             public void onSwipeLeft() {
+                finish();
             }
 
 
@@ -97,29 +99,6 @@ public class SingleAyahActivity extends AppCompatActivity {
                 .getSearchableInfo(getComponentName()));
 
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id == R.id.action_about) {
-            showDialog();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void showDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.about))
-                .setCancelable(false)
-                .setPositiveButton(getString(R.string.thanks), null);
-        AlertDialog alert = builder.create();
-        alert.show();
     }
 
     private void process() {

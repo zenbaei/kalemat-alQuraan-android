@@ -24,11 +24,11 @@
         <EditText
             android:id="@+id/surahSearch"
             android:layout_width="120dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:hint="@string/searchSurah"
-            android:textColorHint="@color/gray" android:maxLength="20"
-            android:textSize="15dp" />
+            android:textColorHint="@color/gray" android:maxLength="15"
+            android:textSize="15dp"/>
     </RelativeLayout>
 
     <ListView
