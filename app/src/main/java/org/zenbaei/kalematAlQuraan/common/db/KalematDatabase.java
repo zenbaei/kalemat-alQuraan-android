@@ -15,6 +15,7 @@ import org.zenbaei.kalematAlQuraan.component.ayah.entity.Ayah;
 import org.zenbaei.kalematAlQuraan.component.language.entity.Language;
 import org.zenbaei.kalematAlQuraan.component.surah.entity.Surah;
 import org.zenbaei.kalematAlQuraan.component.tafsir.entity.Tafsir;
+import org.zenbaei.kalematAlQuraan.utils.ArabicUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,6 +38,7 @@ public class KalematDatabase {
     public static final String SURAH = SearchManager.SUGGEST_COLUMN_TEXT_2;
     public static final String AYAH_NUMBER = Ayah.NUMBER_COLUMN;
     public static final String TAFSIR = Tafsir.TAFSIR_COLUMN;
+    public static final String KALEMAH_ABSTRACTD = "KALEMAH_ABSTRACTED";
 
     private static final String FTS_VIRTUAL_TABLE = "FTSdictionary";
     private static final HashMap<String, String> mColumnMap = buildColumnMap();
@@ -71,6 +73,7 @@ public class KalematDatabase {
         map.put(SURAH, SURAH);
         map.put(AYAH_NUMBER, AYAH_NUMBER);
         map.put(TAFSIR, TAFSIR);
+        map.put(KALEMAH_ABSTRACTD, KALEMAH_ABSTRACTD);
         map.put(BaseColumns._ID, "rowid AS " +
                 BaseColumns._ID);
         map.put(SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID, "rowid AS " +
@@ -89,7 +92,7 @@ public class KalematDatabase {
      * @return Cursor over all words that match, or null if none found.
      */
     public Cursor getWordMatches(String query, String[] columns) {
-        String selection = KALEMAH + " MATCH ?";
+        String selection = KALEMAH_ABSTRACTD + " MATCH ?";
         String[] selectionArgs = new String[]{query + "*"};
 
         return query(selection, selectionArgs, columns);
@@ -175,7 +178,8 @@ public class KalematDatabase {
                         KALEMAH + ", " +
                         SURAH + "," +
                         Ayah.NUMBER_COLUMN + "," +
-                        Tafsir.TAFSIR_COLUMN +
+                        Tafsir.TAFSIR_COLUMN + "," +
+                        KALEMAH_ABSTRACTD +
                         ");";
 
         KalematOpenHelper(Context context) {
@@ -349,6 +353,7 @@ public class KalematDatabase {
                 initialValues.put(SURAH, cursor.getString(1));
                 initialValues.put(AYAH_NUMBER, String.valueOf(cursor.getLong(2)));
                 initialValues.put(TAFSIR, cursor.getString(3));
+                initialValues.put(KALEMAH_ABSTRACTD, ArabicUtils.normalize(cursor.getString(0)));
                 list.add(initialValues);
                 cursor.moveToNext();
             }
