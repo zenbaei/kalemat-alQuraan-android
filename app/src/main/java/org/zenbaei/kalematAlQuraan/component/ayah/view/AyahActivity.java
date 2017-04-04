@@ -259,6 +259,9 @@ public class AyahActivity extends BaseActivity {//}  implements GestureDetector.
             textView4Ayah.setTextSize(15);
             textView4Kalemah.setTextSize(15);
             textView4Tafsir.setTextSize(15);
+
+            // bold
+            textView4Kalemah.setTypeface(null, Typeface.BOLD);
         }
     }
 

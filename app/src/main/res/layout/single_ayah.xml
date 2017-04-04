@@ -29,7 +29,8 @@
             android:gravity="center"
             android:paddingTop="60dp"
             android:textColor="@color/red"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -85,7 +86,8 @@
             android:layout_toLeftOf="@+id/kalemah"
             android:padding="10dp"
             android:textColor="@color/red"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <RelativeLayout
