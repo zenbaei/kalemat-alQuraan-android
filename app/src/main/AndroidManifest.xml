@@ -14,11 +14,11 @@
 
         <activity
             android:name=".surah.view.SurahActivity"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTop" />
 
         <activity
             android:name=".progress.ProgressActivity"
-            android:launchMode="singleTask"
+            android:launchMode="singleTop"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,32 +28,30 @@
 
         <activity
             android:name=".author.AuthorActivity"
-            android:launchMode="singleTask"></activity>
-
+            android:launchMode="singleTop" />
 
         <activity
             android:name=".author.IntroActivity"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTop" />
 
         <activity
             android:name=".author.NotesActivity"
-            android:launchMode="singleTask"></activity>
-
+            android:launchMode="singleTop" />
 
         <activity
             android:name=".ayah.view.AyahActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTop" />
 
         <activity
             android:name=".ayah.view.SingleAyahActivity"
-            android:launchMode="singleTask"
-            android:noHistory="true" />
+            android:launchMode="singleTop"
+            android:noHistory="false" />
 
         <!-- Search results activity -->
         <activity
             android:name=".search.SearchHandlerActivity"
             android:launchMode="singleTop"
-            android:noHistory="true">
+            android:noHistory="false">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
