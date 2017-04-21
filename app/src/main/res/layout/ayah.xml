@@ -107,12 +107,41 @@
                 android:layout_below="@+id/surahName"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:shrinkColumns="*">
+                android:shrinkColumns="*" />
 
 
-
-            </TableLayout>
         </ScrollView>
+
+        <RelativeLayout
+            android:id="@+id/fontControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="10dp"
+            android:visibility="invisible">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="decreaseFontSize"
+                    android:src="@mipmap/minus_round" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="increaseFontSize"
+                    android:src="@mipmap/plus_round"
+                    android:paddingLeft="10dp"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

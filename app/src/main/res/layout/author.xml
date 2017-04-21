@@ -46,5 +46,5 @@
         android:layout_alignParentBottom="true"
         android:onClick="next"
         android:padding="20dp"
-        android:src="@drawable/ic_next" />
+        android:src="@mipmap/ic_next" />
 </RelativeLayout>

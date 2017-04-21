@@ -13,6 +13,8 @@ import android.util.Log;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.ayah.entity.Ayah;
 import org.zenbaei.kalematAlQuraan.component.language.entity.Language;
+import org.zenbaei.kalematAlQuraan.component.setting.dao.SettingDAO;
+import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
 import org.zenbaei.kalematAlQuraan.component.surah.entity.Surah;
 import org.zenbaei.kalematAlQuraan.component.tafsir.entity.Tafsir;
 import org.zenbaei.kalematAlQuraan.utils.ArabicUtils;
@@ -26,13 +28,15 @@ import java.util.List;
 
 /**
  * Created by Islam on 11/14/2015.
+ *
+ * adb.exe forward tcp:1970 localabstract:android.sdk.conroller
  */
 public class KalematDatabase {
 
     private static final String TAG = "KalematDatabase";
     public static final String DATABASE_NAME = "kalemat_alQuraan";
     public static final int DATABASE_VERSION = 1;
-    private Context context;
+
     //The columns we'll include in the dictionary table
     public static final String KALEMAH = SearchManager.SUGGEST_COLUMN_TEXT_1;
     public static final String SURAH = SearchManager.SUGGEST_COLUMN_TEXT_2;
@@ -93,7 +97,7 @@ public class KalematDatabase {
      */
     public Cursor getWordMatches(String query, String[] columns) {
         String selection = KALEMAH_ABSTRACTD + " MATCH ?";
-        String[] selectionArgs = new String[]{query + "*"};
+        String[] selectionArgs = new String[]{"*" + query + "*"};
 
         return query(selection, selectionArgs, columns);
 
@@ -193,10 +197,18 @@ public class KalematDatabase {
             executeDatabaseDropStatements();
             executeDatabaseCreateStatements();
             loadKalemat();
+            insertDefaultFontSize();
         }
 
         @Override
         public void onOpen(SQLiteDatabase db) {
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
+                    + newVersion + ", which will destroy all old data");
+            onCreate(db);
         }
 
         /**
@@ -238,6 +250,9 @@ public class KalematDatabase {
 
             Log.d(TAG, Language.DATABASE_CREATE);
             mDatabase.execSQL(Language.DATABASE_CREATE);
+
+            Log.d("Creating SETTINGS table", Setting.CREATE_TABLE);
+            mDatabase.execSQL(Setting.CREATE_TABLE);
         }
 
         private void executeDatabaseDropStatements() {
@@ -258,6 +273,14 @@ public class KalematDatabase {
 
             Log.d(TAG, Surah.DATABASE_DROP);
             mDatabase.execSQL(Surah.DATABASE_DROP);
+
+            Log.d("Drop SETTINGS table", Setting.DROP_TABLE);
+            mDatabase.execSQL(Setting.DROP_TABLE);
+        }
+
+        private void insertDefaultFontSize() {
+            Log.d("insertDefaultFontSize", SettingDAO.INSERT_FONT_SIZE_STAT);
+            mDatabase.execSQL(SettingDAO.INSERT_FONT_SIZE_STAT);
         }
 
         private void insertData() throws IOException {
@@ -268,7 +291,7 @@ public class KalematDatabase {
             while ((str = in.readLine()) != null) {
                 if (str.isEmpty() || str.contains("--"))
                     continue;
-                Log.d(TAG, str);
+                // Log.d(TAG, str);
                 mDatabase.execSQL(str);
             }
 
@@ -306,17 +329,9 @@ public class KalematDatabase {
         public void addWordsToSuggestionsTable() {
             Log.d(TAG, String.format("Inserting into %s table...", FTS_VIRTUAL_TABLE));
             for (ContentValues initialValues : getKalematView()) {
-                Log.d(TAG, String.format("Kalemah= %s, Surah= %s, Number= %s, Tafsir= %s", initialValues.get(KALEMAH), initialValues.get(SURAH), initialValues.get(AYAH_NUMBER), initialValues.get(TAFSIR)));
+                // Log.d(TAG, String.format("Kalemah= %s, Surah= %s, Number= %s, Tafsir= %s", initialValues.get(KALEMAH), initialValues.get(SURAH), initialValues.get(AYAH_NUMBER), initialValues.get(TAFSIR)));
                 mDatabase.insert(FTS_VIRTUAL_TABLE, null, initialValues);
             }
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
-                    + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS " + FTS_VIRTUAL_TABLE);
-            onCreate(db);
         }
 
         private List<ContentValues> getKalematView() {

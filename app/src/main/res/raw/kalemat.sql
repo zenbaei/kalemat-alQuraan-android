@@ -117,7 +117,7 @@ INSERT INTO SURAH VALUES(114,'الناس');
 
 
 INSERT INTO AYAH VALUES(1,'ذلك الكتاب', 2, 2);
-INSERT INTO AYAH VALUES(2,'لاريب فيه', 2, 2);
+INSERT INTO AYAH VALUES(2,'لا ريب فيه', 2, 2);
 INSERT INTO AYAH VALUES(3,'هدى', 2, 2);
 INSERT INTO AYAH VALUES(4,'للمتقين', 2, 2);
 INSERT INTO AYAH VALUES(5,'على هدى', 5, 2);
@@ -150,13 +150,13 @@ INSERT INTO AYAH VALUES(31,'رغداً', 35, 2);
 INSERT INTO AYAH VALUES(32,'فأزلّهما الشّيطان', 36, 2);
 INSERT INTO AYAH VALUES(33,'إسرائيل', 40, 2);
 INSERT INTO AYAH VALUES(34,'فارهبونِ', 40, 2);
-INSERT INTO AYAH VALUES(35,'ولاتلبِسوا', 42, 2);
+INSERT INTO AYAH VALUES(35,'ولا تلبِسوا', 42, 2);
 INSERT INTO AYAH VALUES(36,'بالبرّ', 44, 2);
 INSERT INTO AYAH VALUES(37,'وإنها لكبيرة', 45, 2);
 INSERT INTO AYAH VALUES(38,'الخاشعين', 45, 2);
 INSERT INTO AYAH VALUES(39,'يظنّون', 46, 2);
 INSERT INTO AYAH VALUES(40,'العالمين', 47, 2);
-INSERT INTO AYAH VALUES(41,'لاتجزي نفسٌ', 48, 2);
+INSERT INTO AYAH VALUES(41,'لا تجزي نفسٌ', 48, 2);
 INSERT INTO AYAH VALUES(42,'عدلٌ', 48, 2);
 INSERT INTO AYAH VALUES(43,'يسومونكم', 49, 2);
 INSERT INTO AYAH VALUES(44,'يستحيون نسائكم', 49, 2);
@@ -687,7 +687,7 @@ INSERT INTO AYAH VALUES(564,'رابطوا', 200, 3);
 --TAFSIR DATA
 --Al Baqrah
 INSERT INTO TAFSIR VALUES(null,'القرآن العظيم' , 1, 1);
-INSERT INTO TAFSIR VALUES(null,'لاشك في أنه حقّ من عند الله' , 2, 1);
+INSERT INTO TAFSIR VALUES(null,'لا شك في أنه حقّ من عند الله' , 2, 1);
 INSERT INTO TAFSIR VALUES(null,'هادٍ من الضلالة' , 3, 1);
 INSERT INTO TAFSIR VALUES(null,'الذين تجنبوا المعاصي وأدّوا الفرائض فوقوا أنفسهم العذاب' , 4, 1);
 INSERT INTO TAFSIR VALUES(null,'على رشاد ونور ويقين' , 5, 1);
@@ -709,24 +709,24 @@ INSERT INTO TAFSIR VALUES(null,'بساطاً ووِطاءً للاستقرارِ
 INSERT INTO TAFSIR VALUES(null,'سقفا مرفوعاً او كالقُبّةِ المضروبة' , 21, 1);
 INSERT INTO TAFSIR VALUES(null,'أمثالاً من الأوثانِ تعبدونها' , 22, 1);
 INSERT INTO TAFSIR VALUES(null,'أحضِروا آلهتَكُم أو نُصَراءَكم' , 23, 1);
-INSERT INTO TAFSIR VALUES(null,'في اللون والمنظر لافي الطعم' , 24, 1);
+INSERT INTO TAFSIR VALUES(null,'في اللون والمنظر لا في الطعم' , 24, 1);
 INSERT INTO TAFSIR VALUES(null,'قصد إلى خلقِها بإرادتهِ قصداً سويا بلا صارفٍ عنه' , 25, 1);
 INSERT INTO TAFSIR VALUES(null,'أتمهنَّ وقومهُنَّ وأحكمهنَّ' , 26, 1);
 INSERT INTO TAFSIR VALUES(null,'يُريقُها عدواناً وظلماً' , 27, 1);
 INSERT INTO TAFSIR VALUES(null,'نُنَزهكَ عن كل سوء مثنين عليكَ' , 28, 1);
 INSERT INTO TAFSIR VALUES(null,'نمجدُك ونطهرُ ذكرك عمّا لا يليق بعظمتك' , 29, 1);
 INSERT INTO TAFSIR VALUES(null,'اخضعوا له، أو سجود تحية وتعظيم' , 30, 1);
-INSERT INTO TAFSIR VALUES(null,'أكلاً واسعاً أو هنيئاً لاعناء فيه' , 31, 1);
+INSERT INTO TAFSIR VALUES(null,'أكلاً واسعاً أو هنيئاً لا عناء فيه' , 31, 1);
 INSERT INTO TAFSIR VALUES(null,'أذهَبَهُما وأبعَدَهُما' , 32, 1);
 INSERT INTO TAFSIR VALUES(null,'لقبُ يعقوب عليه السلام' , 33, 1);
 INSERT INTO TAFSIR VALUES(null,'فخافونِ في نقضِكم العهد' , 34, 1);
-INSERT INTO TAFSIR VALUES(null,'لاتخلِطوا، أو لا تستُرُوا' , 35, 1);
+INSERT INTO TAFSIR VALUES(null,'لا تخلِطوا، أو لا تستُرُوا' , 35, 1);
 INSERT INTO TAFSIR VALUES(null,'بالتوسع في الخير والطاعات' , 36, 1);
 INSERT INTO TAFSIR VALUES(null,'لشاقّة ثقيلة صعبة' , 37, 1);
 INSERT INTO TAFSIR VALUES(null,'المتواضعين المُستكينين' , 38, 1);
 INSERT INTO TAFSIR VALUES(null,'يعلمون ويستيقنون' , 39, 1);
 INSERT INTO TAFSIR VALUES(null,'عالمي زمانكم' , 40, 1);
-INSERT INTO TAFSIR VALUES(null,'لاتقضي ولاتؤدي نفسٌ' , 41, 1);
+INSERT INTO TAFSIR VALUES(null,'لا تقضي ولا تؤدي نفسٌ' , 41, 1);
 INSERT INTO TAFSIR VALUES(null,'فدية' , 42, 1);
 INSERT INTO TAFSIR VALUES(null,'يكلِّفونكم ويذيقونكم' , 43, 1);
 INSERT INTO TAFSIR VALUES(null,'يستَبقون بناتكم للخدمة' , 44, 1);
@@ -741,7 +741,7 @@ INSERT INTO TAFSIR VALUES(null,'نارٌ من السماء أو صيحةٌ من�
 INSERT INTO TAFSIR VALUES(null,'السحاب الأبيض الرقيق' , 53, 1);
 INSERT INTO TAFSIR VALUES(null,'مادة صمغية حلوة كالعسل' , 54, 1);
 INSERT INTO TAFSIR VALUES(null,'الطائر المعروف بالسّماني' , 55, 1);
-INSERT INTO TAFSIR VALUES(null,'أكلاً واسعاً أو هنيئاً لاعناءَ فيه' , 56, 1);
+INSERT INTO TAFSIR VALUES(null,'أكلاً واسعاً أو هنيئاً لا عناءَ فيه' , 56, 1);
 INSERT INTO TAFSIR VALUES(null,'قولوا: مسألتنا يا ربنا أن تحط عنا خطايانا' , 57, 1);
 INSERT INTO TAFSIR VALUES(null,'عذابًا، قيل هو الطاعون' , 58, 1);
 INSERT INTO TAFSIR VALUES(null,'فانشقت وسالت بكثرة' , 59, 1);
