@@ -35,7 +35,7 @@ public class KalematDatabase {
 
     private static final String TAG = "KalematDatabase";
     public static final String DATABASE_NAME = "kalemat_alQuraan";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     //The columns we'll include in the dictionary table
     public static final String KALEMAH = SearchManager.SUGGEST_COLUMN_TEXT_1;
@@ -47,6 +47,7 @@ public class KalematDatabase {
     private static final String FTS_VIRTUAL_TABLE = "FTSdictionary";
     private static final HashMap<String, String> mColumnMap = buildColumnMap();
     private final KalematOpenHelper mDatabaseOpenHelper;
+    private static final String INSERT_FONT_SIZE_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('DEFAULT_FONT_SIZE', '15')";
 
     /*
    * Instantiates an open helper for the provider's SQLite data repository
@@ -279,8 +280,8 @@ public class KalematDatabase {
         }
 
         private void insertDefaultFontSize() {
-            Log.d("insertDefaultFontSize", SettingDAO.INSERT_FONT_SIZE_STAT);
-            mDatabase.execSQL(SettingDAO.INSERT_FONT_SIZE_STAT);
+            Log.d("insertDefaultFontSize", INSERT_FONT_SIZE_STAT);
+            mDatabase.execSQL(INSERT_FONT_SIZE_STAT);
         }
 
         private void insertData() throws IOException {

@@ -16,21 +16,9 @@ public class SettingDAO extends AbstractDAO<Setting> {
 
     private static final String FIND_BY_KEY_STAT = "SELECT value FROM SETTINGS WHERE key = '%s'";
     private static final String UPDATE_FONT_SIZE_STAT = "UPDATE SETTINGS SET value = '%s' WHERE key = 'DEFAULT_FONT_SIZE'";
-    public static final String INSERT_FONT_SIZE_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('DEFAULT_FONT_SIZE', '15')";
-    private static boolean tableExists = false;
 
     public SettingDAO(Context context) {
         super(context, new Setting());
-        createTableIfNotExists();
-    }
-
-    private void createTableIfNotExists() {
-        if (tableExists) {
-            return;
-        }
-        Log.d("Creating SETTINGS table", Setting.CREATE_TABLE);
-        getWritableDatabase().execSQL(Setting.CREATE_TABLE);
-        insertDefaultFontSize();
     }
 
 
@@ -56,23 +44,12 @@ public class SettingDAO extends AbstractDAO<Setting> {
 
         boolean exists = cursor.moveToFirst();
         if (!exists) {
-            return "";
+            throw new IllegalStateException("DEFAULT FONT SIZE is not inserted into db.");
         }
 
         String value = cursor.getString(0);
         cursor.close();
         return value == null ? "" : value;
-    }
-
-    private void insertDefaultFontSize() {
-        String size = findByKey("DEFAULT_FONT_SIZE");
-        if (!size.isEmpty()) {
-            Log.d("insertDefaultFontSize", "DEFAULT_FONT_SIZE is already set in db");
-            tableExists = true;
-            return;
-        }
-        Log.d("insertDefaultFontSize", INSERT_FONT_SIZE_STAT);
-        getWritableDatabase().execSQL(INSERT_FONT_SIZE_STAT);
     }
 
 }
