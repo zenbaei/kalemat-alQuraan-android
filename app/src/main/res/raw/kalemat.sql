@@ -1909,8 +1909,8 @@ INSERT INTO AYAH VALUES(888,'الهدي', 97, 5);
 INSERT INTO TAFSIR VALUES(null,'ما يُهدى من الأنعام إلى الكعبة' , 888, 1);
 INSERT INTO AYAH VALUES(889,'القلائد', 97, 5);
 INSERT INTO TAFSIR VALUES(null,'ما يقلد به الهَدْي علامة له' , 889, 1);
-INSERT INTO AYAH VALUES(890,'بحيرة "في تفسير الأربعة أقوال كثيرة اخترنا منها ما بيناه"', 103, 5);
-INSERT INTO TAFSIR VALUES(null,'الناقة تشق أذنها وتخلى للطواغيت إذا ولدت خمسة أبطن آخرها ذكر' , 890, 1);
+INSERT INTO AYAH VALUES(890,'بحيرة', 103, 5);
+INSERT INTO TAFSIR VALUES(null,'(في تفسير الأربعة أقوال كثيرة اخترنا منها ما بيناه) الناقة تشق أذنها وتخلى للطواغيت إذا ولدت خمسة أبطن آخرها ذكر' , 890, 1);
 INSERT INTO AYAH VALUES(891,'سائبة', 103, 5);
 INSERT INTO TAFSIR VALUES(null,'الناقة تسيب للأصنام لنحو برء من مرض أو نجاة في حرب' , 891, 1);
 INSERT INTO AYAH VALUES(892,'وصيلة', 103, 5);
@@ -2933,7 +2933,7 @@ INSERT INTO AYAH VALUES(1397,'بالعدوة الدّنيا', 42, 8);
 INSERT INTO TAFSIR VALUES(null,'بحافّة الوادي وضفّته الأقرب للمدينة' , 1397, 1);
 INSERT INTO AYAH VALUES(1398,'الرّكب', 42, 8);
 INSERT INTO TAFSIR VALUES(null,'عير قريش فيها أموالهم' , 1398, 1);
-INSERT INTO AYAH VALUES(1399,'لَفشلتهم', 43, 8);
+INSERT INTO AYAH VALUES(1399,'لَفشلتم', 43, 8);
 INSERT INTO TAFSIR VALUES(null,'لجُبنتُم عن القتال وهبتموه' , 1399, 1);
 INSERT INTO AYAH VALUES(1400,'تذهب ريحكم', 46, 8);
 INSERT INTO TAFSIR VALUES(null,'تتلاشى قوّتكم أو دولتكم' , 1400, 1);
@@ -4160,7 +4160,7 @@ INSERT INTO TAFSIR VALUES(null,'كفاية في العظة والتذكير' , 2
 
 --Al Hijr
 INSERT INTO AYAH VALUES(2127,'رُبَمَا', 2, 15);
-INSERT INTO TAFSIR VALUES(null,'"رُبّ" للتقليل و"ما " زائدة' , 2127, 1);
+INSERT INTO TAFSIR VALUES(null,'"رُبّ" للتقليل و"ما" زائدة' , 2127, 1);
 INSERT INTO AYAH VALUES(2128,'ذرهم', 3, 15);
 INSERT INTO TAFSIR VALUES(null,'دعهم واتركهم' , 2128, 1);
 INSERT INTO AYAH VALUES(2129,'لها كتاب', 4, 15);
@@ -4895,7 +4895,7 @@ INSERT INTO AYAH VALUES(2521,'أعثرنا عليهم', 21, 18);
 INSERT INTO TAFSIR VALUES(null,'أطلَعنا النّاس عليهم' , 2521, 1);
 INSERT INTO AYAH VALUES(2522,'رجما بالغيب', 22, 18);
 INSERT INTO TAFSIR VALUES(null,'قذفًا بالظّن غير يقين' , 2522, 1);
-INSERT INTO AYAH VALUES(2523,'فلا تمارفيهم', 22, 18);
+INSERT INTO AYAH VALUES(2523,'فلا تمار فيهم', 22, 18);
 INSERT INTO TAFSIR VALUES(null,'فلا تُجادل في عدّتهم وشأنهم' , 2523, 1);
 INSERT INTO AYAH VALUES(2524,'إلا مراء ظاهرا', 22, 18);
 INSERT INTO TAFSIR VALUES(null,'بمجرّد تلاوة ما أوحي إليك في أمرهم' , 2524, 1);

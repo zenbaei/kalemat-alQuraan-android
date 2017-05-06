@@ -44,14 +44,12 @@
 
         <activity
             android:name=".ayah.view.SingleAyahActivity"
-            android:launchMode="singleTop"
-            android:noHistory="false" />
+            android:launchMode="singleTop" />
 
         <!-- Search results activity -->
         <activity
             android:name=".search.SearchHandlerActivity"
-            android:launchMode="singleTop"
-            android:noHistory="false">
+            android:launchMode="singleTop" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>

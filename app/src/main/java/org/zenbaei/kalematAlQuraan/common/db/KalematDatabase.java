@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * Created by Islam on 11/14/2015.
  *
- * adb.exe forward tcp:1970 localabstract:android.sdk.conroller
+ * adb forward tcp:1970 localabstract:android.sdk.conroller
  */
 public class KalematDatabase {
 

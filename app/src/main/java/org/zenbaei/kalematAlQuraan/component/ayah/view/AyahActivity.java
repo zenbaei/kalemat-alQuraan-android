@@ -71,7 +71,6 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
     private Handler handler = new Handler();
     private List<TextView> currentDisplayedKalemahAndTafsirTextViews;
     private SettingDAO settingDAO;
-    private static final String DEFAULT_FONT_SIZE = Setting.KEY_NAME.DEFAULT_FONT_SIZE.toString();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,6 +90,14 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
         //get parameters from intent
         this.surahId = getIntent().getLongExtra("surahId", 0);
         this.surahName = getIntent().getStringExtra("surahName");
+
+        int lastReadPage = getIntent().getIntExtra(Setting.KEY_NAME.LAST_READ_PAGE.name(), 0);
+
+        if (lastReadPage > 0) {
+            this.surahId = getIntent().getIntExtra(Setting.KEY_NAME.LAST_READ_SURAH_ID.name(), 0);
+            this.surahName = getIntent().getStringExtra(Setting.KEY_NAME.LAST_READ_SURAH_NAME.name());
+            currentPage = lastReadPage;
+        }
 
         addGestureListner();
 
@@ -209,7 +216,7 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
     }
 
     private void setTableContent() {
-        int currentFontSize = Integer.valueOf(settingDAO.findByKey(DEFAULT_FONT_SIZE));
+        int currentFontSize = Integer.valueOf(settingDAO.findByKey(Setting.KEY_NAME.DEFAULT_FONT_SIZE));
 
         for (Ayah ayah : ayahList) {
             //new TableRow
@@ -487,7 +494,7 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
     }
 
     public void increaseFontSize(View view) {
-        int currentFontSize = Integer.valueOf(settingDAO.findByKey(DEFAULT_FONT_SIZE));
+        int currentFontSize = Integer.valueOf(settingDAO.findByKey(Setting.KEY_NAME.DEFAULT_FONT_SIZE));
         Log.d("increaseFontSize", "Current font size " + currentFontSize);
 
         if (currentFontSize == MAX_FONT_SIZE) {
@@ -496,7 +503,7 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
 
         currentFontSize++;
 
-        settingDAO.update(DEFAULT_FONT_SIZE, String.valueOf(currentFontSize));
+        settingDAO.update(Setting.KEY_NAME.DEFAULT_FONT_SIZE, String.valueOf(currentFontSize));
 
         for (TextView tv : currentDisplayedKalemahAndTafsirTextViews) {
             Log.d("increaseFontSize", String.format("Text [%s] - size [%s]", tv.getText(), tv.getTextSize()));
@@ -505,7 +512,7 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
     }
 
     public void decreaseFontSize(View view) {
-        int currentFontSize = Integer.valueOf(settingDAO.findByKey(DEFAULT_FONT_SIZE));
+        int currentFontSize = Integer.valueOf(settingDAO.findByKey(Setting.KEY_NAME.DEFAULT_FONT_SIZE));
         Log.d("decreaseFontSize", "Current font size " + currentFontSize);
 
         if (currentFontSize == MIN_FONT_SIZE) {
@@ -514,12 +521,18 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
 
         currentFontSize--;
 
-        settingDAO.update(DEFAULT_FONT_SIZE, String.valueOf(currentFontSize));
+        settingDAO.update(Setting.KEY_NAME.DEFAULT_FONT_SIZE, String.valueOf(currentFontSize));
 
         for (TextView tv : currentDisplayedKalemahAndTafsirTextViews) {
             Log.d("decreaseFontSize", String.format("Text [%s] - size [%s]", tv.getText(), tv.getTextSize()));
             tv.setTextSize(currentFontSize);
         }
+    }
+
+    private void saveLastReadPage() {
+        settingDAO.update(Setting.KEY_NAME.LAST_READ_PAGE, String.valueOf(currentPage));
+        settingDAO.update(Setting.KEY_NAME.LAST_READ_SURAH_ID, String.valueOf(surahId));
+        settingDAO.update(Setting.KEY_NAME.LAST_READ_SURAH_NAME, surahName);
     }
 /*
     @Override
@@ -603,6 +616,7 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
             doSearch();
             addTableLayout();
             addPagingView();
+            saveLastReadPage();
         }
     }
 
