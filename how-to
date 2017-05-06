@@ -1,0 +1,6 @@
+new release:
+- increase versionName in build.gradle
+- use the keyStore 'jks' to sign the new release (password is saved on google drive keys file)
+
+attach external device:
+$android studio folder/bin: adb forward tcp:1970 localabstract:android.sdk.conroller

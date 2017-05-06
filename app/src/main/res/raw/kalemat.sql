@@ -702,7 +702,7 @@ INSERT INTO TAFSIR VALUES(null,'يعمَونَ عن الرُّشد أو يتحي
 INSERT INTO TAFSIR VALUES(null,'حالُهُم العجيبة، أو صفتهم' , 14, 1);
 INSERT INTO TAFSIR VALUES(null,'أوقدها' , 15, 1);
 INSERT INTO TAFSIR VALUES(null,'خرسٌ عن النّطق بالحق' , 16, 1);
-INSERT INTO TAFSIR VALUES(null,'الصيّب: المطر النازل أو السحاب' , 17, 1);
+INSERT INTO TAFSIR VALUES(null,'الصيّب؛ المطر النازل أو السحاب' , 17, 1);
 INSERT INTO TAFSIR VALUES(null,'يستلِبُها أو يذهب بها بسرعة' , 18, 1);
 INSERT INTO TAFSIR VALUES(null,'وقفوا وثبتوا في أماكنهم متحيِّرين' , 19, 1);
 INSERT INTO TAFSIR VALUES(null,'بساطاً ووِطاءً للاستقرارِ عليها' , 20, 1);
@@ -789,7 +789,7 @@ INSERT INTO TAFSIR VALUES(null,'يستنصرون ببعثه صلى الله عل
 INSERT INTO TAFSIR VALUES(null,'باعوا به أنفسهم' , 101, 1);
 INSERT INTO TAFSIR VALUES(null,'حسدا' , 102, 1);
 INSERT INTO TAFSIR VALUES(null,'فرجعوا به مُسْتحِقّين له' , 103, 1);
-INSERT INTO TAFSIR VALUES(null,'جعلتموه إلها معبودًا .' , 104, 1);
+INSERT INTO TAFSIR VALUES(null,'جعلتموه إلها معبودًا' , 104, 1);
 INSERT INTO TAFSIR VALUES(null,'حبّ العِجل الذي عبدوه' , 105, 1);
 INSERT INTO TAFSIR VALUES(null,'لو يطول عُمُرُه' , 106, 1);
 INSERT INTO TAFSIR VALUES(null,'طرحه ونقضه' , 107, 1);
@@ -809,7 +809,7 @@ INSERT INTO TAFSIR VALUES(null,'ذلّ وصغار، وقتل وأسرٌ' , 120, 
 INSERT INTO TAFSIR VALUES(null,'جِهتُهُ التي رضيها وأمركم بها' , 121, 1);
 INSERT INTO TAFSIR VALUES(null,'تنزيها له تعالى عن اتّخاذ الولد' , 122, 1);
 INSERT INTO TAFSIR VALUES(null,'مُطيعون مُنقادون له تعالى' , 123, 1);
-INSERT INTO TAFSIR VALUES(null,'مُبتدع ومُخترع ..' , 124, 1);
+INSERT INTO TAFSIR VALUES(null,'مُبتدع ومُخترع..' , 124, 1);
 INSERT INTO TAFSIR VALUES(null,'أراد شيئا أو أحكمه أو حتّمه' , 125, 1);
 INSERT INTO TAFSIR VALUES(null,'احْدُثُ، فهو يحدُثُ' , 126, 1);
 INSERT INTO TAFSIR VALUES(null,'عالمي زمانكم' , 127, 1);
@@ -1006,7 +1006,7 @@ INSERT INTO TAFSIR VALUES(null,'ساقطة على سقوفها التي سقطت
 INSERT INTO TAFSIR VALUES(null,'كيف أو متى يُحيي؟' , 318, 1);
 INSERT INTO TAFSIR VALUES(null,'لم يتغيّر مع مرور السّنين عليه' , 319, 1);
 INSERT INTO TAFSIR VALUES(null,'نرفعها من الأرض لنؤلّفها' , 320, 1);
-INSERT INTO TAFSIR VALUES(null,'أمِلهنّ: أو قطّعهنّ مَمَالةً إليك' , 321, 1);
+INSERT INTO TAFSIR VALUES(null,'أمِلهنّ، أو قطّعهنّ مَمَالةً إليك' , 321, 1);
 INSERT INTO TAFSIR VALUES(null,'عدّا للإحسانا واظهارا له' , 322, 1);
 INSERT INTO TAFSIR VALUES(null,'تطاولا وتفاخرا بالانفاق أو تبرُّما منه' , 323, 1);
 INSERT INTO TAFSIR VALUES(null,'مُراءة لهم وسُمعة لا لوجهه تعالى' , 324, 1);
@@ -1058,7 +1058,7 @@ INSERT INTO TAFSIR VALUES(null,'خفيات استأثر الله بعلمها، 
 INSERT INTO TAFSIR VALUES(null,'مَيْلٌ وانحرَافٌ عن الحق' , 368, 1);
 INSERT INTO TAFSIR VALUES(null,'تَفسيرِه بما يُوافِق أَهواءهم' , 369, 1);
 INSERT INTO TAFSIR VALUES(null,'لا تُمِلْها عن الحق والهُدَى' , 370, 1);
-INSERT INTO TAFSIR VALUES(null,'كعادة وشأن ..' , 371, 1);
+INSERT INTO TAFSIR VALUES(null,'كعادة وشأن..' , 371, 1);
 INSERT INTO TAFSIR VALUES(null,'بئس الفراش، والمضجع جهنم' , 372, 1);
 INSERT INTO TAFSIR VALUES(null,'لعظة ودلالة' , 373, 1);
 INSERT INTO TAFSIR VALUES(null,'المشتهيات بالطبع' , 374, 1);
@@ -1066,7 +1066,7 @@ INSERT INTO TAFSIR VALUES(null,'المضاعفة، أو المحكة المحص�
 INSERT INTO TAFSIR VALUES(null,'المُعْلمة، أو المطهّمة الحِسان' , 376, 1);
 INSERT INTO TAFSIR VALUES(null,'الإبل والبقر والضّأن والمعْز' , 377, 1);
 INSERT INTO TAFSIR VALUES(null,'المزروعات' , 378, 1);
-INSERT INTO TAFSIR VALUES(null,'المرجع : أي المرجع الحسن' , 379, 1);
+INSERT INTO TAFSIR VALUES(null,'المرجع؛ أي المرجع الحسن' , 379, 1);
 INSERT INTO TAFSIR VALUES(null,'المطيعين الخاضعين لله تعالى' , 380, 1);
 INSERT INTO TAFSIR VALUES(null,'في أواخر اللّيل إلى طلوع الفجر' , 381, 1);
 INSERT INTO TAFSIR VALUES(null,'مقيما لالعدل في كلّ أمر' , 382, 1);
@@ -1146,7 +1146,7 @@ INSERT INTO TAFSIR VALUES(null,'مائلاً عن الباطل إلى الدِّ
 INSERT INTO TAFSIR VALUES(null,'مكة المكرمة' , 456, 1);
 INSERT INTO TAFSIR VALUES(null,'تطلبونها مُعْوجّة أو ذات اعوجاج' , 457, 1);
 INSERT INTO TAFSIR VALUES(null,'يلتجِئ إليه أو يستمسك بدينه' , 458, 1);
-INSERT INTO TAFSIR VALUES(null,'حقّ تقواه : أي اتقاءً حقًّا واجبا' , 459, 1);
+INSERT INTO TAFSIR VALUES(null,'حقّ تقواه؛ أي اتقاءً حقًّا واجبا' , 459, 1);
 INSERT INTO TAFSIR VALUES(null,'تمسّكوا بعهده أو دينه أو كتابه' , 460, 1);
 INSERT INTO TAFSIR VALUES(null,'طرف حفرة' , 461, 1);
 INSERT INTO TAFSIR VALUES(null,'ضررًا يسيرا بالكذِب أو التهديد' , 462, 1);
@@ -1272,9 +1272,9 @@ INSERT INTO TAFSIR VALUES(null,'نشر وفرّق منهما بالتناسل' ,
 INSERT INTO AYAH VALUES(571,'والأرحام', 1, 4);
 INSERT INTO TAFSIR VALUES(null,'واتّقوا أن تقطعوها' , 571, 1);
 INSERT INTO AYAH VALUES(572,'رقيباً', 1, 4);
-INSERT INTO TAFSIR VALUES(null,'مُطّلعًا. أو حافظا لأعمالكم' , 572, 1);
+INSERT INTO TAFSIR VALUES(null,'مُطّلعًا، أو حافظا لأعمالكم' , 572, 1);
 INSERT INTO AYAH VALUES(573,'حُوبًا كبيرًا', 2, 4);
-INSERT INTO TAFSIR VALUES(null,'إثما أو ذنبا أو ظلما- عظيمًا' , 573, 1);
+INSERT INTO TAFSIR VALUES(null,'إثما أو ذنبا أو ظلما عظيمًا' , 573, 1);
 INSERT INTO AYAH VALUES(574,'ألاّ تُقسطوا', 3, 4);
 INSERT INTO TAFSIR VALUES(null,'أن تعدلوا ولا تُنصفوا' , 574, 1);
 INSERT INTO AYAH VALUES(575,'ما طاب لكم', 3, 4);
@@ -1362,7 +1362,7 @@ INSERT INTO TAFSIR VALUES(null,'غير مجاهراتٍ بالزّنى سِرّ�
 INSERT INTO AYAH VALUES(616,'متّخِذات أخدان', 25, 4);
 INSERT INTO TAFSIR VALUES(null,'مُصاحبات أصدقاء الزّنى سرًّا' , 616, 1);
 INSERT INTO AYAH VALUES(617,'خشِيَ العنتَ', 25, 4);
-INSERT INTO TAFSIR VALUES(null,'خاف الزّنى. أو الإثم به' , 617, 1);
+INSERT INTO TAFSIR VALUES(null,'خاف الزّنى، أو الإثم به' , 617, 1);
 INSERT INTO AYAH VALUES(618,'سُنن', 26, 4);
 INSERT INTO TAFSIR VALUES(null,'طرائق ومناهج' , 618, 1);
 INSERT INTO AYAH VALUES(619,'بالباطل', 29, 4);
@@ -1848,11 +1848,11 @@ INSERT INTO TAFSIR VALUES(null,'علماء اليهود' , 857, 1);
 INSERT INTO AYAH VALUES(858,'مغلولة', 64, 5);
 INSERT INTO TAFSIR VALUES(null,'مقبوضة عن العطاء بُخلا' , 858, 1);
 INSERT INTO AYAH VALUES(859,'أمة مقتصدة', 66, 5);
-INSERT INTO TAFSIR VALUES(null,'معتدلة. هم من أسلم منهم' , 859, 1);
+INSERT INTO TAFSIR VALUES(null,'معتدلة، هم من أسلم منهم' , 859, 1);
 INSERT INTO AYAH VALUES(860,'فلا تأس', 68, 5);
 INSERT INTO TAFSIR VALUES(null,'فلا تحزن ولا تتأسف' , 860, 1);
 INSERT INTO AYAH VALUES(861,'الصابئون', 69, 5);
-INSERT INTO TAFSIR VALUES(null,'عبدة الكواكب أو الملائكة مبتدأ خبره مؤخرا " كذلك "' , 861, 1);
+INSERT INTO TAFSIR VALUES(null,'عبدة الكواكب أو الملائكة، مبتدأ خبره مؤخرا "كذلك"' , 861, 1);
 INSERT INTO AYAH VALUES(862,'فتنة', 71, 5);
 INSERT INTO TAFSIR VALUES(null,'بلاء وعذاب شديد' , 862, 1);
 INSERT INTO AYAH VALUES(863,'خلت', 75, 5);
@@ -1962,7 +1962,7 @@ INSERT INTO TAFSIR VALUES(null,'تشكّون في البعث أو تجحدونه
 INSERT INTO AYAH VALUES(914,'وهو الله', 3, 6);
 INSERT INTO TAFSIR VALUES(null,'أي المعبود أو المتوحّد بالألوهية' , 914, 1);
 INSERT INTO AYAH VALUES(915,'أنباء', 5, 6);
-INSERT INTO TAFSIR VALUES(null,'أخبار. هو ما ينالهم من العقوبات' , 915, 1);
+INSERT INTO TAFSIR VALUES(null,'أخبار، هو ما ينالهم من العقوبات' , 915, 1);
 INSERT INTO AYAH VALUES(916,'كم أهلكنا', 6, 6);
 INSERT INTO TAFSIR VALUES(null,'كثيراً أهلكنا' , 916, 1);
 INSERT INTO AYAH VALUES(917,'قرن', 6, 6);
@@ -2134,7 +2134,7 @@ INSERT INTO TAFSIR VALUES(null,'حجّة وبرهانا' , 999, 1);
 INSERT INTO AYAH VALUES(1000,'لم يلبسوا', 82, 6);
 INSERT INTO TAFSIR VALUES(null,'لم يخلطوا' , 1000, 1);
 INSERT INTO AYAH VALUES(1001,'بظلم', 82, 6);
-INSERT INTO TAFSIR VALUES(null,'بشرك. كفر' , 1001, 1);
+INSERT INTO TAFSIR VALUES(null,'بشرك، كفر' , 1001, 1);
 INSERT INTO AYAH VALUES(1002,'اجتبيناهم', 87, 6);
 INSERT INTO TAFSIR VALUES(null,'اصطفيناهم بالنّبوة' , 1002, 1);
 INSERT INTO AYAH VALUES(1003,'لحبط', 88, 6);
@@ -2154,7 +2154,7 @@ INSERT INTO TAFSIR VALUES(null,'باطلهم' , 1009, 1);
 INSERT INTO AYAH VALUES(1010,'مبارك', 92, 6);
 INSERT INTO TAFSIR VALUES(null,'كثير المنافع والفوائد (القرآن)' , 1010, 1);
 INSERT INTO AYAH VALUES(1011,'أم القرى', 92, 6);
-INSERT INTO TAFSIR VALUES(null,'مكّة : أي أهلها' , 1011, 1);
+INSERT INTO TAFSIR VALUES(null,'مكّة، أي أهلها' , 1011, 1);
 INSERT INTO AYAH VALUES(1012,'من حولها', 92, 6);
 INSERT INTO TAFSIR VALUES(null,'أهل المشارق والمغارب' , 1012, 1);
 INSERT INTO AYAH VALUES(1013,'غمرات الموت', 93, 6);
@@ -2316,7 +2316,7 @@ INSERT INTO TAFSIR VALUES(null,'غير طالب للمحرّم للذّة أو �
 INSERT INTO AYAH VALUES(1091,'ولا عادٍ', 145, 6);
 INSERT INTO TAFSIR VALUES(null,'ولا متجاوز ما يسدّ الرّمق' , 1091, 1);
 INSERT INTO AYAH VALUES(1092,'ذي ظفر', 146, 6);
-INSERT INTO TAFSIR VALUES(null,'ما له اصبع : دابة أو طيرا' , 1092, 1);
+INSERT INTO TAFSIR VALUES(null,'ما له اصبع؛ دابة أو طيرا' , 1092, 1);
 INSERT INTO AYAH VALUES(1093,'شحومهما', 146, 6);
 INSERT INTO TAFSIR VALUES(null,'شحوم الكرش والكليتين' , 1093, 1);
 INSERT INTO AYAH VALUES(1094,'ما حملت ظهورهما', 146, 6);
@@ -2394,7 +2394,7 @@ INSERT INTO TAFSIR VALUES(null,'جعلنا لكم مكاناً وقراراً' ,
 INSERT INTO AYAH VALUES(1129,'معايش', 10, 7);
 INSERT INTO TAFSIR VALUES(null,'ما تعيشون به وتحيون' , 1129, 1);
 INSERT INTO AYAH VALUES(1130,'ما منعك', 12, 7);
-INSERT INTO TAFSIR VALUES(null,'ما اضطرك. أو ما دعاك وحملك' , 1130, 1);
+INSERT INTO TAFSIR VALUES(null,'ما اضطرك، أو ما دعاك وحملك' , 1130, 1);
 INSERT INTO AYAH VALUES(1131,'الصاغرين', 13, 7);
 INSERT INTO TAFSIR VALUES(null,'الأذلاء المهانين' , 1131, 1);
 INSERT INTO AYAH VALUES(1132,'أنظرني', 14, 7);
@@ -2434,7 +2434,7 @@ INSERT INTO TAFSIR VALUES(null,'لا يضلنكم ولا يخدعنكم' , 1148,
 INSERT INTO AYAH VALUES(1149,'ينزع عنهما', 27, 7);
 INSERT INTO TAFSIR VALUES(null,'يزيل عنهما، استلاباً بخداعه' , 1149, 1);
 INSERT INTO AYAH VALUES(1150,'قبيله', 27, 7);
-INSERT INTO TAFSIR VALUES(null,'جنوده. أو ذريته' , 1150, 1);
+INSERT INTO TAFSIR VALUES(null,'جنوده، أو ذريته' , 1150, 1);
 INSERT INTO AYAH VALUES(1151,'فعلوا فاحشة', 28, 7);
 INSERT INTO TAFSIR VALUES(null,'أتوا فعلةً متناهية في القبح' , 1151, 1);
 INSERT INTO AYAH VALUES(1152,'بالقسط', 29, 7);
@@ -2542,11 +2542,11 @@ INSERT INTO TAFSIR VALUES(null,'قوةً وعِظم أجسام' , 1202, 1);
 INSERT INTO AYAH VALUES(1203,'آلاء الله', 69, 7);
 INSERT INTO TAFSIR VALUES(null,'نعمه وفضله الكثير' , 1203, 1);
 INSERT INTO AYAH VALUES(1204,'رجسٌ', 71, 7);
-INSERT INTO TAFSIR VALUES(null,'عذابٌ. أو رين على القلوب' , 1204, 1);
+INSERT INTO TAFSIR VALUES(null,'عذابٌ، أو رين على القلوب' , 1204, 1);
 INSERT INTO AYAH VALUES(1205,'غضبٌ', 71, 7);
 INSERT INTO TAFSIR VALUES(null,'لعنٌ وطردٌ أو سُخط' , 1205, 1);
 INSERT INTO AYAH VALUES(1206,'قطعنا دابر', 72, 7);
-INSERT INTO TAFSIR VALUES(null,'أهلكنا آخر .. المراد الجميع' , 1206, 1);
+INSERT INTO TAFSIR VALUES(null,'أهلكنا آخر.. المراد الجميع' , 1206, 1);
 INSERT INTO AYAH VALUES(1207,'ناقةُ الله', 73, 7);
 INSERT INTO TAFSIR VALUES(null,'خلقها الله من صخر لا من أبوين' , 1207, 1);
 INSERT INTO AYAH VALUES(1208,'آية', 73, 7);
@@ -2610,7 +2610,7 @@ INSERT INTO TAFSIR VALUES(null,'من وفاء بما أوصيناهم' , 1236, 1
 INSERT INTO AYAH VALUES(1237,'فظلموا بها', 103, 7);
 INSERT INTO TAFSIR VALUES(null,'فكفروا بالآيات' , 1237, 1);
 INSERT INTO AYAH VALUES(1238,'حقيق على أن', 105, 7);
-INSERT INTO TAFSIR VALUES(null,'حريص على أن أو خليق بأن ..' , 1238, 1);
+INSERT INTO TAFSIR VALUES(null,'حريص على أن أو خليق بأن..' , 1238, 1);
 INSERT INTO AYAH VALUES(1239,'مُبين', 107, 7);
 INSERT INTO TAFSIR VALUES(null,'ظاهر أمره لا يشكّ فيه' , 1239, 1);
 INSERT INTO AYAH VALUES(1240,'ونزع يده', 108, 7);
@@ -2848,7 +2848,7 @@ INSERT INTO TAFSIR VALUES(null,'مُظهرا الضَّراعة والذلة' , 
 INSERT INTO AYAH VALUES(1356,'خيفة', 205, 7);
 INSERT INTO TAFSIR VALUES(null,'خائفا من عقابه' , 1356, 1);
 INSERT INTO AYAH VALUES(1357,'بالغدوّ والآصال', 205, 7);
-INSERT INTO TAFSIR VALUES(null,'أوائل النّهار وأواخره. ي في كلّ وقت' , 1357, 1);
+INSERT INTO TAFSIR VALUES(null,'أوائل النّهار وأواخره، أي في كلّ وقت' , 1357, 1);
 INSERT INTO AYAH VALUES(1358,'له يسجدون', 206, 7);
 INSERT INTO TAFSIR VALUES(null,'يُصلّون ويعبدون (آية سجدة)' , 1358, 1);
 
@@ -2866,7 +2866,7 @@ INSERT INTO TAFSIR VALUES(null,'يعتمدون وإلى الله يُفوّضو�
 INSERT INTO AYAH VALUES(1364,'الطائفين', 7, 8);
 INSERT INTO TAFSIR VALUES(null,'هما العير والنّفير' , 1364, 1);
 INSERT INTO AYAH VALUES(1365,'ذات الشّوكة', 7, 8);
-INSERT INTO TAFSIR VALUES(null,'ذات السّلاح والقوّة. هي النّفير' , 1365, 1);
+INSERT INTO TAFSIR VALUES(null,'ذات السّلاح والقوّة، هي النّفير' , 1365, 1);
 INSERT INTO AYAH VALUES(1366,'دابر الكافرين', 7, 8);
 INSERT INTO TAFSIR VALUES(null,'آخرهم والمراد جميعهم' , 1366, 1);
 INSERT INTO AYAH VALUES(1367,'مُردفين', 9, 8);
@@ -3226,7 +3226,7 @@ INSERT INTO TAFSIR VALUES(null,'شكّا ونفاقا في قلوبهم' , 1542,
 INSERT INTO AYAH VALUES(1543,'تقطّع قلوبهم', 110, 9);
 INSERT INTO TAFSIR VALUES(null,'تتقطّع وتتفرّق أجزاء بالموت' , 1543, 1);
 INSERT INTO AYAH VALUES(1544,'السّائحون', 112, 9);
-INSERT INTO TAFSIR VALUES(null,'الغزاة المُجاهدون. أو الصّائمون' , 1544, 1);
+INSERT INTO TAFSIR VALUES(null,'الغزاة المُجاهدون، أو الصّائمون' , 1544, 1);
 INSERT INTO AYAH VALUES(1545,'لحدود الله', 112, 9);
 INSERT INTO TAFSIR VALUES(null,'لأوامره ونواهيه' , 1545, 1);
 INSERT INTO AYAH VALUES(1546,'لأوّاه', 114, 9);
@@ -4034,10 +4034,10 @@ INSERT INTO TAFSIR VALUES(null,'حسن مرجع ومنقلب' , 1942, 1);
 INSERT INTO AYAH VALUES(1943,'إليه متاب', 30, 13);
 INSERT INTO TAFSIR VALUES(null,'إلى الله وحدهمرجعي وتوبتي' , 1943, 1);
 INSERT INTO AYAH VALUES(1944,'أفلم ييأس', 31, 13);
-INSERT INTO TAFSIR VALUES(null,'أفلم يعلم ويتبيّن ..' , 1944, 1);
+INSERT INTO TAFSIR VALUES(null,'أفلم يعلم ويتبيّن..' , 1944, 1);
 INSERT INTO AYAH VALUES(1945,'قارعة', 31, 13);
 INSERT INTO TAFSIR VALUES(null,'داهية تقرعهم بصنوف البلايا' , 1945, 1);
-INSERT INTO AYAH VALUES(1946,'فأمليتُ...', 32, 13);
+INSERT INTO AYAH VALUES(1946,'فأمليتُ', 32, 13);
 INSERT INTO TAFSIR VALUES(null,'أمهلت وأطلت في أمن والدّعة' , 1946, 1);
 INSERT INTO AYAH VALUES(1947,'واق', 34, 13);
 INSERT INTO TAFSIR VALUES(null,'حافظ وعاصم' , 1947, 1);
@@ -4500,7 +4500,7 @@ INSERT INTO TAFSIR VALUES(null,'الذنوب المفرطة في القُبح' ,
 INSERT INTO AYAH VALUES(2326,'البغي', 90, 16);
 INSERT INTO TAFSIR VALUES(null,'التّطاول والتّجبّر على النّاس' , 2326, 1);
 INSERT INTO AYAH VALUES(2327,'كفيلا', 91, 16);
-INSERT INTO TAFSIR VALUES(null,'شاهدا. قيبا. امِنا' , 2327, 1);
+INSERT INTO TAFSIR VALUES(null,'شاهدا، رقيبا، ضامِنا' , 2327, 1);
 INSERT INTO AYAH VALUES(2328,'قوّة', 92, 16);
 INSERT INTO TAFSIR VALUES(null,'إبرام وإحكام' , 2328, 1);
 INSERT INTO AYAH VALUES(2329,'أنكاثا', 92, 16);
@@ -4768,7 +4768,7 @@ INSERT INTO TAFSIR VALUES(null,'ظُلمته أو شِدّتِها' , 2458, 1);
 INSERT INTO AYAH VALUES(2459,'وقرآن الفجر', 78, 17);
 INSERT INTO TAFSIR VALUES(null,'وأقِم صلاة الصّبح' , 2459, 1);
 INSERT INTO AYAH VALUES(2460,'فتهجّدْ', 79, 17);
-INSERT INTO TAFSIR VALUES(null,'التّهجّد : الصّلاة ليلا بعد الإستيقاظ' , 2460, 1);
+INSERT INTO TAFSIR VALUES(null,'التّهجّد؛ الصّلاة ليلا بعد الإستيقاظ' , 2460, 1);
 INSERT INTO AYAH VALUES(2461,'نافلة لك', 79, 17);
 INSERT INTO TAFSIR VALUES(null,'فريضة زائدة خاصّة بك' , 2461, 1);
 INSERT INTO AYAH VALUES(2462,'مقاما محمودا', 79, 17);
@@ -5022,7 +5022,7 @@ INSERT INTO TAFSIR VALUES(null,'مسلكا ومنفذا' , 2584, 1);
 INSERT INTO AYAH VALUES(2585,'نصَبا', 62, 18);
 INSERT INTO TAFSIR VALUES(null,'تعبا وشدّة وإعياءً' , 2585, 1);
 INSERT INTO AYAH VALUES(2586,'أرأيت', 63, 18);
-INSERT INTO TAFSIR VALUES(null,'أخبرني. أو تنبّه وتذكّرْ' , 2586, 1);
+INSERT INTO TAFSIR VALUES(null,'أخبرني، أو تنبّه وتذكّرْ' , 2586, 1);
 INSERT INTO AYAH VALUES(2587,'أوينا', 63, 18);
 INSERT INTO TAFSIR VALUES(null,'إلتجأنا' , 2587, 1);
 INSERT INTO AYAH VALUES(2588,'عجبا', 63, 18);
@@ -5238,7 +5238,7 @@ INSERT INTO TAFSIR VALUES(null,'آتيا أو مُــنـَـجَّــزًا' 
 INSERT INTO AYAH VALUES(2692,'لغوا', 62, 19);
 INSERT INTO TAFSIR VALUES(null,'قبيحا أو فُضولا من الكلام' , 2692, 1);
 INSERT INTO AYAH VALUES(2693,'سميّا', 65, 19);
-INSERT INTO TAFSIR VALUES(null,'مُضاهيا في ذاته وصفاته : لا' , 2693, 1);
+INSERT INTO TAFSIR VALUES(null,'مُضاهيا في ذاته وصفاته: لا' , 2693, 1);
 INSERT INTO AYAH VALUES(2694,'جثيّا', 68, 19);
 INSERT INTO TAFSIR VALUES(null,'باركِين على رُكبهم لشدّة الهول' , 2694, 1);
 INSERT INTO AYAH VALUES(2695,'عتيّا', 69, 19);
@@ -5302,7 +5302,7 @@ INSERT INTO TAFSIR VALUES(null,'لتتعب بالإفراط في مُكابدة 
 INSERT INTO AYAH VALUES(2723,'على العرش استوى', 5, 20);
 INSERT INTO TAFSIR VALUES(null,'استواءً يليق به تعالى' , 2723, 1);
 INSERT INTO AYAH VALUES(2724,'ما تحت الثـّرى', 6, 20);
-INSERT INTO TAFSIR VALUES(null,'ما وراه التراب. أو ما وراء الأرض' , 2724, 1);
+INSERT INTO TAFSIR VALUES(null,'ما وراه التراب، أو ما وراء الأرض' , 2724, 1);
 INSERT INTO AYAH VALUES(2725,'أخفى', 7, 20);
 INSERT INTO TAFSIR VALUES(null,'حديث النّـفـس وخواطرها' , 2725, 1);
 INSERT INTO AYAH VALUES(2726,'آنست نارا', 10, 20);
@@ -5404,7 +5404,7 @@ INSERT INTO TAFSIR VALUES(null,'فأحكموا سِحركم واعزموا عل�
 INSERT INTO AYAH VALUES(2774,'أفلح', 64, 20);
 INSERT INTO TAFSIR VALUES(null,'فاز بالمطلوب' , 2774, 1);
 INSERT INTO AYAH VALUES(2775,'فأوجس في نفسه', 67, 20);
-INSERT INTO TAFSIR VALUES(null,'أضمَرَ. أو وَجَد وأحسّ في نفسه' , 2775, 1);
+INSERT INTO TAFSIR VALUES(null,'أضمَرَ، أو وَجَد وأحسّ في نفسه' , 2775, 1);
 INSERT INTO AYAH VALUES(2776,'تلقف', 69, 20);
 INSERT INTO TAFSIR VALUES(null,'تبتلعْ وتلتقـِمْ بسرعة' , 2776, 1);
 INSERT INTO AYAH VALUES(2777,'والذي فطرنا', 72, 20);
@@ -5446,7 +5446,7 @@ INSERT INTO TAFSIR VALUES(null,'أثقالا أو آثاما وتبـِعات' ,
 INSERT INTO AYAH VALUES(2795,'من زينة القوم', 87, 20);
 INSERT INTO TAFSIR VALUES(null,'من حليّ قبط مصر' , 2795, 1);
 INSERT INTO AYAH VALUES(2796,'عِجلا جسدا', 88, 20);
-INSERT INTO TAFSIR VALUES(null,'مُجسّدا: أي أحمر من ذهب' , 2796, 1);
+INSERT INTO TAFSIR VALUES(null,'مُجسّدا؛ أي أحمر من ذهب' , 2796, 1);
 INSERT INTO AYAH VALUES(2797,'لهُ خوار', 88, 20);
 INSERT INTO TAFSIR VALUES(null,'صوت كصوت البقر' , 2797, 1);
 INSERT INTO AYAH VALUES(2798,'ما منعَك', 92, 20);
@@ -5942,7 +5942,7 @@ INSERT INTO TAFSIR VALUES(null,'قطعة لحم قـَـدْر ما يُمضغ' 
 INSERT INTO AYAH VALUES(3040,'خلقا آخر', 14, 23);
 INSERT INTO TAFSIR VALUES(null,'مباينا للأول بنفخ الروح فيه' , 3040, 1);
 INSERT INTO AYAH VALUES(3041,'فتبارك الله', 14, 23);
-INSERT INTO TAFSIR VALUES(null,'فتعالى. أو تكاثر خيره وإحسانه' , 3041, 1);
+INSERT INTO TAFSIR VALUES(null,'فتعالى، أو تكاثر خيره وإحسانه' , 3041, 1);
 INSERT INTO AYAH VALUES(3042,'أحسن الخالقين', 14, 23);
 INSERT INTO TAFSIR VALUES(null,'أتقن الصانعين، أو المصورين' , 3042, 1);
 INSERT INTO AYAH VALUES(3043,'سبع طرائق', 17, 23);
@@ -5990,7 +5990,7 @@ INSERT INTO TAFSIR VALUES(null,'صيحة جبريل أو العذاب المُص
 INSERT INTO AYAH VALUES(3064,'فجعلناهم غثاء', 41, 23);
 INSERT INTO TAFSIR VALUES(null,'هالكين كغثاء السيل (حَمِيله)' , 3064, 1);
 INSERT INTO AYAH VALUES(3065,'فبُعدا', 41, 23);
-INSERT INTO TAFSIR VALUES(null,'هلاكا .. أو بُعدا من الرحمة' , 3065, 1);
+INSERT INTO TAFSIR VALUES(null,'هلاكا، أو بُعدا من الرحمة' , 3065, 1);
 INSERT INTO AYAH VALUES(3066,'قرونا آخرين', 42, 23);
 INSERT INTO TAFSIR VALUES(null,'أمَمًا أخرى' , 3066, 1);
 INSERT INTO AYAH VALUES(3067,'تتـْـرى', 44, 23);
@@ -6264,7 +6264,7 @@ INSERT INTO TAFSIR VALUES(null,'كذبا عظيما لا تـُبلَـغ غاي
 INSERT INTO AYAH VALUES(3199,'أساطير الأوّلين', 5, 25);
 INSERT INTO TAFSIR VALUES(null,'أكاذيبهم المسطورة في كتبهم' , 3199, 1);
 INSERT INTO AYAH VALUES(3200,'بكرة وأصيلا', 5, 25);
-INSERT INTO TAFSIR VALUES(null,'أول النهار وآخره : أي دائما' , 3200, 1);
+INSERT INTO TAFSIR VALUES(null,'أول النهار وآخره؛ أي دائما' , 3200, 1);
 INSERT INTO AYAH VALUES(3201,'يعلم السّر', 6, 25);
 INSERT INTO TAFSIR VALUES(null,'يعلم كلّما يغيب ويخفى' , 3201, 1);
 INSERT INTO AYAH VALUES(3202,'جنّة يأكل منها', 8, 25);
@@ -6870,7 +6870,7 @@ INSERT INTO TAFSIR VALUES(null,'ألـَـمْ تـَـرَ الله' , 3498, 1)
 INSERT INTO AYAH VALUES(3499,'يَقـْـدِر', 82, 28);
 INSERT INTO TAFSIR VALUES(null,'يُضيّق على من يشاء لحكمة' , 3499, 1);
 INSERT INTO AYAH VALUES(3500,'ويكَأنّه لا يفلح', 82, 28);
-INSERT INTO TAFSIR VALUES(null,'ألـَـم ترَ الشأن لا يُفلح  .' , 3500, 1);
+INSERT INTO TAFSIR VALUES(null,'ألـَـم ترَ الشأن لا يُفلح' , 3500, 1);
 INSERT INTO AYAH VALUES(3501,'معادٍ', 85, 28);
 INSERT INTO TAFSIR VALUES(null,'مكّة المكرّمة ظاهرا عليها' , 3501, 1);
 INSERT INTO AYAH VALUES(3502,'ظهيرا للكافرين', 86, 28);
@@ -7122,7 +7122,7 @@ INSERT INTO TAFSIR VALUES(null,'علاهم وغطّاهم' , 3621, 1);
 INSERT INTO AYAH VALUES(3622,'كالظـّــلل', 32, 31);
 INSERT INTO TAFSIR VALUES(null,'كالسّحاب، أو الجبال المظلـّـة' , 3622, 1);
 INSERT INTO AYAH VALUES(3623,'فمِنهم مُقتصد', 32, 31);
-INSERT INTO TAFSIR VALUES(null,'موفٍ بعهده. اكر لله' , 3623, 1);
+INSERT INTO TAFSIR VALUES(null,'موفٍ بعهده، شاكر لله' , 3623, 1);
 INSERT INTO AYAH VALUES(3624,'ختـّار كفور', 32, 31);
 INSERT INTO TAFSIR VALUES(null,'غدّارٍ جَحود للنّعم' , 3624, 1);
 INSERT INTO AYAH VALUES(3625,'يوما لا يجزي', 33, 31);
@@ -7280,7 +7280,7 @@ INSERT INTO TAFSIR VALUES(null,'لا تُبدين الزّينة الواجب س
 INSERT INTO AYAH VALUES(3699,'الجاهليّة الأولى', 33, 33);
 INSERT INTO TAFSIR VALUES(null,'ما كان قبل الإسلام من الجهالات' , 3699, 1);
 INSERT INTO AYAH VALUES(3700,'الرّجس', 33, 33);
-INSERT INTO TAFSIR VALUES(null,'الذنب. أو الإثم أو النّقص' , 3700, 1);
+INSERT INTO TAFSIR VALUES(null,'الذنب، أو الإثم أو النّقص' , 3700, 1);
 INSERT INTO AYAH VALUES(3701,'الحكمة', 34, 33);
 INSERT INTO TAFSIR VALUES(null,'هدي النّبوّة أو أحكام القرآن' , 3701, 1);
 INSERT INTO AYAH VALUES(3702,'القانتين', 35, 33);
@@ -7702,7 +7702,7 @@ INSERT INTO TAFSIR VALUES(null,'نحضِرُهم للحساب والجزاء' , 
 INSERT INTO AYAH VALUES(3907,'شُغُلٍ', 55, 36);
 INSERT INTO TAFSIR VALUES(null,'نعيم عظيم يُلهيهمْ عمّا سواه' , 3907, 1);
 INSERT INTO AYAH VALUES(3908,'فاكهون', 55, 36);
-INSERT INTO TAFSIR VALUES(null,'مُتلذذون. أو فَرحون' , 3908, 1);
+INSERT INTO TAFSIR VALUES(null,'مُتلذذون، أو فَرحون' , 3908, 1);
 INSERT INTO AYAH VALUES(3909,'الأرائك', 56, 36);
 INSERT INTO TAFSIR VALUES(null,'السّرر في الحِجال (جمع حجلة محركة - بيت يزين بالثياب والأسرّة والستور)' , 3909, 1);
 INSERT INTO AYAH VALUES(3910,'لهم ما يدّعون', 57, 36);
@@ -7710,7 +7710,7 @@ INSERT INTO TAFSIR VALUES(null,'ما يتمنّونه أو ما يطلبونه' 
 INSERT INTO AYAH VALUES(3911,'امتازوا', 59, 36);
 INSERT INTO TAFSIR VALUES(null,'تميّزوا وانفردوا عن المؤمنين' , 3911, 1);
 INSERT INTO AYAH VALUES(3912,'أعْهَدْ إليكم', 60, 36);
-INSERT INTO TAFSIR VALUES(null,'أوصِكمْ. أو أكلـّـفكمْ' , 3912, 1);
+INSERT INTO TAFSIR VALUES(null,'أوصِكمْ، أو أكلـّـفكمْ' , 3912, 1);
 INSERT INTO AYAH VALUES(3913,'جـِــبـِـلاّ', 62, 36);
 INSERT INTO TAFSIR VALUES(null,'خلقـًـا، أو جماعة عظيمة' , 3913, 1);
 INSERT INTO AYAH VALUES(3914,'اصلوها', 64, 36);
@@ -7854,7 +7854,7 @@ INSERT INTO TAFSIR VALUES(null,'استسلما وانقادا لأمره تعا�
 INSERT INTO AYAH VALUES(3982,'تلّه للجبين', 103, 37);
 INSERT INTO TAFSIR VALUES(null,'أضجعه على جبينه على الأرض' , 3982, 1);
 INSERT INTO AYAH VALUES(3983,'البلاء المبين', 106, 37);
-INSERT INTO TAFSIR VALUES(null,'الإختبار البيّن. أو المحنة البيّـنة' , 3983, 1);
+INSERT INTO TAFSIR VALUES(null,'الإختبار البيّن، أو المحنة البيّـنة' , 3983, 1);
 INSERT INTO AYAH VALUES(3984,'بذِبْح', 107, 37);
 INSERT INTO TAFSIR VALUES(null,'بكبشٍ يُذبح' , 3984, 1);
 INSERT INTO AYAH VALUES(3985,'أتدْعون بَعْلا', 125, 37);
@@ -7906,7 +7906,7 @@ INSERT INTO TAFSIR VALUES(null,'أنفسنا في مقام العبادة' , 400
 INSERT INTO AYAH VALUES(4008,'المسبّحون', 166, 37);
 INSERT INTO TAFSIR VALUES(null,'المنزّهون الله تعالى عمّا لا يليق بجلاله' , 4008, 1);
 INSERT INTO AYAH VALUES(4009,'بساحَتهمْ', 177, 37);
-INSERT INTO TAFSIR VALUES(null,'بفنائهم. المراد : بهم' , 4009, 1);
+INSERT INTO TAFSIR VALUES(null,'بفنائهم، المراد: بهم' , 4009, 1);
 INSERT INTO AYAH VALUES(4010,'ربّ العزّة', 180, 37);
 INSERT INTO TAFSIR VALUES(null,'الغلبة والقدرة والبطش' , 4010, 1);
 
@@ -8360,7 +8360,7 @@ INSERT INTO TAFSIR VALUES(null,'الملائكة والرّسل والمؤمنو
 INSERT INTO AYAH VALUES(4232,'معذرتهم', 52, 40);
 INSERT INTO TAFSIR VALUES(null,'عذرهمْ أو اعتذارهم حين يعتذرون' , 4232, 1);
 INSERT INTO AYAH VALUES(4233,'بالعشيّ والإبكار', 55, 40);
-INSERT INTO TAFSIR VALUES(null,'طرَفي النهار. أو دائما' , 4233, 1);
+INSERT INTO TAFSIR VALUES(null,'طرَفي النهار، أو دائما' , 4233, 1);
 INSERT INTO AYAH VALUES(4234,'سلطان', 56, 40);
 INSERT INTO TAFSIR VALUES(null,'حُجّـة وبرهان' , 4234, 1);
 INSERT INTO AYAH VALUES(4235,'ما هم ببالغيه', 56, 40);
@@ -8412,7 +8412,7 @@ INSERT INTO TAFSIR VALUES(null,'مَضَتْ' , 4257, 1);
 
 --Fousilat
 INSERT INTO AYAH VALUES(4258,'فصّـلتْ آياته', 3, 41);
-INSERT INTO TAFSIR VALUES(null,'مُـيّـزَتْ ونوّعَتْ. أو بُـيّـنتْ' , 4258, 1);
+INSERT INTO TAFSIR VALUES(null,'مُـيّـزَتْ ونوّعَتْ، أو بُـيّـنتْ' , 4258, 1);
 INSERT INTO AYAH VALUES(4259,'أكنّة', 5, 41);
 INSERT INTO TAFSIR VALUES(null,'أغطية خِلقـيّة تمنع الفَهم' , 4259, 1);
 INSERT INTO AYAH VALUES(4260,'وَقـْـرٌ', 5, 41);
@@ -8498,7 +8498,7 @@ INSERT INTO TAFSIR VALUES(null,'صَديقٌ قريبٌ يَهتمّ لأمرك�
 INSERT INTO AYAH VALUES(4300,'ما يلقـّـاها', 35, 41);
 INSERT INTO TAFSIR VALUES(null,'ما يُؤتـَى هذه الخصلة الشريفة' , 4300, 1);
 INSERT INTO AYAH VALUES(4301,'ينزغـنـّـك', 36, 41);
-INSERT INTO TAFSIR VALUES(null,'يُصيبنّـك. أو يَصرفـنّـك' , 4301, 1);
+INSERT INTO TAFSIR VALUES(null,'يُصيبنّـك، أو يَصرفـنّـك' , 4301, 1);
 INSERT INTO AYAH VALUES(4302,'نزْغٌ', 36, 41);
 INSERT INTO TAFSIR VALUES(null,'وَسْوَسة، أو صارفٌ' , 4302, 1);
 INSERT INTO AYAH VALUES(4303,'لا يسأمون', 38, 41);
@@ -8564,7 +8564,7 @@ INSERT INTO TAFSIR VALUES(null,'رقيبٌ على أعمالهم ومُجَاز�
 INSERT INTO AYAH VALUES(4332,'بوَكيل', 6, 42);
 INSERT INTO TAFSIR VALUES(null,'بمَوْكولٍ إليك أمرهمْ' , 4332, 1);
 INSERT INTO AYAH VALUES(4333,'أمّ القرى', 7, 42);
-INSERT INTO TAFSIR VALUES(null,'مَكّة: أي أهلها' , 4333, 1);
+INSERT INTO TAFSIR VALUES(null,'مَكّة؛ أي أهلها' , 4333, 1);
 INSERT INTO AYAH VALUES(4334,'يَوم الجَمع', 7, 42);
 INSERT INTO TAFSIR VALUES(null,'يومَ القيامة لاجتماع الخلائق فيه' , 4334, 1);
 INSERT INTO AYAH VALUES(4335,'إليه أنيبُ', 10, 42);
@@ -8614,7 +8614,7 @@ INSERT INTO TAFSIR VALUES(null,'يُجَادلون، أو يَشكّونَ في�
 INSERT INTO AYAH VALUES(4357,'لطيف بعباده', 19, 42);
 INSERT INTO TAFSIR VALUES(null,'بَرٌّ رفيقٌ بهم' , 4357, 1);
 INSERT INTO AYAH VALUES(4358,'حَرْث الآخرة', 20, 42);
-INSERT INTO TAFSIR VALUES(null,'ثوَابَها الموعود. أو العمل لها' , 4358, 1);
+INSERT INTO TAFSIR VALUES(null,'ثوَابَها الموعود، أو العمل لها' , 4358, 1);
 INSERT INTO AYAH VALUES(4359,'كلمة الفَصْـل', 21, 42);
 INSERT INTO TAFSIR VALUES(null,'الحكم بتأخير العذاب للآخرة' , 4359, 1);
 INSERT INTO AYAH VALUES(4360,'رَوضات الجنّـات', 22, 42);
@@ -8696,7 +8696,7 @@ INSERT INTO TAFSIR VALUES(null,'أوجد أصناف المخلوقات وأنو�
 INSERT INTO AYAH VALUES(4397,'والأنعام', 12, 43);
 INSERT INTO TAFSIR VALUES(null,'ومن الأنعام وهو الإبل' , 4397, 1);
 INSERT INTO AYAH VALUES(4398,'لتستووا', 13, 43);
-INSERT INTO TAFSIR VALUES(null,'لتستقرّوا. تستعلوا' , 4398, 1);
+INSERT INTO TAFSIR VALUES(null,'لتستقرّوا، تستعلوا' , 4398, 1);
 INSERT INTO AYAH VALUES(4399,'سخّر', 13, 43);
 INSERT INTO TAFSIR VALUES(null,'ذلـّـل' , 4399, 1);
 INSERT INTO AYAH VALUES(4400,'مُقرنين', 16, 43);
@@ -8844,7 +8844,7 @@ INSERT INTO TAFSIR VALUES(null,'حجّة وبرهان على صدقي' , 4469, 1
 INSERT INTO AYAH VALUES(4470,'إنّي عذت بربّي', 20, 44);
 INSERT INTO TAFSIR VALUES(null,'استجرت به والتجَأت إليه' , 4470, 1);
 INSERT INTO AYAH VALUES(4471,'ترجمونِ', 20, 44);
-INSERT INTO TAFSIR VALUES(null,'تؤذوني. أو تقتلوني بالحجارة' , 4471, 1);
+INSERT INTO TAFSIR VALUES(null,'تؤذوني، أو تقتلوني بالحجارة' , 4471, 1);
 INSERT INTO AYAH VALUES(4472,'فأسر بعبادي ليلا', 23, 44);
 INSERT INTO TAFSIR VALUES(null,'سِـرْ ليلا ببني إسرائيل' , 4472, 1);
 INSERT INTO AYAH VALUES(4473,'إنكم متبعون', 23, 44);
@@ -9056,7 +9056,7 @@ INSERT INTO TAFSIR VALUES(null,'بالمال أو بأسارى المسلمين'
 INSERT INTO AYAH VALUES(4573,'حتى تضعَ الحَرْب أوزارها', 4, 47);
 INSERT INTO TAFSIR VALUES(null,'آلاتها وأثقالها، والمراد حتى تنقضي الحرب' , 4573, 1);
 INSERT INTO AYAH VALUES(4574,'لـِـيَبْـلـُــوَ', 4, 47);
-INSERT INTO TAFSIR VALUES(null,'لِـيَخْـتبر .. يمحّص المؤمنين ويمحق الكافرين' , 4574, 1);
+INSERT INTO TAFSIR VALUES(null,'لِـيَخْـتبر.. يمحّص المؤمنين ويمحق الكافرين' , 4574, 1);
 INSERT INTO AYAH VALUES(4575,'فلن يضلّ أعمالهمْ', 4, 47);
 INSERT INTO TAFSIR VALUES(null,'فلن يبطلها بل يوفّـيهم ثوابها' , 4575, 1);
 INSERT INTO AYAH VALUES(4576,'فتـَـعْسًـا لهمْ', 8, 47);
@@ -9590,7 +9590,7 @@ INSERT INTO TAFSIR VALUES(null,'تدْفق في الرّحم' , 4833, 1);
 INSERT INTO AYAH VALUES(4834,'النّشأة الأخرى', 47, 53);
 INSERT INTO TAFSIR VALUES(null,'الإحياء بعد الإماتة كما وَعَدَ' , 4834, 1);
 INSERT INTO AYAH VALUES(4835,'أقْـنى', 48, 53);
-INSERT INTO TAFSIR VALUES(null,'أفقرَ. أو أرْضى بما أعْـطَى' , 4835, 1);
+INSERT INTO TAFSIR VALUES(null,'أفقرَ، أو أرْضى بما أعْـطَى' , 4835, 1);
 INSERT INTO AYAH VALUES(4836,'الشِـّــعْـرى', 49, 53);
 INSERT INTO TAFSIR VALUES(null,'كوكبٌ معروف كانوا يعبدونه في الجاهليّة' , 4836, 1);
 INSERT INTO AYAH VALUES(4837,'عادًا الأولى', 50, 53);
@@ -9662,7 +9662,7 @@ INSERT INTO TAFSIR VALUES(null,'شديدة السّموم أو البرْدأو 
 INSERT INTO AYAH VALUES(4869,'يَوْم نحْس', 19, 54);
 INSERT INTO TAFSIR VALUES(null,'شؤْم عليهم' , 4869, 1);
 INSERT INTO AYAH VALUES(4870,'مستمرّ', 19, 54);
-INSERT INTO TAFSIR VALUES(null,'دائم نحسُهُ. أو مُحكمٍ. أو بَشِع' , 4870, 1);
+INSERT INTO TAFSIR VALUES(null,'دائم نحسُهُ، أو مُحكمٍ، أو بَشِع' , 4870, 1);
 INSERT INTO AYAH VALUES(4871,'تنزع النّاس', 20, 54);
 INSERT INTO TAFSIR VALUES(null,'تقـلعهم منْ أماكنهم وترمي بهم' , 4871, 1);
 INSERT INTO AYAH VALUES(4872,'أعجاز نخل', 20, 54);
@@ -9796,7 +9796,7 @@ INSERT INTO TAFSIR VALUES(null,'تخرجوا هربا من قضائي' , 4934, 1
 INSERT INTO AYAH VALUES(4935,'فانفذوا', 33, 55);
 INSERT INTO TAFSIR VALUES(null,'فاخرجوا (أمر تعجيز)' , 4935, 1);
 INSERT INTO AYAH VALUES(4936,'بسلطان', 33, 55);
-INSERT INTO TAFSIR VALUES(null,'بقوّة وقهر، وهيهات ..' , 4936, 1);
+INSERT INTO TAFSIR VALUES(null,'بقوّة وقهر، وهيهات..' , 4936, 1);
 INSERT INTO AYAH VALUES(4937,'شواظ', 35, 55);
 INSERT INTO TAFSIR VALUES(null,'لهب خالص لا دخان فيه' , 4937, 1);
 INSERT INTO AYAH VALUES(4938,'نحاس', 35, 55);
@@ -9818,7 +9818,7 @@ INSERT INTO TAFSIR VALUES(null,'أغصان، أو أنواع من الثمار' 
 INSERT INTO AYAH VALUES(4946,'عينان', 50, 55);
 INSERT INTO TAFSIR VALUES(null,'التسْـنيم والسلسبيل' , 4946, 1);
 INSERT INTO AYAH VALUES(4947,'زوجان', 52, 55);
-INSERT INTO TAFSIR VALUES(null,'صِنفان : معروف وغريب' , 4947, 1);
+INSERT INTO TAFSIR VALUES(null,'صِنفان: معروف وغريب' , 4947, 1);
 INSERT INTO AYAH VALUES(4948,'استبرق', 54, 55);
 INSERT INTO TAFSIR VALUES(null,'غليظ الديباج' , 4948, 1);
 INSERT INTO AYAH VALUES(4949,'جنى الجنـّـتـيْـن', 54, 55);
@@ -10356,7 +10356,7 @@ INSERT INTO TAFSIR VALUES(null,'من غزوة بني المصطلق' , 5235, 1);
 INSERT INTO AYAH VALUES(5236,'ليُـخْرجَنّ الأعزّ', 8, 63);
 INSERT INTO TAFSIR VALUES(null,'الأشد والأقوى يَعنون أنفسهم' , 5236, 1);
 INSERT INTO AYAH VALUES(5237,'الأذلّ', 8, 63);
-INSERT INTO TAFSIR VALUES(null,'الأضعف والأهون. عنون الرسول والمؤمنين' , 5237, 1);
+INSERT INTO TAFSIR VALUES(null,'الأضعف والأهون، عنون الرسول والمؤمنين' , 5237, 1);
 INSERT INTO AYAH VALUES(5238,'ولله العزّة', 8, 63);
 INSERT INTO TAFSIR VALUES(null,'الغَـلبة والقهْر' , 5238, 1);
 INSERT INTO AYAH VALUES(5239,'لا تـلهكم', 9, 63);
@@ -10481,7 +10481,7 @@ INSERT INTO TAFSIR VALUES(null,'خالصة، أو صادقة، أو مقبولة
 INSERT INTO AYAH VALUES(5295,'لا يُخزي الله النبي', 8, 66);
 INSERT INTO TAFSIR VALUES(null,'لا يُـذلّه بل يُعزّه ويكرمه' , 5295, 1);
 INSERT INTO AYAH VALUES(5296,'اغلظ عليهم', 9, 66);
-INSERT INTO TAFSIR VALUES(null,'شدِّدْ. أو اقـْـسُ عليهم' , 5296, 1);
+INSERT INTO TAFSIR VALUES(null,'شدِّدْ، أو اقـْـسُ عليهم' , 5296, 1);
 INSERT INTO AYAH VALUES(5297,'فخانتاهما', 10, 66);
 INSERT INTO TAFSIR VALUES(null,'بالنّـفاق أو بالنميمة' , 5297, 1);
 INSERT INTO AYAH VALUES(5298,'فلم يغنيا عنهما', 10, 66);
@@ -10576,16 +10576,16 @@ INSERT INTO TAFSIR VALUES(null,'تـَـطلبون أن يُعجّل لكم اس
 INSERT INTO AYAH VALUES(5341,'أرأيتم', 28, 67);
 INSERT INTO TAFSIR VALUES(null,'أخبروني أو أروني' , 5341, 1);
 INSERT INTO AYAH VALUES(5342,'يُجير الكافرين', 28, 67);
-INSERT INTO TAFSIR VALUES(null,'يُنـَجّـيهمْ. أو يَمنعهم أو يؤَمّنهم' , 5342, 1);
+INSERT INTO TAFSIR VALUES(null,'يُنـَجّـيهمْ، أو يَمنعهم أو يؤَمّنهم' , 5342, 1);
 INSERT INTO AYAH VALUES(5343,'غَوْرا', 30, 67);
 INSERT INTO TAFSIR VALUES(null,'غائرا ذاهبا في الأرض لا يُنال' , 5343, 1);
 INSERT INTO AYAH VALUES(5344,'بماء معين', 30, 67);
-INSERT INTO TAFSIR VALUES(null,'جَار أو ظاهرٍ. َهْل التـّـناوُل' , 5344, 1);
+INSERT INTO TAFSIR VALUES(null,'جَار أو ظاهرٍ، سهْل التـّـناوُل' , 5344, 1);
 
 
 --Al Kalam
 INSERT INTO AYAH VALUES(5345,'والقلم', 1, 68);
-INSERT INTO TAFSIR VALUES(null,'( قَسَمٌ); بالقلم الذي يُكتب به' , 5345, 1);
+INSERT INTO TAFSIR VALUES(null,'( قَسَمٌ) بالقلم الذي يُكتب به' , 5345, 1);
 INSERT INTO AYAH VALUES(5346,'وما يسطرون', 1, 68);
 INSERT INTO TAFSIR VALUES(null,'والذي يكتبونه بالقلم' , 5346, 1);
 INSERT INTO AYAH VALUES(5347,'ما أنت', 2, 68);
@@ -10839,7 +10839,7 @@ INSERT INTO TAFSIR VALUES(null,'جماعات مُتفرقين' , 5468, 1);
 INSERT INTO AYAH VALUES(5469,'ممّا يعلمون', 39, 70);
 INSERT INTO TAFSIR VALUES(null,'مِنْ نُطفٍ مَهينـَـة مَذِرَة' , 5469, 1);
 INSERT INTO AYAH VALUES(5470,'فلا أقسمُ', 40, 70);
-INSERT INTO TAFSIR VALUES(null,'أقْـسِم. "لا" مزيدة' , 5470, 1);
+INSERT INTO TAFSIR VALUES(null,'أقْـسِم، "لا" مزيدة' , 5470, 1);
 INSERT INTO AYAH VALUES(5471,'بمَسْبوقين', 41, 70);
 INSERT INTO TAFSIR VALUES(null,'مَغْـلوبين عاجزين' , 5471, 1);
 INSERT INTO AYAH VALUES(5472,'فَـذرْهُم', 42, 70);
@@ -10893,7 +10893,7 @@ INSERT INTO TAFSIR VALUES(null,'ضلالا في الدنيا وعِقابًـا 
 INSERT INTO AYAH VALUES(5495,'مَكْرًا كُـبّـَارًا', 22, 71);
 INSERT INTO TAFSIR VALUES(null,'بَالِغَ الغَـايةِ في الكِـبَر' , 5495, 1);
 INSERT INTO AYAH VALUES(5496,'وَدًّا', 23, 71);
-INSERT INTO TAFSIR VALUES(null,'أصنامٌ عَبَدوها ثمّ انتقلت إلى العَرَب .، فكان وَدّ لِكـَــلـْـب' , 5496, 1);
+INSERT INTO TAFSIR VALUES(null,'أصنامٌ عَبَدوها ثمّ انتقلت إلى العَرَب، فكان وَدّ لِكـَــلـْـب' , 5496, 1);
 INSERT INTO AYAH VALUES(5497,'سُوَاعًـا', 23, 71);
 INSERT INTO TAFSIR VALUES(null,'وسُوَاعٌ لِهُـذيْـل' , 5497, 1);
 INSERT INTO AYAH VALUES(5498,'يَغوثَ', 23, 71);
@@ -11516,9 +11516,9 @@ INSERT INTO TAFSIR VALUES(null,'ما عَـمِلـَـتْ منْ خير أو �
 INSERT INTO AYAH VALUES(5797,'فلا أقسِم', 15, 81);
 INSERT INTO TAFSIR VALUES(null,'(أقـْسِم) و"لا" مزيدة' , 5797, 1);
 INSERT INTO AYAH VALUES(5798,'بالخُـنـّـس', 15, 81);
-INSERT INTO TAFSIR VALUES(null,'...بالكواكب السّـيّـارة تخْـنُـس نهارا وتخْـتـفي عن البَصر' , 5798, 1);
+INSERT INTO TAFSIR VALUES(null,'بالكواكب السّـيّـارة تخْـنُـس نهارا وتخْـتـفي عن البَصر' , 5798, 1);
 INSERT INTO AYAH VALUES(5799,'الجَوَار الكنـّس', 16, 81);
-INSERT INTO TAFSIR VALUES(null,' ...تكنس وتستتر في مغيبها تحت الأفق' , 5799, 1);
+INSERT INTO TAFSIR VALUES(null,'تكنس وتستتر في مغيبها تحت الأفق' , 5799, 1);
 INSERT INTO AYAH VALUES(5800,'والليل إذا عسعس', 17, 81);
 INSERT INTO TAFSIR VALUES(null,'أقبل ظلامه، أو أدْبر' , 5800, 1);
 INSERT INTO AYAH VALUES(5801,'والصّـبْح إذا تـنفّـس', 18, 81);
@@ -12176,7 +12176,7 @@ INSERT INTO TAFSIR VALUES(null,'يُخـلـّـدُهُ في الدنيا' , 61
 INSERT INTO AYAH VALUES(6104,'لـَـيُنـْـبَذنّ', 4, 104);
 INSERT INTO TAFSIR VALUES(null,'لـَـيُطرَحَنّ' , 6104, 1);
 INSERT INTO AYAH VALUES(6105,'الحُطمة', 4, 104);
-INSERT INTO TAFSIR VALUES(null,'جَهنّم. حَطْمِها كلّ ما يُـلْـقى فيها' , 6105, 1);
+INSERT INTO TAFSIR VALUES(null,'جَهنّم، حَطْمِها كلّ ما يُـلْـقى فيها' , 6105, 1);
 INSERT INTO AYAH VALUES(6106,'تطّـلع على الأفـئدة', 7, 104);
 INSERT INTO TAFSIR VALUES(null,'تـَـغْشـَى حَرَارتها أوْساط القلوب' , 6106, 1);
 INSERT INTO AYAH VALUES(6107,'مؤْصَدَة', 8, 104);
