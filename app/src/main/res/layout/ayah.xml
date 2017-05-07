@@ -22,15 +22,15 @@
             android:textColor="@color/red"
             android:textStyle="bold"/>
 
-        <TextView
+       <!-- <TextView
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:onClick="goToSurahIndex"
-            android:paddingLeft="15dp"
-            android:paddingTop="15dp"
-            android:text="@string/backToIndex"
-            android:textStyle="bold" />
+            android:onClick="back"
+            android:padding="10dp"
+            android:text="@string/back"
+            android:textStyle="bold" />-->
 
     </RelativeLayout>
 

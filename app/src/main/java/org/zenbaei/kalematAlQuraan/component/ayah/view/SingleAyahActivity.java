@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -15,15 +16,19 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
+import org.zenbaei.kalematAlQuraan.common.helper.IntroGestureImpl;
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.author.IntroActivity;
+
 import org.zenbaei.kalematAlQuraan.component.search.SearchHandlerActivity;
 import org.zenbaei.kalematAlQuraan.component.surah.entity.Surah;
 import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
@@ -34,12 +39,14 @@ import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
 public class SingleAyahActivity extends BaseActivity {
 
     private SearchView searchView;
+    private GestureDetectorCompat mDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_ayah);
         process();
+        mDetector = new GestureDetectorCompat(this, new IntroGestureImpl(this));
         addGestureListner();
     }
 
@@ -47,38 +54,13 @@ public class SingleAyahActivity extends BaseActivity {
         RelativeLayout myView = (RelativeLayout) findViewById(R.id.singleAyahRoot);
 
         myView.setOnTouchListener(new OnSwipeTouchListener(this) {
-
             @Override
-
-            public void onSwipeDown() {
-
-                // Toast.makeText(MainActivity.this, "Down", Toast.LENGTH_SHORT).show();
-
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                mDetector.onTouchEvent(motionEvent);
+                return super.onTouch(view, motionEvent);
             }
-
-
-            @Override
-
-            public void onSwipeLeft() {
-                finish();
-            }
-
-
-            @Override
-
-            public void onSwipeUp() {
-            }
-
-
-            @Override
-
-            public void onSwipeRight() {
-                finish();
-            }
-
         });
     }
-
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -128,6 +110,6 @@ public class SingleAyahActivity extends BaseActivity {
     }
 
     public void back(View view){
-        finish();
+        super.onBackPressed();
     }
 }

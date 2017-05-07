@@ -36,6 +36,8 @@ import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
 import org.zenbaei.kalematAlQuraan.component.ayah.entity.Ayah;
 import org.zenbaei.kalematAlQuraan.component.ayah.view.AyahActivity;
 import org.zenbaei.kalematAlQuraan.component.search.SearchHandlerActivity;
+import org.zenbaei.kalematAlQuraan.component.setting.dao.SettingDAO;
+import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
 import org.zenbaei.kalematAlQuraan.component.surah.business.SurahService;
 import org.zenbaei.kalematAlQuraan.component.surah.entity.Surah;
 
@@ -48,31 +50,41 @@ import java.util.List;
 public class SurahActivity extends BaseActivity {
 
     private List<Surah> surahList;
-
     private SearchView searchView;
-
     private ArrayAdapter surahArrayAdapter;
-
     private ListView listView;
-
     private EditText surahSearchText;
-
     private LinearLayout surahRoot;
+    private SettingDAO settingDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.surah);
 
+        settingDAO = new SettingDAO(this);
+
         surahRoot = (LinearLayout) findViewById(R.id.surahRoot);
 
         listView = (ListView) findViewById(R.id.surahListView);
+
+        addLastReadPageLink();
 
         setSurahListView();
         setEditTextListener();
         addGestureListner();
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+    }
+
+    private void addLastReadPageLink() {
+        String lastReadPage = settingDAO.findByKey(Setting.KEY_NAME.LAST_READ_PAGE);
+
+        if (Integer.valueOf(lastReadPage) > 0) {
+            findViewById(R.id.lastReadPage).setEnabled(true);
+        } else {
+            findViewById(R.id.lastReadPage).setEnabled(false);
+        }
     }
 
     private void setEditTextListener() {
@@ -178,8 +190,17 @@ public class SurahActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    public void back(View view) {
-        Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
+    public void goToLastReadPage(View view) {
+        Intent intent = new Intent(getApplicationContext(), AyahActivity.class);
+
+        String lastReadPage = settingDAO.findByKey(Setting.KEY_NAME.LAST_READ_PAGE);
+        String lastReadSurahId = settingDAO.findByKey(Setting.KEY_NAME.LAST_READ_SURAH_ID);
+        String lastReadSurahName = settingDAO.findByKey(Setting.KEY_NAME.LAST_READ_SURAH_NAME);
+
+        intent.putExtra(Setting.KEY_NAME.LAST_READ_PAGE.name(), Integer.valueOf(lastReadPage));
+        intent.putExtra(Setting.KEY_NAME.LAST_READ_SURAH_ID.name(), Integer.valueOf(lastReadSurahId));
+        intent.putExtra(Setting.KEY_NAME.LAST_READ_SURAH_NAME.name(), lastReadSurahName);
+
         startActivity(intent);
     }
 
@@ -189,15 +210,12 @@ public class SurahActivity extends BaseActivity {
         }
 
         @Override
-
         public void onSwipeLeft() {
-            Intent intent = new Intent(getApplicationContext(), NotesActivity.class);
-            startActivity(intent);
+            onSwipeRight();
         }
 
 
         @Override
-
         public void onSwipeRight() {
             Toast.makeText(SurahActivity.this, R.string.surahOnSwipeRightHint, Toast.LENGTH_SHORT).show();
         }

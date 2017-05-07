@@ -28,6 +28,7 @@ import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
 import org.zenbaei.kalematAlQuraan.component.ayah.contentProvider.KalematContentProvider;
 import org.zenbaei.kalematAlQuraan.component.ayah.view.SingleAyahActivity;
+import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
 
 public class SearchHandlerActivity extends BaseActivity {
 
@@ -49,44 +50,6 @@ public class SearchHandlerActivity extends BaseActivity {
         mListView = (ListView) findViewById(R.id.searchList);
 
         handleIntent(getIntent());
-        addGestureListner();
-    }
-
-    private void addGestureListner() {
-        ListView myView = (ListView) findViewById(R.id.searchList);
-
-        myView.setOnTouchListener(new OnSwipeTouchListener(this) {
-
-            @Override
-
-            public void onSwipeDown() {
-
-                // Toast.makeText(MainActivity.this, "Down", Toast.LENGTH_SHORT).show();
-
-            }
-
-
-            @Override
-
-            public void onSwipeLeft() {
-                finish();
-            }
-
-
-            @Override
-
-            public void onSwipeUp() {
-
-            }
-
-
-            @Override
-
-            public void onSwipeRight() {
-                finish();
-            }
-
-        });
     }
 
     @Override
@@ -189,6 +152,6 @@ public class SearchHandlerActivity extends BaseActivity {
     }
 
     public void back(View view) {
-        finish();
+        super.onBackPressed();
     }
 }

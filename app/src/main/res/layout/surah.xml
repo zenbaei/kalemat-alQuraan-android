@@ -12,13 +12,13 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/sindleAyahBack"
+            android:id="@+id/lastReadPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:onClick="back"
+            android:onClick="goToLastReadPage"
             android:padding="10dp"
-            android:text="@string/backToIntro"
+            android:text="@string/lastReadPage"
             android:textStyle="bold" />
 
         <EditText

@@ -13,10 +13,6 @@
             android:value="org.zenbaei.kalematAlQuraan.component.search.SearchHandlerActivity" />
 
         <activity
-            android:name=".surah.view.SurahActivity"
-            android:launchMode="singleTop" />
-
-        <activity
             android:name=".progress.ProgressActivity"
             android:launchMode="singleTop"
             android:noHistory="true">
@@ -27,29 +23,35 @@
         </activity>
 
         <activity
-            android:name=".author.AuthorActivity"
-            android:launchMode="singleTop" />
+            android:name=".surah.view.SurahActivity"
+            android:launchMode="singleTop"
+            android:noHistory="false"/>
 
         <activity
             android:name=".author.IntroActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:noHistory="true" />
 
         <activity
             android:name=".author.NotesActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:noHistory="true" />
 
         <activity
             android:name=".ayah.view.AyahActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:noHistory="false" />
 
         <activity
             android:name=".ayah.view.SingleAyahActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:noHistory="true"/>
 
         <!-- Search results activity -->
         <activity
             android:name=".search.SearchHandlerActivity"
-            android:launchMode="singleTop" >
+            android:launchMode="singleTop"
+            android:noHistory="false">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>

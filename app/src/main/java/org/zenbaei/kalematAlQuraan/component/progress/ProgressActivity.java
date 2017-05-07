@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
 import org.zenbaei.kalematAlQuraan.component.R;
-import org.zenbaei.kalematAlQuraan.component.author.AuthorActivity;
 import org.zenbaei.kalematAlQuraan.component.ayah.view.AyahActivity;
 import org.zenbaei.kalematAlQuraan.component.setting.dao.SettingDAO;
 import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
@@ -62,25 +61,8 @@ public class ProgressActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            Intent intent;
-            String lastReadPage = settingDAO.findByKey(Setting.KEY_NAME.LAST_READ_PAGE);
-
-            if (lastReadPage.isEmpty()) {
-                settingDAO.insert(Setting.KEY_NAME.LAST_READ_PAGE, "0");
-                settingDAO.insert(Setting.KEY_NAME.LAST_READ_SURAH_ID, "0");
-                settingDAO.insert(Setting.KEY_NAME.LAST_READ_SURAH_NAME, "");
-            } else if (Integer.valueOf(lastReadPage) > 0) {
-                String lastReadSurahId = settingDAO.findByKey(Setting.KEY_NAME.LAST_READ_SURAH_ID);
-                String lastReadSurahName = settingDAO.findByKey(Setting.KEY_NAME.LAST_READ_SURAH_NAME);
-                intent = new Intent(getApplicationContext(), AyahActivity.class);
-                intent.putExtra(Setting.KEY_NAME.LAST_READ_PAGE.name(), Integer.valueOf(lastReadPage));
-                intent.putExtra(Setting.KEY_NAME.LAST_READ_SURAH_ID.name(), Integer.valueOf(lastReadSurahId));
-                intent.putExtra(Setting.KEY_NAME.LAST_READ_SURAH_NAME.name(), lastReadSurahName);
-                startActivity(intent);
-                return;
-            }
-
-            intent = new Intent(getApplicationContext(), AuthorActivity.class);
+            addNewFeatures();
+            Intent intent = new Intent(getApplicationContext(), SurahActivity.class);
             startActivity(intent);
         }
 
@@ -88,5 +70,22 @@ public class ProgressActivity extends AppCompatActivity {
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
         }
+    }
+
+    private void addNewFeatures() {
+        addLastReadPageFeature();
+    }
+
+    private void addLastReadPageFeature() {
+        String lastReadPage = settingDAO.findByKey(Setting.KEY_NAME.LAST_READ_PAGE);
+
+        // lastReadPage key is inserted in db?
+        if (!lastReadPage.isEmpty()) {
+            return;
+        }
+
+        settingDAO.insert(Setting.KEY_NAME.LAST_READ_PAGE, "0");
+        settingDAO.insert(Setting.KEY_NAME.LAST_READ_SURAH_ID, "0");
+        settingDAO.insert(Setting.KEY_NAME.LAST_READ_SURAH_NAME, "");
     }
 }

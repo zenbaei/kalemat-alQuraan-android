@@ -91,8 +91,9 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
         this.surahId = getIntent().getLongExtra("surahId", 0);
         this.surahName = getIntent().getStringExtra("surahName");
 
-        int lastReadPage = getIntent().getIntExtra(Setting.KEY_NAME.LAST_READ_PAGE.name(), 0);
 
+        int lastReadPage = getIntent().getIntExtra(Setting.KEY_NAME.LAST_READ_PAGE.name(), 0);
+        // call from goToLastReadPage? if not property wont exist in Intent
         if (lastReadPage > 0) {
             this.surahId = getIntent().getIntExtra(Setting.KEY_NAME.LAST_READ_SURAH_ID.name(), 0);
             this.surahName = getIntent().getStringExtra(Setting.KEY_NAME.LAST_READ_SURAH_NAME.name());
@@ -488,9 +489,8 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void goToSurahIndex(View view) {
-        Intent intent = new Intent(getApplicationContext(), SurahActivity.class);
-        startActivity(intent);
+    public void back(View view) {
+        super.onBackPressed();
     }
 
     public void increaseFontSize(View view) {
