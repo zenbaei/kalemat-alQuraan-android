@@ -129,13 +129,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="decreaseFontSize"
-                    android:src="@mipmap/minus_round" />
+                    android:src="@mipmap/minus" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="increaseFontSize"
-                    android:src="@mipmap/plus_round"
+                    android:src="@mipmap/plus"
                     android:paddingLeft="10dp"/>
 
             </LinearLayout>
