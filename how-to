@@ -1,5 +1,5 @@
 new release:
-- increase versionName in build.gradle
+- increase versionName + version code in build.gradle
 - use the keyStore 'jks' to sign the new release (password is saved on google drive keys file)
 
 attach external device:

@@ -68,23 +68,11 @@ public class SurahActivity extends BaseActivity {
 
         listView = (ListView) findViewById(R.id.surahListView);
 
-        addLastReadPageLink();
-
         setSurahListView();
         setEditTextListener();
         addGestureListner();
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-    }
-
-    private void addLastReadPageLink() {
-        String lastReadPage = settingDAO.findByKey(Setting.KEY_NAME.LAST_READ_PAGE);
-
-        if (Integer.valueOf(lastReadPage) > 0) {
-            findViewById(R.id.lastReadPage).setEnabled(true);
-        } else {
-            findViewById(R.id.lastReadPage).setEnabled(false);
-        }
     }
 
     private void setEditTextListener() {
@@ -191,12 +179,16 @@ public class SurahActivity extends BaseActivity {
     }
 
     public void goToLastReadPage(View view) {
-        Intent intent = new Intent(getApplicationContext(), AyahActivity.class);
-
         String lastReadPage = settingDAO.findByKey(Setting.KEY_NAME.LAST_READ_PAGE);
+
+        if (Integer.valueOf(lastReadPage) == 0) {
+            return;
+        }
+
         String lastReadSurahId = settingDAO.findByKey(Setting.KEY_NAME.LAST_READ_SURAH_ID);
         String lastReadSurahName = settingDAO.findByKey(Setting.KEY_NAME.LAST_READ_SURAH_NAME);
 
+        Intent intent = new Intent(getApplicationContext(), AyahActivity.class);
         intent.putExtra(Setting.KEY_NAME.LAST_READ_PAGE.name(), Integer.valueOf(lastReadPage));
         intent.putExtra(Setting.KEY_NAME.LAST_READ_SURAH_ID.name(), Integer.valueOf(lastReadSurahId));
         intent.putExtra(Setting.KEY_NAME.LAST_READ_SURAH_NAME.name(), lastReadSurahName);

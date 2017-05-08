@@ -42,7 +42,7 @@
 </string>
 
     <string name="authorWord">مقدمة المؤلف</string>
-    <string name="lastReadPage">عودة لآخر صفحة تمت قراءتها</string>
+    <string name="lastReadPage">عودة لآخر صفحة تم قراءتها</string>
     <string name="about">عند ملاحظة أي خطأ برجاء مراسلتي على zenbaei@gmail.com، شكراً.\n</string>
     <string name="close">إغلاق</string>
     <string name="surahOnSwipeRightHint">لتصفح السورة قم بالضغط عليها أو إضغط علامة البحث أعلى الشاشة للبحث في الآيات</string>
