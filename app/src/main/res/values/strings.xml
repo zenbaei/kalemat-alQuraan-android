@@ -49,6 +49,6 @@
     <string name="authorOnSwingLeftHint">للإنتقال للصفحة التالية إسحب بأصبعك جهة اليمين وللرجوع إضغط زر العودة الخاص بالهاتف</string>
     <string name="backHint">للرجوع إضغط زر العودة الخاص بالهاتف</string>
     <string name="ayahOnSwipeLeftHint">للإنتقال للصفحة التالية إسحب بإصبعك جهة اليمين وللرجوع إضغط زر العودة الخاص بالهاتف</string>
-    <string name="ayahOnSwipeRightHint">للإنتقال للصفحة التالية إسحب بإصبعك جهة اليسار وللرجوع إضغط زر العودة الخاص بالهاتف</string>
+    <string name="ayahOnSwipeRightHint">للإنتقال للصفحة السابقة إسحب بإصبعك جهة اليسار وللرجوع إضغط زر العودة الخاص بالهاتف</string>
 
 </resources>
