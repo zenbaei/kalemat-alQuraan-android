@@ -20,10 +20,10 @@
 
     <!-- Shown above search results when we receive a search request. -->
     <!--    <plurals name="search_results">-->
-    <string name="one">تكررت كلمة \"%s\" مرة واحدة</string>
-    <string name="two">تكررت كلمة \"%s\" مرتان</string>
-    <string name="three_to_ten">تكررت كلمة \"%1$s\" %2$d مرات</string>
-    <string name="other">تكررت كلمة \"%1$s\" %2$d مرة</string>
+    <string name="one">وردت كلمة \"%s\" مرة واحدة</string>
+    <string name="two">وردت كلمة \"%s\" مرتان</string>
+    <string name="three_to_ten">وردت كلمة \"%1$s\" %2$d مرات</string>
+    <string name="other">وردت كلمة \"%1$s\" %2$d مرة</string>
 
 
 
@@ -43,7 +43,7 @@
 
     <string name="authorWord">مقدمة المؤلف</string>
     <string name="lastReadPage">عودة لآخر صفحة تم قراءتها</string>
-    <string name="about">عند ملاحظة أي خطأ برجاء مراسلتي على zenbaei@gmail.com، شكراً.\n</string>
+    <string name="about">عند ملاحظة أي خطأ يرجى مراسلتي على zenbaei@gmail.com، شكراً لكم.\n</string>
     <string name="close">إغلاق</string>
     <string name="surahOnSwipeRightHint">لتصفح السورة قم بالضغط عليها أو إضغط علامة البحث أعلى الشاشة للبحث في الآيات</string>
     <string name="authorOnSwingLeftHint">للإنتقال للصفحة التالية إسحب بأصبعك جهة اليمين وللرجوع إضغط زر العودة الخاص بالهاتف</string>

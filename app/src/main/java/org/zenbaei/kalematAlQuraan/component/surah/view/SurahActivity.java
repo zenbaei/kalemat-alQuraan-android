@@ -121,8 +121,11 @@ public class SurahActivity extends BaseActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        searchView.setQuery("", false);
-        searchView.setIconified(true);
+        Log.d("SurahActivity", "onRestart");
+        if (searchView != null) { // caused null pointer crash reported
+            searchView.setQuery("", false);
+            searchView.setIconified(true);
+        }
         listView.setAdapter(surahArrayAdapter);
         surahSearchText.setText(null);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);

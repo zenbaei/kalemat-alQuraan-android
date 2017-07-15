@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.author.IntroActivity;
+import org.zenbaei.kalematAlQuraan.utils.AndroidDatabaseManager;
 
 /**
  * Created by Islam on 2/7/2016.
@@ -27,6 +28,11 @@ public abstract class BaseActivity extends AppCompatActivity {
             case R.id.action_goToIntro:
                 goToIntro();
                 break;
+            /*
+            case R.id.action_showDbManager:
+                showDbManager();
+                break;
+             */
         }
 
         return super.onOptionsItemSelected(item);
@@ -44,5 +50,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     private void goToIntro() {
         Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
         startActivity(intent);
+    }
+
+    private void showDbManager() {
+        Intent dbManager = new Intent(getApplicationContext(),AndroidDatabaseManager.class);
+        startActivity(dbManager);
     }
 }

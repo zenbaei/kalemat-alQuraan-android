@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 import android.support.annotation.Nullable;
 
+import org.zenbaei.kalematAlQuraan.common.db.AppSqliteOpenHelper;
 import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
 import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
 
@@ -103,8 +104,8 @@ public class KalematContentProvider extends ContentProvider {
         query = query.toLowerCase();
         String[] columns = new String[]{
                 BaseColumns._ID,
-                KalematDatabase.KALEMAH,
-                KalematDatabase.SURAH,
+                AppSqliteOpenHelper.KALEMAH,
+                AppSqliteOpenHelper.SURAH,
        /* SearchManager.SUGGEST_COLUMN_SHORTCUT_ID,
                         (only if you want to refresh shortcuts) */
                 SearchManager.SUGGEST_COLUMN_INTENT_DATA_ID};
@@ -116,9 +117,9 @@ public class KalematContentProvider extends ContentProvider {
         query = query.toLowerCase();
         String[] columns = new String[]{
                 BaseColumns._ID,
-                KalematDatabase.AYAH_NUMBER,
-                KalematDatabase.KALEMAH,
-                KalematDatabase.SURAH};
+                AppSqliteOpenHelper.AYAH_NUMBER,
+                AppSqliteOpenHelper.KALEMAH,
+                AppSqliteOpenHelper.SURAH};
 
         return mKalemat.getWordMatches(query, columns);
     }
@@ -127,10 +128,10 @@ public class KalematContentProvider extends ContentProvider {
     private Cursor getWord(Uri uri) {
         String rowId = uri.getLastPathSegment();
         String[] columns = new String[]{
-                KalematDatabase.AYAH_NUMBER,
-                KalematDatabase.KALEMAH,
-                KalematDatabase.TAFSIR,
-                KalematDatabase.SURAH};
+                AppSqliteOpenHelper.AYAH_NUMBER,
+                AppSqliteOpenHelper.KALEMAH,
+                AppSqliteOpenHelper.TAFSIR,
+                AppSqliteOpenHelper.SURAH};
 
         return mKalemat.getWord(rowId, columns);
     }

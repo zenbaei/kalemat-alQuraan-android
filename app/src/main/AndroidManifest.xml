@@ -61,6 +61,10 @@
                 android:resource="@xml/searchable" />
         </activity>
 
+        <activity
+            android:name="org.zenbaei.kalematAlQuraan.utils.AndroidDatabaseManager"
+            android:label="@string/app_name"/>
+
         <!-- Provides search suggestions for words and their definitions. -->
         <provider
             android:name=".ayah.contentProvider.KalematContentProvider"

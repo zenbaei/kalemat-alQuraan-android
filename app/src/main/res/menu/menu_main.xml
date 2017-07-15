@@ -22,4 +22,10 @@
         android:title="@string/action_about"
         app:showAsAction="never" />
 
+    <!--item
+        android:id="@+id/action_showDbManager"
+        android:orderInCategory="200"
+        android:title="db manager"
+        app:showAsAction="never" /-->
+
 </menu>

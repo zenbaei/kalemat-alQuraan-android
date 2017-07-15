@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
+import org.zenbaei.kalematAlQuraan.common.db.AppSqliteOpenHelper;
 import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.component.R;
@@ -110,8 +111,8 @@ public class SearchHandlerActivity extends BaseActivity {
             mTextView.setText(countString);
 
             // Specify the columns we want to display in the result
-            String[] from = new String[]{KalematDatabase.AYAH_NUMBER,
-                    KalematDatabase.KALEMAH, KalematDatabase.SURAH};
+            String[] from = new String[]{AppSqliteOpenHelper.AYAH_NUMBER,
+                    AppSqliteOpenHelper.KALEMAH, AppSqliteOpenHelper.SURAH};
 
             // Specify the corresponding layout elements where we want the columns to go
             int[] to = new int[]{R.id.ayahNumberTextView,

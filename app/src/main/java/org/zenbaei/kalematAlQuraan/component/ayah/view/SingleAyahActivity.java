@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
+import org.zenbaei.kalematAlQuraan.common.db.AppSqliteOpenHelper;
 import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
 import org.zenbaei.kalematAlQuraan.common.helper.IntroGestureImpl;
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
@@ -97,10 +98,10 @@ public class SingleAyahActivity extends BaseActivity {
             TextView kalemah = (TextView) findViewById(R.id.singleAyahKalemah);
             TextView tafsir = (TextView) findViewById(R.id.singleAyahTafsir);
 
-            int sIndex = cursor.getColumnIndexOrThrow(KalematDatabase.SURAH);
-            int nIndex = cursor.getColumnIndexOrThrow(KalematDatabase.AYAH_NUMBER);
-            int kIndex = cursor.getColumnIndexOrThrow(KalematDatabase.KALEMAH);
-            int tIndex = cursor.getColumnIndexOrThrow(KalematDatabase.TAFSIR);
+            int sIndex = cursor.getColumnIndexOrThrow(AppSqliteOpenHelper.SURAH);
+            int nIndex = cursor.getColumnIndexOrThrow(AppSqliteOpenHelper.AYAH_NUMBER);
+            int kIndex = cursor.getColumnIndexOrThrow(AppSqliteOpenHelper.KALEMAH);
+            int tIndex = cursor.getColumnIndexOrThrow(AppSqliteOpenHelper.TAFSIR);
 
             surah.setText(getString(R.string.surah, new Object[]{cursor.getString(sIndex)}));
             number.setText(cursor.getString(nIndex));
