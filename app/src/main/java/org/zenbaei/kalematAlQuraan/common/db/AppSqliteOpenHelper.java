@@ -36,7 +36,7 @@ public class AppSqliteOpenHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "KalematDatabase";
     public static final String DATABASE_NAME = "kalemat_alQuraan";
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
 
     //The columns we'll include in the dictionary table
     public static final String KALEMAH = SearchManager.SUGGEST_COLUMN_TEXT_1;
