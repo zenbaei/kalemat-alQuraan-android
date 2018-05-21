@@ -1,3 +1,4 @@
+
 package org.zenbaei.kalematAlQuraan.component.ayah.view;
 
 import android.app.SearchManager;
@@ -172,8 +173,10 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
     @Override
     protected void onRestart() {
         super.onRestart();
-        searchView.setQuery("", false);
-        searchView.setIconified(true);
+        if (searchView != null) {
+            searchView.setQuery("", false);
+            searchView.setIconified(true);
+        }
     }
 
 
