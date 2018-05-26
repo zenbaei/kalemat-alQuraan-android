@@ -161,18 +161,22 @@ public class SurahActivity extends BaseActivity {
 
 
     private void startKalemahTafsirActivity(String selectedSurah) {
-        if (selectedSurah == null || selectedSurah.isEmpty()) {
+        if (selectedSurah == null ||  selectedSurah.trim().isEmpty()) {
             Log.e("SurahActivity", "Selected Surah has null value.");
+            return;
         }
 
         Surah surah = null;
         for (Surah s : surahList) {
-            if (s.toString().equals(selectedSurah))
+            if (s.toString().equals(selectedSurah)) {
                 surah = s;
+                break;
+            }
         }
 
         if (surah == null) {
             Log.e("SurahActivity", String.format("Surah name %s is not found.", selectedSurah));
+            return;
         }
 
         Intent intent = new Intent(getApplicationContext(), AyahActivity.class);

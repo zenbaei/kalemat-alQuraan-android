@@ -3068,7 +3068,7 @@ INSERT INTO TAFSIR VALUES(null,'تأخير حُرمة شهر إلى آخر' , 14
 INSERT INTO AYAH VALUES(1464,'ليُواطِئوا', 37, 9);
 INSERT INTO TAFSIR VALUES(null,'ليوافقوا' , 1464, 1);
 INSERT INTO AYAH VALUES(1465,'انفروا', 38, 9);
-INSERT INTO TAFSIR VALUES(null,'اخرجوا غزاة ً (لتبوك)' , 1465, 1);
+INSERT INTO TAFSIR VALUES(null,'اخرجوا غزاةً (لتبوك)' , 1465, 1);
 INSERT INTO AYAH VALUES(1466,'اثاقلتم', 38, 9);
 INSERT INTO TAFSIR VALUES(null,'تباطأتم وأخلدتم' , 1466, 1);
 INSERT INTO AYAH VALUES(1467,'في الغار', 40, 9);
