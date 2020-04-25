@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yellow"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray">
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:onClick="onDeleteButtonClick"
+            android:padding="10dp"
+            android:text="@string/delete"/>
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/favAllCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:layout_alignParentLeft="true"
+            android:padding="10dp"
+            android:checked="false"/>
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/favListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:choiceMode="multipleChoice"
+        android:layoutDirection="rtl"
+        android:textDirection="rtl" />
+
+    <TextView
+        android:id="@+id/emptyFav"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:text="@string/emptyFav"
+        android:textSize="15dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"/>
+
+
+</LinearLayout>

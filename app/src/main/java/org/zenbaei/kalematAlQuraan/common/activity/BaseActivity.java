@@ -7,6 +7,8 @@ import android.view.MenuItem;
 
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.author.IntroActivity;
+import org.zenbaei.kalematAlQuraan.component.menu.FavActivity;
+import org.zenbaei.kalematAlQuraan.component.menu.FontSizeActivity;
 import org.zenbaei.kalematAlQuraan.utils.AndroidDatabaseManager;
 
 /**
@@ -27,6 +29,12 @@ public abstract class BaseActivity extends AppCompatActivity {
                 break;
             case R.id.action_goToIntro:
                 goToIntro();
+                break;
+            case R.id.action_goToFav:
+                goToFav();
+                break;
+            case R.id.action_goToFontSize:
+                goToFontSize();
                 break;
             /*
             case R.id.action_showDbManager:
@@ -49,6 +57,16 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private void goToIntro() {
         Intent intent = new Intent(getApplicationContext(), IntroActivity.class);
+        startActivity(intent);
+    }
+
+    private  void goToFav() {
+        Intent intent = new Intent(getApplicationContext(), FavActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToFontSize() {
+        Intent intent = new Intent(getApplicationContext(), FontSizeActivity.class);
         startActivity(intent);
     }
 

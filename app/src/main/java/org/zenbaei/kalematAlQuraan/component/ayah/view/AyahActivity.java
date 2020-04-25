@@ -2,19 +2,22 @@
 package org.zenbaei.kalematAlQuraan.component.ayah.view;
 
 import android.app.SearchManager;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.SearchView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -35,7 +38,6 @@ import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
 import org.zenbaei.kalematAlQuraan.component.ayah.entity.Ayah;
 import org.zenbaei.kalematAlQuraan.component.setting.dao.SettingDAO;
 import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
-import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +74,11 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
     private Handler handler = new Handler();
     private List<TextView> currentDisplayedKalemahAndTafsirTextViews;
     private SettingDAO settingDAO;
+    private View targetTableRow;
+    private String targetTafsir;
+    private String targetKalemah;
+    private ClipboardManager clipboard;
+    private AyahActivity currentActv;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -88,10 +95,11 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
         ayahService = new AyahService(this);
         settingDAO = new SettingDAO(this);
 
+        clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+
         //get parameters from intent
         this.surahId = getIntent().getLongExtra("surahId", 0);
         this.surahName = getIntent().getStringExtra("surahName");
-
 
         int lastReadPage = getIntent().getIntExtra(Setting.KEY_NAME.LAST_READ_PAGE.name(), 0);
         // call from goToLastReadPage? if not property wont exist in Intent
@@ -136,6 +144,7 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
                 mDetector.onTouchEvent(motionEvent);
                 return super.onTouch(view, motionEvent);
             }
+
         });
 
         scrollView.setOnTouchListener(new OnSwipeTouchListenerIgnoreDown(this) {
@@ -248,6 +257,8 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
 
             tableRow.addView(textView4Ayah);
 
+            this.setTableRowOnLongPressListener(tableRow);
+
 
             //set max width to wrap content
             textView4Ayah.setWidth(ayahColWidth);
@@ -279,6 +290,27 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
 
             addCurrentKalemahTafsir(textView4Kalemah, textView4Tafsir);
         }
+    }
+
+    private void setTableRowOnLongPressListener(TableRow tableRow) {
+
+        tableRow.setOnTouchListener(new OnSwipeTouchListener(this) {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                targetTableRow = view;
+                setSelectedRowValue(view);
+                mDetector.onTouchEvent(motionEvent);
+                return super.onTouch(view, motionEvent);
+            }
+        });
+    }
+
+    private void setSelectedRowValue(View tableRow) {
+        View tafsirTextView = ((TableRow)tableRow).getChildAt(0);
+        View kalemahTextView = ((TableRow)tableRow).getChildAt(2);
+        this.targetTafsir = ((TextView)tafsirTextView).getText().toString();
+        this.targetKalemah = ((TextView)kalemahTextView).getText().toString();
+        this.currentActv = this;
     }
 
     /**
@@ -352,7 +384,7 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
         linearLayout.setLayoutParams(new LayoutParams(1, LayoutParams.MATCH_PARENT));
 
 
-        //set layout color
+        //set fav_list_item color
         if (visible)
             linearLayout.setBackgroundColor(getResources().getColor(R.color.lightPink));
 
@@ -409,7 +441,7 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
 
 
         //set text padding
-        ayah.setPadding(0, 0, 5, 0);
+        ayah.setPadding(0, 0, 35, 0);
         kalemah.setPadding(0, 0, 2, 0);
         tafsir.setPadding(0, 0, 2, 0);
 
@@ -464,6 +496,18 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
         handler.post(new DoWork());
     }
 
+    void showCopyFavouriteMenu() {
+        //Creating the instance of PopupMenu
+        PopupMenu popup = new PopupMenu(AyahActivity.this, this.targetTableRow);
+        //Inflating the Popup using xml file
+        popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+
+        //registering popup with OnMenuItemClickListener
+        popup.setOnMenuItemClickListener(new OnMenuClickListenerImpl());
+
+        popup.show();//showing popup menu
+    }
+
 
     public int getNumberOfPages(int rowCount, int maxRowPerPage) {
         if (rowCount <= maxRowPerPage)
@@ -492,8 +536,9 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void back(View view) {
-        super.onBackPressed();
+    public void copyToClipboard(String text) {
+        ClipData clip = ClipData.newPlainText("tafsir", text);
+        clipboard.setPrimaryClip(clip);
     }
 
     public void increaseFontSize(View view) {
@@ -537,81 +582,6 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
         settingDAO.update(Setting.KEY_NAME.LAST_READ_SURAH_ID, String.valueOf(surahId));
         settingDAO.update(Setting.KEY_NAME.LAST_READ_SURAH_NAME, surahName);
     }
-/*
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        this.mDetector.onTouchEvent(event);
-        // Be sure to call the superclass implementation
-        boolean consumed = super.onTouchEvent(event);
-
-        if (!consumed)
-            mScaleDetector.onTouchEvent(event);
-
-        return true;
-    }
-
-    @Override
-    public boolean onDown(MotionEvent e) {
-        return true;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        return false;
-    }
-
-    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-        @Override
-        public boolean onScale(ScaleGestureDetector detector) {
-            mScaleFactor *= detector.getScaleFactor();
-
-            Log.i("onScale", String.valueOf(detector.getPreviousSpan()));
-            Log.i("onScale", String.valueOf(detector.getPreviousSpanX()));
-            Log.i("onScale", String.valueOf(detector.getPreviousSpanY()));
-
-            //  float
-
-            if (mScaleFactor > 1) {
-                Log.i("onScale", "Zooming In");
-                ayahTafsirTable.setScaleX(mScaleFactor);
-                ayahTafsirTable.setScaleY(mScaleFactor);
-            } else {
-                Log.i("onScale", "Zooming Out");
-                //mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
-                ayahTafsirTable.setScaleX(1f);
-                ayahTafsirTable.setScaleY(1f);
-            }
-
-
-            // Don't let the object get too small or too large.
-            //     mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
-
-            //  zoom(2f,2f,new PointF(0,0));
-            //findViewById(R.id.ayahTafsirTable).invalidate();
-            return true;
-        }
-
-    }*/
-
 
     class DoWork implements Runnable {
         @Override
@@ -626,16 +596,8 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
     class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
         private static final String DEBUG_TAG = "Gestures";
 
-       /*
         @Override
-        public boolean onSingleTapUp(MotionEvent e) {
-            // Toast.makeText(getApplicationContext(), "single tap", Toast.LENGTH_SHORT).show();
-            hideLayout();
-            return true;
-        }*/
-
-        @Override
-        public boolean onSingleTapUp(MotionEvent e) {
+        public boolean onDoubleTap(MotionEvent e) {
             final View view = fontControlsLayout;
             if (view.getVisibility() == View.VISIBLE) {
                 view.setVisibility(View.INVISIBLE);
@@ -648,11 +610,6 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
         private void hideLayout() {
             final View view = fontControlsLayout;
 
-           /*
-            if (view.getVisibility() == View.VISIBLE) {
-                return;
-            }*/
-
             view.setVisibility(View.VISIBLE);
 
             view.postDelayed(new Runnable() {
@@ -660,6 +617,30 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
                     view.setVisibility(View.INVISIBLE);
                 }
             }, 5000);
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+            showCopyFavouriteMenu();
+            super.onLongPress(e);
+        }
+
+    }
+
+    class OnMenuClickListenerImpl implements PopupMenu.OnMenuItemClickListener {
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            String output = "";
+            if (item.getTitle().equals(getString(R.string.copy))){
+                output = getString(R.string.copyDone);
+                copyToClipboard("\"" + targetKalemah + "\": " + targetTafsir);
+            } else {
+                output = getString(R.string.favouriteDone);
+                settingDAO.insertIfNotExists(Setting.KEY_NAME.FAVOURITE, targetKalemah + "#" + targetTafsir);
+            }
+
+            Toast.makeText(AyahActivity.this, output , Toast.LENGTH_SHORT).show();
+            return true;
         }
     }
 

@@ -7,6 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        <activity android:name=".menu.FontSizeActivity"></activity>
 
         <meta-data
             android:name="android.app.default_searchable"
@@ -18,36 +19,34 @@
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".surah.view.SurahActivity"
             android:launchMode="singleTop"
-            android:noHistory="false"/>
-
+            android:noHistory="false" />
         <activity
             android:name=".author.IntroActivity"
             android:launchMode="singleTop"
             android:noHistory="true" />
-
         <activity
             android:name=".author.NotesActivity"
             android:launchMode="singleTop"
             android:noHistory="true" />
-
         <activity
             android:name=".ayah.view.AyahActivity"
             android:launchMode="singleTop"
             android:noHistory="false" />
-
+        <activity
+            android:name=".menu.FavActivity"
+            android:launchMode="singleTop"
+            android:noHistory="false" />
         <activity
             android:name=".ayah.view.SingleAyahActivity"
             android:launchMode="singleTop"
-            android:noHistory="true"/>
-
-        <!-- Search results activity -->
+            android:noHistory="true" /> <!-- Search results activity -->
         <activity
             android:name=".search.SearchHandlerActivity"
             android:launchMode="singleTop"
@@ -60,16 +59,12 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-
         <activity
             android:name="org.zenbaei.kalematAlQuraan.utils.AndroidDatabaseManager"
-            android:label="@string/app_name"/>
-
-        <!-- Provides search suggestions for words and their definitions. -->
+            android:label="@string/app_name" /> <!-- Provides search suggestions for words and their definitions. -->
         <provider
             android:name=".ayah.contentProvider.KalematContentProvider"
             android:authorities="com.example.android.searchabledict.DictionaryProvider" />
-
     </application>
 
 </manifest>

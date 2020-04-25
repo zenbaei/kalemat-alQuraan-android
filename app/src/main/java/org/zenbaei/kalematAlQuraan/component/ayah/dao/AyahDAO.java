@@ -70,10 +70,11 @@ public class AyahDAO extends AbstractDAO<Ayah> {
         }
 
         cursor.close();
+        getReadableDatabase().close();
         return ayahList;
     }
 
-    private Cursor findBy(String column, Object value, long languageId, int from, int to, boolean like) {
+    private void findBy(String column, Object value, long languageId, int from, int to, boolean like) {
         List<Ayah> ayahList;
         String query = String.format("SELECT ayah.%s, ayah.%s, ayah.%s, tafsir.%s FROM %s ayah,%s tafsir WHERE %s AND %s AND %s ORDER BY %s LIMIT %s, %s ;",
                 Ayah.ID_COLUMN, Ayah.NUMBER_COLUMN, Ayah.KALEMAH_COLUMN, Tafsir.TAFSIR_COLUMN, Ayah.TABLE_NAME, Tafsir.TABLE_NAME,
@@ -86,7 +87,8 @@ public class AyahDAO extends AbstractDAO<Ayah> {
         );
         Log.i(AyahDAO.class.getSimpleName(), query);
 
-        return getReadableDatabase().rawQuery(query, null);
+        Cursor cursor = getReadableDatabase().rawQuery(query, null);
+        getReadableDatabase().close();
     }
 
 

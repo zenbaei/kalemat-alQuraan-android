@@ -1,6 +1,8 @@
 package org.zenbaei.kalematAlQuraan.component.ayah.view;
 
 import android.app.SearchManager;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,7 +14,9 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.SearchView;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -31,6 +35,8 @@ import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.author.IntroActivity;
 
 import org.zenbaei.kalematAlQuraan.component.search.SearchHandlerActivity;
+import org.zenbaei.kalematAlQuraan.component.setting.dao.SettingDAO;
+import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
 import org.zenbaei.kalematAlQuraan.component.surah.entity.Surah;
 import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
 
@@ -40,17 +46,21 @@ import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
 public class SingleAyahActivity extends BaseActivity {
 
     private SearchView searchView;
-    private GestureDetectorCompat mDetector;
+    //private GestureDetectorCompat mDetector;
+    private ClipboardManager clipboard;
+    private SettingDAO settingDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_ayah);
         process();
-        mDetector = new GestureDetectorCompat(this, new IntroGestureImpl(this));
-        addGestureListner();
+        this.clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        this.settingDAO = new SettingDAO(this);
+        //mDetector = new GestureDetectorCompat(this, new IntroGestureImpl(this));
+        //addGestureListner();
     }
-
+    /*
     private void addGestureListner() {
         RelativeLayout myView = (RelativeLayout) findViewById(R.id.singleAyahRoot);
 
@@ -62,6 +72,7 @@ public class SingleAyahActivity extends BaseActivity {
             }
         });
     }
+    */
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -110,7 +121,26 @@ public class SingleAyahActivity extends BaseActivity {
         }
     }
 
-    public void back(View view){
-        super.onBackPressed();
+
+    public void onCopy(View view) {
+        String output = getString(R.string.copyDone);
+        TextView kalemah = (TextView) findViewById(R.id.singleAyahKalemah);
+        TextView tafsir = (TextView) findViewById(R.id.singleAyahTafsir);
+        copyToClipboard("\"" + kalemah.getText() + "\": " + tafsir.getText());
+        Toast.makeText(SingleAyahActivity.this, output , Toast.LENGTH_SHORT).show();
     }
+
+    public void onFav(View view) {
+        String output = getString(R.string.favouriteDone);
+        TextView kalemah = (TextView) findViewById(R.id.singleAyahKalemah);
+        TextView tafsir = (TextView) findViewById(R.id.singleAyahTafsir);
+        settingDAO.insertIfNotExists(Setting.KEY_NAME.FAVOURITE, kalemah.getText() + "#" + tafsir.getText());
+        Toast.makeText(SingleAyahActivity.this, output , Toast.LENGTH_SHORT).show();
+    }
+
+    private void copyToClipboard(String text) {
+        ClipData clip = ClipData.newPlainText("tafsir", text);
+        clipboard.setPrimaryClip(clip);
+    }
+
 }

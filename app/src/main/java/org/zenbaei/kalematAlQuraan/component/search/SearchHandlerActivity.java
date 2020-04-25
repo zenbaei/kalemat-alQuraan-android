@@ -114,7 +114,7 @@ public class SearchHandlerActivity extends BaseActivity {
             String[] from = new String[]{AppSqliteOpenHelper.AYAH_NUMBER,
                     AppSqliteOpenHelper.KALEMAH, AppSqliteOpenHelper.SURAH};
 
-            // Specify the corresponding layout elements where we want the columns to go
+            // Specify the corresponding fav_list_item elements where we want the columns to go
             int[] to = new int[]{R.id.ayahNumberTextView,
                     R.id.kalemahTextView, R.id.surahNameTextView};
 

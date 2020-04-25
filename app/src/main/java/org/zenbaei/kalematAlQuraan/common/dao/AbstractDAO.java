@@ -45,6 +45,8 @@ public abstract class AbstractDAO<T extends AbstractEntity> {
         cursor.moveToFirst();
         T entity = cursorToEntity(cursor);
         cursor.close();
+        getWritableDatabase().close();
+        getReadableDatabase().close();
         return entity;
     }
 
@@ -54,6 +56,7 @@ public abstract class AbstractDAO<T extends AbstractEntity> {
         Log.i(AbstractDAO.class.getSimpleName(), String.format("Entity %s deleted with id: %s", entity.getClass().getSimpleName(), id));
         getWritableDatabase().delete(entity.getTableName(), entity.ID_COLUMN
                 + " = " + id, null);
+        getWritableDatabase().close();
     }
 
     public List<T> findAll() {
@@ -70,6 +73,7 @@ public abstract class AbstractDAO<T extends AbstractEntity> {
         }
         // make sure to closeConnection the cursor
         cursor.close();
+        getReadableDatabase().close();
         return entities;
     }
 

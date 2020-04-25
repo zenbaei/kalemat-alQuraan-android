@@ -78,7 +78,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
 
         mainscrollview = new ScrollView(AndroidDatabaseManager.this);
 
-        //the main linear layout to which all tables spinners etc will be added.In this activity every element is created dynamically  to avoid using xml file
+        //the main linear fav_list_item to which all tables spinners etc will be added.In this activity every element is created dynamically  to avoid using xml file
         mainLayout = new LinearLayout(AndroidDatabaseManager.this);
         mainLayout.setOrientation(LinearLayout.VERTICAL);
         mainLayout.setBackgroundColor(Color.WHITE);
@@ -88,7 +88,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
         //all required layouts are created dynamically and added to the main scrollview
         setContentView(mainscrollview);
 
-        //the first row of layout which has a text view and spinner
+        //the first row of fav_list_item which has a text view and spinner
         final LinearLayout firstrow = new LinearLayout(AndroidDatabaseManager.this);
         firstrow.setPadding(0,10,0,20);
         LinearLayout.LayoutParams firstrowlp = new LinearLayout.LayoutParams(0, 150);
@@ -110,12 +110,12 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
         //the horizontal scroll view for table if the table content doesnot fit into screen
         hsv = new HorizontalScrollView(AndroidDatabaseManager.this);
 
-        //the main table layout where the content of the sql tables will be displayed when user selects a table
+        //the main table fav_list_item where the content of the sql tables will be displayed when user selects a table
         tableLayout = new TableLayout(AndroidDatabaseManager.this);
         tableLayout.setHorizontalScrollBarEnabled(true);
         hsv.addView(tableLayout);
 
-        //the second row of the layout which shows number of records in the table selected by user
+        //the second row of the fav_list_item which shows number of records in the table selected by user
         final LinearLayout secondrow = new LinearLayout(AndroidDatabaseManager.this);
         secondrow.setPadding(0,20,0,10);
         LinearLayout.LayoutParams secondrowlp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -155,7 +155,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
         hsv.setScrollbarFadingEnabled(false);
         hsv.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_INSET);
         mainLayout.addView(hsv);
-        //the third layout which has buttons for the pagination of content from database
+        //the third fav_list_item which has buttons for the pagination of content from database
         final LinearLayout thirdrow = new LinearLayout(AndroidDatabaseManager.this);
         previous = new Button(AndroidDatabaseManager.this);
         previous.setText("Previous");
@@ -222,7 +222,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
                 Cursor Message2 =alc2.get(1);
                 Message2.moveToLast();
 
-                //if the query returns results display the results in table layout
+                //if the query returns results display the results in table fav_list_item
                 if(Message2.getString(0).equalsIgnoreCase("Success"))
                 {
 
@@ -249,7 +249,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
                 }
             }
         });
-        //layout parameters for each row in the table
+        //fav_list_item parameters for each row in the table
         tableRowParams = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
         tableRowParams.setMargins(0, 0, 2, 0);
 
@@ -348,7 +348,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
                     tvmessage.setText("Error Messages will be displayed here");
                     tvmessage.setBackgroundColor(Color.WHITE);
 
-                    //removes any data if present in the table layout
+                    //removes any data if present in the table fav_list_item
                     tableLayout.removeAllViews();
                     ArrayList<String> spinnertablevalues = new ArrayList<String>();
                     spinnertablevalues.add("Click here to change this table");
@@ -392,7 +392,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
                     //saving cursor to the static indexinfo class which can be resued by the other functions
                     indexInfo.maincursor=c2;
 
-                    // if the cursor returned form the database is not null we display the data in table layout
+                    // if the cursor returned form the database is not null we display the data in table fav_list_item
                     if(c2!=null)
                     {
                         int counts = c2.getCount();
@@ -509,7 +509,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
                                 //when user selects to add row to the table the below code in if block will be executed
                                 if(spinnertable.getSelectedItem().toString().equals("Add row to this table"))
                                 {
-                                    //we create a layout which has textviews with column names of the table and edittexts where
+                                    //we create a fav_list_item which has textviews with column names of the table and edittexts where
                                     //user can enter value which will be inserted into the datbase.
                                     final LinkedList<TextView> addnewrownames = new LinkedList<TextView>();
                                     final LinkedList<EditText> addnewrowvalues = new LinkedList<EditText>();
@@ -584,7 +584,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
                                     addnewlayout.setBackgroundColor(Color.WHITE);
                                     addrowsv.addView(addnewlayout);
                                     Log.d("Button Clicked", "");
-                                    //the above form layout which we have created above will be displayed in an alert dialog
+                                    //the above form fav_list_item which we have created above will be displayed in an alert dialog
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
@@ -768,7 +768,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
         spinnerArray.add("Update this row");
         spinnerArray.add("Delete this row");
 
-        //create a layout with text values which has the column names and
+        //create a fav_list_item with text values which has the column names and
         //edit texts which has the values of the row which user has selected
         final ArrayList<String> value_string = indexInfo.value_string;
         final LinkedList<TextView> columnames = new LinkedList<TextView>();
@@ -792,7 +792,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
         }
 
         int lastrid = 0;
-        // all text views , edit texts are added to this relative layout lp
+        // all text views , edit texts are added to this relative fav_list_item lp
         final RelativeLayout lp = new RelativeLayout(AndroidDatabaseManager.this);
         lp.setBackgroundColor(Color.WHITE);
         RelativeLayout.LayoutParams lay = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -879,7 +879,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
         }
 
         updaterowsv.addView(lp);
-        //after the layout has been created display it in a alert dialog  
+        //after the fav_list_item has been created display it in a alert dialog
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -1058,7 +1058,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
         {
             c3=indexInfo.maincursor;
         }
-        // if the cursor returened form tha database is not null we display the data in table layout
+        // if the cursor returened form tha database is not null we display the data in table fav_list_item
         if(c3!=null)
         {
             int counts = c3.getCount();
@@ -1117,7 +1117,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
 
     }
 
-    //the function which displays tuples from database in a table layout
+    //the function which displays tuples from database in a table fav_list_item
     public void paginatetable(final int number)
     {
 
@@ -1194,7 +1194,7 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
             {
                 int tobestartindex=(indexInfo.currentpage-2)*10;
 
-                //if the tbale layout has the first 10 tuples then toast that this is the first page
+                //if the tbale fav_list_item has the first 10 tuples then toast that this is the first page
                 if(indexInfo.currentpage==1)
                 {
                     Toast.makeText(getApplicationContext(), "This is the first page", Toast.LENGTH_LONG).show();

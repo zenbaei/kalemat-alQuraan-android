@@ -122,6 +122,7 @@ public class KalematDatabase {
             return null;
         } else if (!cursor.moveToFirst()) {
             cursor.close();
+            mDatabaseOpenHelper.getReadableDatabase().close();
             return null;
         }
         return cursor;
