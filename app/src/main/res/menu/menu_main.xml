@@ -9,7 +9,7 @@
         android:id="@+id/action_search"
         android:icon="@drawable/ic_action_search"
         android:title="@string/action_search"
-        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always" />
 
     <item
@@ -19,7 +19,7 @@
     <item
         android:id="@+id/action_goToFontSize"
         android:orderInCategory="100"
-        android:title="@string/fav" />
+        android:title="@string/fontSize" />
     <item
             android:id="@+id/action_goToIntro"
             android:orderInCategory="100"

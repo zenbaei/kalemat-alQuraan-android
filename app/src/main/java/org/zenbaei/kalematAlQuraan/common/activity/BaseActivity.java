@@ -1,14 +1,15 @@
 package org.zenbaei.kalematAlQuraan.common.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.author.IntroActivity;
 import org.zenbaei.kalematAlQuraan.component.menu.FavActivity;
 import org.zenbaei.kalematAlQuraan.component.menu.FontSizeActivity;
+import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
 import org.zenbaei.kalematAlQuraan.utils.AndroidDatabaseManager;
 
 /**
@@ -74,4 +75,5 @@ public abstract class BaseActivity extends AppCompatActivity {
         Intent dbManager = new Intent(getApplicationContext(),AndroidDatabaseManager.class);
         startActivity(dbManager);
     }
+
 }

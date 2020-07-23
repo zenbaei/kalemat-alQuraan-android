@@ -8,10 +8,12 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.PopupMenu;
-import android.support.v7.widget.SearchView;
+
+import androidx.core.view.GestureDetectorCompat;
+import androidx.core.view.MenuItemCompat;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.appcompat.widget.SearchView;
+
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -30,6 +32,7 @@ import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.zenbaei.kalematAlQuraan.common.Initializer;
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListenerIgnoreDown;
@@ -46,7 +49,7 @@ import java.util.List;
 /**
  * Created by Islam on 11/18/2015.
  */
-public class AyahActivity extends BaseActivity { // implements GestureDetector.OnGestureListener {
+public class AyahActivity extends BaseActivity {
 
     private AyahService ayahService;
     public static int maxRowPerPage = 10;
@@ -65,12 +68,10 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
     private ScaleGestureDetector mScaleDetector;
     private GestureDetectorCompat mDetector;
     private float mScaleFactor = 1.f;
-    private RelativeLayout relativeLayout, fontControlsLayout;
+    private RelativeLayout relativeLayout;
     private final String TAG = "AyahActivity";
     private TableLayout ayahTafsirTable;
     private ScrollView scrollView;
-    private static final int MIN_FONT_SIZE = 15;
-    private static final int MAX_FONT_SIZE = 30;
     private Handler handler = new Handler();
     private List<TextView> currentDisplayedKalemahAndTafsirTextViews;
     private SettingDAO settingDAO;
@@ -78,7 +79,6 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
     private String targetTafsir;
     private String targetKalemah;
     private ClipboardManager clipboard;
-    private AyahActivity currentActv;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -88,8 +88,6 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
         relativeLayout = (RelativeLayout) findViewById(R.id.ayahRoot);
 
         scrollView = (ScrollView) findViewById(R.id.ayahScrollRoot);
-
-        fontControlsLayout = (RelativeLayout) findViewById(R.id.fontControls);
 
         //initialize DAO
         ayahService = new AyahService(this);
@@ -186,6 +184,7 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
             searchView.setQuery("", false);
             searchView.setIconified(true);
         }
+        resetTextSize();
     }
 
 
@@ -197,6 +196,11 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
         return maxRowPerPage;
     }
 
+    public void resetTextSize() {
+        for (TextView tv : currentDisplayedKalemahAndTafsirTextViews) {
+            tv.setTextSize(Initializer.getFontSize());
+        }
+    }
 
     private void addTableLayout() {
 
@@ -229,7 +233,7 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
     }
 
     private void setTableContent() {
-        int currentFontSize = Integer.valueOf(settingDAO.findByKey(Setting.KEY_NAME.DEFAULT_FONT_SIZE));
+        //  int currentFontSize = Integer.valueOf(settingDAO.findByKey(Setting.KEY_NAME.DEFAULT_FONT_SIZE));
 
         for (Ayah ayah : ayahList) {
             //new TableRow
@@ -281,9 +285,9 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
             textView4Ayah.setGravity(Gravity.RIGHT);
 
             //text size
-            textView4Ayah.setTextSize(currentFontSize);
-            textView4Kalemah.setTextSize(currentFontSize);
-            textView4Tafsir.setTextSize(currentFontSize);
+            textView4Ayah.setTextSize(Initializer.getFontSize());
+            textView4Kalemah.setTextSize(Initializer.getFontSize());
+            textView4Tafsir.setTextSize(Initializer.getFontSize());
 
             // bold
             textView4Kalemah.setTypeface(null, Typeface.BOLD);
@@ -306,11 +310,10 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
     }
 
     private void setSelectedRowValue(View tableRow) {
-        View tafsirTextView = ((TableRow)tableRow).getChildAt(0);
-        View kalemahTextView = ((TableRow)tableRow).getChildAt(2);
-        this.targetTafsir = ((TextView)tafsirTextView).getText().toString();
-        this.targetKalemah = ((TextView)kalemahTextView).getText().toString();
-        this.currentActv = this;
+        View tafsirTextView = ((TableRow) tableRow).getChildAt(0);
+        View kalemahTextView = ((TableRow) tableRow).getChildAt(2);
+        this.targetTafsir = ((TextView) tafsirTextView).getText().toString();
+        this.targetKalemah = ((TextView) kalemahTextView).getText().toString();
     }
 
     /**
@@ -541,42 +544,6 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
         clipboard.setPrimaryClip(clip);
     }
 
-    public void increaseFontSize(View view) {
-        int currentFontSize = Integer.valueOf(settingDAO.findByKey(Setting.KEY_NAME.DEFAULT_FONT_SIZE));
-        Log.d("increaseFontSize", "Current font size " + currentFontSize);
-
-        if (currentFontSize == MAX_FONT_SIZE) {
-            return;
-        }
-
-        currentFontSize++;
-
-        settingDAO.update(Setting.KEY_NAME.DEFAULT_FONT_SIZE, String.valueOf(currentFontSize));
-
-        for (TextView tv : currentDisplayedKalemahAndTafsirTextViews) {
-            Log.d("increaseFontSize", String.format("Text [%s] - size [%s]", tv.getText(), tv.getTextSize()));
-            tv.setTextSize(currentFontSize);
-        }
-    }
-
-    public void decreaseFontSize(View view) {
-        int currentFontSize = Integer.valueOf(settingDAO.findByKey(Setting.KEY_NAME.DEFAULT_FONT_SIZE));
-        Log.d("decreaseFontSize", "Current font size " + currentFontSize);
-
-        if (currentFontSize == MIN_FONT_SIZE) {
-            return;
-        }
-
-        currentFontSize--;
-
-        settingDAO.update(Setting.KEY_NAME.DEFAULT_FONT_SIZE, String.valueOf(currentFontSize));
-
-        for (TextView tv : currentDisplayedKalemahAndTafsirTextViews) {
-            Log.d("decreaseFontSize", String.format("Text [%s] - size [%s]", tv.getText(), tv.getTextSize()));
-            tv.setTextSize(currentFontSize);
-        }
-    }
-
     private void saveLastReadPage() {
         settingDAO.update(Setting.KEY_NAME.LAST_READ_PAGE, String.valueOf(currentPage));
         settingDAO.update(Setting.KEY_NAME.LAST_READ_SURAH_ID, String.valueOf(surahId));
@@ -594,30 +561,6 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
     }
 
     class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
-        private static final String DEBUG_TAG = "Gestures";
-
-        @Override
-        public boolean onDoubleTap(MotionEvent e) {
-            final View view = fontControlsLayout;
-            if (view.getVisibility() == View.VISIBLE) {
-                view.setVisibility(View.INVISIBLE);
-            } else {
-                view.setVisibility(View.VISIBLE);
-            }
-            return true;
-        }
-
-        private void hideLayout() {
-            final View view = fontControlsLayout;
-
-            view.setVisibility(View.VISIBLE);
-
-            view.postDelayed(new Runnable() {
-                public void run() {
-                    view.setVisibility(View.INVISIBLE);
-                }
-            }, 5000);
-        }
 
         @Override
         public void onLongPress(MotionEvent e) {
@@ -631,7 +574,7 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
         @Override
         public boolean onMenuItemClick(MenuItem item) {
             String output = "";
-            if (item.getTitle().equals(getString(R.string.copy))){
+            if (item.getTitle().equals(getString(R.string.copy))) {
                 output = getString(R.string.copyDone);
                 copyToClipboard("\"" + targetKalemah + "\": " + targetTafsir);
             } else {
@@ -639,7 +582,7 @@ public class AyahActivity extends BaseActivity { // implements GestureDetector.O
                 settingDAO.insertIfNotExists(Setting.KEY_NAME.FAVOURITE, targetKalemah + "#" + targetTafsir);
             }
 
-            Toast.makeText(AyahActivity.this, output , Toast.LENGTH_SHORT).show();
+            Toast.makeText(AyahActivity.this, output, Toast.LENGTH_SHORT).show();
             return true;
         }
     }

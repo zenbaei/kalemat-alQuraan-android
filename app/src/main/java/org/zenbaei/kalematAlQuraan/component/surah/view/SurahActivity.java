@@ -1,20 +1,16 @@
 package org.zenbaei.kalematAlQuraan.component.surah.view;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
+import androidx.appcompat.widget.SearchView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -22,22 +18,17 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.zenbaei.kalematAlQuraan.common.Initializer;
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.component.R;
-import org.zenbaei.kalematAlQuraan.component.author.IntroActivity;
-import org.zenbaei.kalematAlQuraan.component.author.NotesActivity;
-import org.zenbaei.kalematAlQuraan.component.ayah.adapter.AyahArrayAdapter;
-import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
-import org.zenbaei.kalematAlQuraan.component.ayah.entity.Ayah;
 import org.zenbaei.kalematAlQuraan.component.ayah.view.AyahActivity;
-import org.zenbaei.kalematAlQuraan.component.search.SearchHandlerActivity;
 import org.zenbaei.kalematAlQuraan.component.setting.dao.SettingDAO;
 import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
+import org.zenbaei.kalematAlQuraan.component.surah.SurahArrayAdapter;
 import org.zenbaei.kalematAlQuraan.component.surah.business.SurahService;
 import org.zenbaei.kalematAlQuraan.component.surah.entity.Surah;
 
@@ -64,9 +55,14 @@ public class SurahActivity extends BaseActivity {
 
         settingDAO = new SettingDAO(this);
 
+        Initializer.execute(settingDAO);
+
         surahRoot = (LinearLayout) findViewById(R.id.surahRoot);
 
         listView = (ListView) findViewById(R.id.surahListView);
+
+        TextView backToLastReadPage = findViewById(R.id.lastReadPage);
+        backToLastReadPage.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         setSurahListView();
         setEditTextListener();
@@ -109,7 +105,7 @@ public class SurahActivity extends BaseActivity {
         }
 
         ArrayAdapter<Surah> adapter = new ArrayAdapter<Surah>(this,
-                R.layout.text_view, filteredSurahList);
+                R.layout.surah_list_item, filteredSurahList);
         listView.setAdapter(adapter);
     }
 
@@ -135,16 +131,19 @@ public class SurahActivity extends BaseActivity {
         SurahService surahService = new SurahService(this);
         surahList = surahService.findAll();
 
-        surahArrayAdapter = new ArrayAdapter<Surah>(this,
-                R.layout.text_view, surahList);
+        surahArrayAdapter = new SurahArrayAdapter(this,
+                R.layout.surah_list_item, surahList);
         listView.setAdapter(surahArrayAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("SurahActivity", view.getClass().getName());
                 startKalemahTafsirActivity(((TextView) view).getText().toString());
             }
         });
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

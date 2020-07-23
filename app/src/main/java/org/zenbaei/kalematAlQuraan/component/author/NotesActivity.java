@@ -1,7 +1,7 @@
 package org.zenbaei.kalematAlQuraan.component.author;
 
 import android.os.Bundle;
-import android.support.v4.view.GestureDetectorCompat;
+import androidx.core.view.GestureDetectorCompat;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MotionEvent;

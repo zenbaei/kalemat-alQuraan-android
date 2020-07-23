@@ -4,14 +4,12 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.IntegerRes;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.IntegerRes;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
 import org.zenbaei.kalematAlQuraan.component.R;
-import org.zenbaei.kalematAlQuraan.component.ayah.view.AyahActivity;
 import org.zenbaei.kalematAlQuraan.component.setting.dao.SettingDAO;
 import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
 import org.zenbaei.kalematAlQuraan.component.surah.business.SurahService;

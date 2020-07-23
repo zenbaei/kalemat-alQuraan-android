@@ -2,14 +2,13 @@ package org.zenbaei.kalematAlQuraan.component.author;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.core.view.GestureDetectorCompat;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -18,7 +17,6 @@ import android.widget.Toast;
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.component.R;
-import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
 
 /**
  * Created by Islam on 2/5/2016.

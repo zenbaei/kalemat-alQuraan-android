@@ -18,4 +18,5 @@
     <item name="lightPink" type="color">#ffb6c1</item>
     <item name="white" type="color">#ffff</item>
     <item name="gray" type="color">#CCCCCC</item>
+    <item name="darkGray" type="color">#565656</item>
 </resources>

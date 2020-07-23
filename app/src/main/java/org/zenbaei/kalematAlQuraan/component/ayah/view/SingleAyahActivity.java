@@ -7,38 +7,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.PopupMenu;
-import android.support.v7.widget.SearchView;
-import android.view.GestureDetector;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.core.view.MenuItemCompat;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.appcompat.widget.SearchView;
+
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.db.AppSqliteOpenHelper;
-import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
-import org.zenbaei.kalematAlQuraan.common.helper.IntroGestureImpl;
-import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.component.R;
-import org.zenbaei.kalematAlQuraan.component.author.IntroActivity;
 
-import org.zenbaei.kalematAlQuraan.component.search.SearchHandlerActivity;
 import org.zenbaei.kalematAlQuraan.component.setting.dao.SettingDAO;
 import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
-import org.zenbaei.kalematAlQuraan.component.surah.entity.Surah;
-import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
 
 /**
  * Created by Islam on 12/24/2015.

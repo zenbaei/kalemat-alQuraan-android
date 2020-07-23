@@ -2,30 +2,23 @@ package org.zenbaei.kalematAlQuraan.component.menu;
 
 import android.app.SearchManager;
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.MenuItemCompat;
 
-import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatCheckBox;
-import android.support.v7.widget.SearchView;
-import android.text.Layout;
-import android.util.Log;
-import android.view.Gravity;
+import androidx.core.view.MenuItemCompat;
+
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatCheckBox;
+
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.support.v7.widget.SearchView;
+import androidx.appcompat.widget.SearchView;
 import android.widget.Toast;
 
+import org.zenbaei.kalematAlQuraan.common.Initializer;
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.setting.adapter.SettingArrayAdaptar;
@@ -40,8 +33,8 @@ public class FavActivity extends BaseActivity {
 
     private SettingDAO settingDAO;
     private SearchView searchView;
-    private FavActivity instance;
     private ListView listview;
+    private SettingArrayAdaptar adapter;
 
 
     @Override
@@ -49,7 +42,6 @@ public class FavActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fav);
         settingDAO = new SettingDAO(this);
-        this.instance = this;
         fillView();
     }
 
@@ -60,13 +52,14 @@ public class FavActivity extends BaseActivity {
             searchView.setQuery("", false);
             searchView.setIconified(true);
         }
+        listview.setAdapter(adapter);
     }
 
     private void fillView() {
         listview = (ListView)findViewById(R.id.favListView);
         List<Setting> settings = settingDAO.findAllValByKey(Setting.KEY_NAME.FAVOURITE);
 
-        SettingArrayAdaptar adapter = new SettingArrayAdaptar
+        adapter = new SettingArrayAdaptar
                 (FavActivity.this,
                         R.layout.fav_list_item,
                         settings);
@@ -80,8 +73,8 @@ public class FavActivity extends BaseActivity {
         } else {
             emptyFav.setVisibility(View.INVISIBLE);
         }
-    }
 
+    }
 
     public void onCheckboxClicked(View view) {
         // Is the view now checked?

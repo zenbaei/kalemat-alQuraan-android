@@ -6,30 +6,23 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v4.widget.SimpleCursorAdapter;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
+import androidx.cursoradapter.widget.SimpleCursorAdapter;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.db.AppSqliteOpenHelper;
-import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
-import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
 import org.zenbaei.kalematAlQuraan.component.R;
-import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
 import org.zenbaei.kalematAlQuraan.component.ayah.contentProvider.KalematContentProvider;
 import org.zenbaei.kalematAlQuraan.component.ayah.view.SingleAyahActivity;
-import org.zenbaei.kalematAlQuraan.component.surah.view.SurahActivity;
 
 public class SearchHandlerActivity extends BaseActivity {
 

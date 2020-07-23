@@ -2,12 +2,14 @@ package org.zenbaei.kalematAlQuraan.component.setting.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.zenbaei.kalematAlQuraan.common.Initializer;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
 
@@ -43,8 +45,12 @@ public class SettingArrayAdaptar extends ArrayAdapter<Setting> {
 
             id.setText(String.valueOf(setting.getId()));
             String[] kalemahAndTafsir = setting.getValue().split("#");
-            kalemah.setText("\"" + kalemahAndTafsir[0] +"\": " );
+            kalemah.setText(kalemahAndTafsir[0]+ ":");
             tafsir.setText(kalemahAndTafsir[1]);
+
+            kalemah.setTypeface(null, Typeface.BOLD);
+            kalemah.setTextSize(Initializer.getFontSize());
+            tafsir.setTextSize(Initializer.getFontSize());
             return row;
         }
 

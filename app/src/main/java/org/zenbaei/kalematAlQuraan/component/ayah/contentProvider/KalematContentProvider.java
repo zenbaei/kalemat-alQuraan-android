@@ -8,7 +8,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import org.zenbaei.kalematAlQuraan.common.db.AppSqliteOpenHelper;
 import org.zenbaei.kalematAlQuraan.common.db.KalematDatabase;
