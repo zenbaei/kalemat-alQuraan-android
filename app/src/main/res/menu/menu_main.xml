@@ -17,9 +17,9 @@
         android:orderInCategory="100"
         android:title="@string/fav" />
     <item
-        android:id="@+id/action_goToFontSize"
+        android:id="@+id/action_goToFontPreferences"
         android:orderInCategory="100"
-        android:title="@string/fontSize" />
+        android:title="@string/font_background" />
     <item
             android:id="@+id/action_goToIntro"
             android:orderInCategory="100"

@@ -9440,7 +9440,7 @@ INSERT INTO TAFSIR VALUES(null,'هلاكٌ، أو حسْرَةٌ أو شدّة �
 
 --Al Toor
 INSERT INTO AYAH VALUES(4761,'والطور', 1, 52);
-INSERT INTO TAFSIR VALUES(null,'(قسَمٌ); بجبَل طور سيناء الذي كلـّـم الله عنده موسى' , 4761, 1);
+INSERT INTO TAFSIR VALUES(null,'(قسَمٌ) بجبَل طور سيناء الذي كلـّـم الله عنده موسى' , 4761, 1);
 INSERT INTO AYAH VALUES(4762,'وكتاب مسطور', 2, 52);
 INSERT INTO TAFSIR VALUES(null,'مكتوب على وَجه الانتظام' , 4762, 1);
 INSERT INTO AYAH VALUES(4763,'في رقّ', 3, 52);

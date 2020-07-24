@@ -19,4 +19,5 @@
     <item name="white" type="color">#ffff</item>
     <item name="gray" type="color">#CCCCCC</item>
     <item name="darkGray" type="color">#565656</item>
+    <item name="sea_blue" type="color">#c1dee2</item>
 </resources>

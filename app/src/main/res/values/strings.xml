@@ -16,6 +16,7 @@
     <string name="author">لفضيلة الأستاذ الشيخ\nحسنين محمد مخلوف</string>
     <string name="book_name_2">تفسير وبيان</string>
     <string name="searchSurah">بحث في السور</string>
+    <string name="font_color">لون الخط:</string>
 
 
     <!-- Shown above search results when we receive a search request. -->
@@ -57,7 +58,9 @@
     <string name="emptyFav">لم تقم بإضافة تفضيلات بعد</string>
     <string name="delete">حذف</string>
     <string name="deleted">تم الحذف</string>
-    <string name="fontSize">حجم الخط</string>
+    <string name="font_size">اختر حجم الخط:</string>
+    <string name="background_color">اختر لون الخلفية:</string>
+    <string name="font_background">الخط والخلفية</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

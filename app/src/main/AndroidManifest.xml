@@ -7,7 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".menu.FontSizeActivity"></activity>
+        <activity android:name=".menu.FontActivity"></activity>
 
         <meta-data
             android:name="android.app.default_searchable"
