@@ -47,7 +47,13 @@ public class SearchHandlerActivity extends BaseActivity {
     }
 
     @Override
+    public void setFontAndBackground() {
+
+    }
+
+    @Override
     protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
         setIntent(intent);
         handleIntent(intent);
     }

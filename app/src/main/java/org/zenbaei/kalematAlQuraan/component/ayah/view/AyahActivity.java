@@ -73,12 +73,16 @@ public class AyahActivity extends BaseActivity {
     private TableLayout ayahTafsirTable;
     private ScrollView scrollView;
     private Handler handler = new Handler();
-    private List<TextView> currentDisplayedKalemahAndTafsirTextViews;
+    private List<TextView> currentDisplayedNumberAndTafsirTextViews;
+    private List<TextView> currentDisplayedAyah;
     private SettingDAO settingDAO;
     private View targetTableRow;
     private String targetTafsir;
-    private String targetKalemah;
+    private String targetAyah;
+    private String targetNumber;
     private ClipboardManager clipboard;
+    private TextView pagingTextView;
+    private TextView surahNameTV;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -120,6 +124,13 @@ public class AyahActivity extends BaseActivity {
 
         //  setToolbarLayout();
         retrievePageCount();
+
+        //get paging TextView
+        pagingTextView = (TextView) findViewById(R.id.pagingTextView);
+        surahNameTV = (TextView) findViewById(R.id.surahName);
+
+        scrollView.setBackgroundColor(Initializer.getBackgroundColor());
+        relativeLayout.setBackgroundColor(Initializer.getBackgroundColor());
 
         handler.post(new DoWork());
     }
@@ -185,6 +196,7 @@ public class AyahActivity extends BaseActivity {
             searchView.setIconified(true);
         }
         resetTextSize();
+        setFontAndBackground();
     }
 
 
@@ -197,7 +209,7 @@ public class AyahActivity extends BaseActivity {
     }
 
     public void resetTextSize() {
-        for (TextView tv : currentDisplayedKalemahAndTafsirTextViews) {
+        for (TextView tv : currentDisplayedNumberAndTafsirTextViews) {
             tv.setTextSize(Initializer.getFontSize());
         }
     }
@@ -205,7 +217,7 @@ public class AyahActivity extends BaseActivity {
     private void addTableLayout() {
 
         //set surah header name
-        ((TextView) findViewById(R.id.surahName)).setText(getString(R.string.surah, new Object[]{surahName}));
+        surahNameTV.setText(getString(R.string.surah, new Object[]{surahName}));
 
         //get TableLayout
         ayahTafsirTable = (TableLayout) findViewById(R.id.ayahTableLayout);
@@ -226,15 +238,14 @@ public class AyahActivity extends BaseActivity {
         ayahHeaderTableLayout.addView(getHorizontalLine());
 
         // reset current displayed Kalemah and Tafsir
-        currentDisplayedKalemahAndTafsirTextViews = new ArrayList<>();
+        currentDisplayedNumberAndTafsirTextViews = new ArrayList<>();
+        currentDisplayedAyah= new ArrayList<>();
 
         setTableContent();
 
     }
 
     private void setTableContent() {
-        //  int currentFontSize = Integer.valueOf(settingDAO.findByKey(Setting.KEY_NAME.DEFAULT_FONT_SIZE));
-
         for (Ayah ayah : ayahList) {
             //new TableRow
             TableRow tableRow = new TableRow(this);
@@ -247,53 +258,70 @@ public class AyahActivity extends BaseActivity {
                     LayoutParams.WRAP_CONTENT));
 
             //create TextViews as table's cells
+            TextView textView4Number = new TextView(this);
             TextView textView4Ayah = new TextView(this);
-            TextView textView4Kalemah = new TextView(this);
             TextView textView4Tafsir = new TextView(this);
-
 
             //add text to tableRow
             tableRow.addView(textView4Tafsir);
             tableRow.addView(getVerticalLine(false));
 
-            tableRow.addView(textView4Kalemah);
+            tableRow.addView(textView4Ayah);
             tableRow.addView(getVerticalLine(false));
 
-            tableRow.addView(textView4Ayah);
+            tableRow.addView(textView4Number);
 
             this.setTableRowOnLongPressListener(tableRow);
 
 
             //set max width to wrap content
-            textView4Ayah.setWidth(ayahColWidth);
-            textView4Kalemah.setWidth(kalemahColWidth);
+            textView4Number.setWidth(ayahColWidth);
+            textView4Ayah.setWidth(kalemahColWidth);
             textView4Tafsir.setWidth(tafsirColWidth);
 
             //set text
-            textView4Ayah.setText(String.valueOf(ayah.getNumber()));
-            textView4Kalemah.setText(ayah.getKalemah());
+            textView4Number.setText(String.valueOf(ayah.getNumber()));
+            textView4Ayah.setText(ayah.getKalemah());
             textView4Tafsir.setText(ayah.getTafsir().getTafsir());
 
-            //set text color
-            textView4Kalemah.setTextColor(getResources().getColor(R.color.red));
-
             //set text padding
-            textView4Ayah.setPadding(0, rowTopPadding, 10, 0);
-            textView4Kalemah.setPadding(3, rowTopPadding, 10, 0);
+            textView4Number.setPadding(0, rowTopPadding, 10, 0);
+            textView4Ayah.setPadding(3, rowTopPadding, 10, 0);
             textView4Tafsir.setPadding(2, rowTopPadding, 10, 0);
 
-            textView4Ayah.setGravity(Gravity.RIGHT);
+            textView4Number.setGravity(Gravity.RIGHT);
 
             //text size
+            textView4Number.setTextSize(Initializer.getFontSize());
             textView4Ayah.setTextSize(Initializer.getFontSize());
-            textView4Kalemah.setTextSize(Initializer.getFontSize());
             textView4Tafsir.setTextSize(Initializer.getFontSize());
 
-            // bold
-            textView4Kalemah.setTypeface(null, Typeface.BOLD);
+            // set font and background color
+            textView4Number.setTextColor(Initializer.getNonAyahFontColor());
+            textView4Tafsir.setTextColor(Initializer.getNonAyahFontColor());
+            textView4Ayah.setTextColor(Initializer.getFontColor());
+            surahNameTV.setTextColor(Initializer.getFontColor());
 
-            addCurrentKalemahTafsir(textView4Kalemah, textView4Tafsir);
+            // bold
+            textView4Ayah.setTypeface(null, Typeface.BOLD);
+
+            addCurrentNumberAndTafsir(textView4Number, textView4Tafsir);
+            currentDisplayedAyah.add(textView4Ayah);
         }
+    }
+
+    @Override
+    public void setFontAndBackground() {
+        for (TextView tv : currentDisplayedNumberAndTafsirTextViews) {
+                tv.setTextColor(Initializer.getNonAyahFontColor());
+            }
+        for (TextView tv : currentDisplayedAyah) {
+            tv.setTextColor(Initializer.getFontColor());
+        }
+        surahNameTV.setTextColor(Initializer.getFontColor());
+        scrollView.setBackgroundColor(Initializer.getBackgroundColor());
+        relativeLayout.setBackgroundColor(Initializer.getBackgroundColor());
+        pagingTextView.setTextColor(Initializer.getNonAyahFontColor());
     }
 
     private void setTableRowOnLongPressListener(TableRow tableRow) {
@@ -311,33 +339,33 @@ public class AyahActivity extends BaseActivity {
 
     private void setSelectedRowValue(View tableRow) {
         View tafsirTextView = ((TableRow) tableRow).getChildAt(0);
-        View kalemahTextView = ((TableRow) tableRow).getChildAt(2);
+        View ayahTextView = ((TableRow) tableRow).getChildAt(2);
+        View numberTextView = ((TableRow) tableRow).getChildAt(4);
         this.targetTafsir = ((TextView) tafsirTextView).getText().toString();
-        this.targetKalemah = ((TextView) kalemahTextView).getText().toString();
+        this.targetAyah = ((TextView) ayahTextView).getText().toString();
+        this.targetNumber = ((TextView) numberTextView).getText().toString();
     }
 
     /**
      * Add currently displayed Kalemah and Tafsir to easily get access to them when increasing
      * or decreasing font size.
      *
-     * @param textView4Kalemah
+     * @param textView4Ayah
      * @param textView4Tafsir
      */
-    private void addCurrentKalemahTafsir(TextView textView4Kalemah, TextView textView4Tafsir) {
-        Log.d("addCurrentKalemahTafsir", String.format("Adding Kalemah [%s]", textView4Kalemah.getText()));
-        currentDisplayedKalemahAndTafsirTextViews.add(textView4Kalemah);
-        currentDisplayedKalemahAndTafsirTextViews.add(textView4Tafsir);
+    private void addCurrentNumberAndTafsir(TextView textView4Ayah, TextView textView4Tafsir) {
+        Log.d("AyahActivity", String.format("Adding Kalemah [%s]", textView4Ayah.getText()));
+        currentDisplayedNumberAndTafsirTextViews.add(textView4Ayah);
+        currentDisplayedNumberAndTafsirTextViews.add(textView4Tafsir);
     }
 
     private void addPagingView() {
-        //get paging TextView
-        TextView pagingTextView = (TextView) findViewById(R.id.pagingTextView);
-
         //set paging content
         pagingTextView.setText(String.format("%s %s %s", currentPage, getString(R.string.from), pageCount));
 
         //bold
         pagingTextView.setTypeface(null, Typeface.BOLD);
+        pagingTextView.setTextColor(Initializer.getNonAyahFontColor());
     }
 
     public TableRow getHorizontalLine() {
@@ -402,7 +430,7 @@ public class AyahActivity extends BaseActivity {
 
         if (visible)
             //set View background color
-            view.setBackgroundColor(getResources().getColor(R.color.black));
+            view.setBackgroundColor(getResources().getColor(R.color.red));
 
 
         return linearLayout;
@@ -576,10 +604,12 @@ public class AyahActivity extends BaseActivity {
             String output = "";
             if (item.getTitle().equals(getString(R.string.copy))) {
                 output = getString(R.string.copyDone);
-                copyToClipboard("\"" + targetKalemah + "\": " + targetTafsir);
+                String text = String.format("\"%s\": %s, %s, %s", targetAyah, targetTafsir,
+                        surahName, targetNumber, "الآية");
+                copyToClipboard(text);
             } else {
                 output = getString(R.string.favouriteDone);
-                settingDAO.insertIfNotExists(Setting.KEY_NAME.FAVOURITE, targetKalemah + "#" + targetTafsir);
+                settingDAO.insertIfNotExists(Setting.KEY_NAME.FAVOURITE, targetAyah + "#" + targetTafsir);
             }
 
             Toast.makeText(AyahActivity.this, output, Toast.LENGTH_SHORT).show();

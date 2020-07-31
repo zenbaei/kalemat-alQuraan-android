@@ -1,135 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/font_pref_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:id="@+id/font_actv_container">
 
-    <TextView
-        android:id="@+id/fontText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="70dp"
-        android:text="@string/app_name" />
+    <androidx.appcompat.widget.LinearLayoutCompat
 
-    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@color/black"
-            android:onClick="changeFontColor"
-            android:text="black"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@color/red"
-            android:onClick="changeFontColor"
-            android:text="red"
-            android:textColor="@color/red" />
-
-        <TextView
+            android:id="@+id/fontText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text="@string/font_color" />
-    </LinearLayout>
+            android:layout_gravity="center"
+            android:padding="70dp"
+            android:text="@string/app_name" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:layoutDirection="rtl"
-        android:orientation="horizontal"
-        android:paddingTop="50dp"
-        android:textDirection="rtl">
-
-        <com.google.android.material.slider.Slider
-            android:id="@+id/fontSlider"
-            android:layout_width="200dp"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stepSize="1"
-            android:valueFrom="15"
-            android:valueTo="30"
-            app:thumbColor="@color/black" />
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:id="@+id/font_color_container">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/black"
+                android:onClick="changeFontColor"
+                android:text="black"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/red"
+                android:onClick="changeFontColor"
+                android:text="red"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/choose_font_color"
+                android:text="@string/font_color" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text="@string/font_size" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:layoutDirection="rtl"
-        android:orientation="horizontal"
-        android:paddingTop="50dp"
-        android:textDirection="rtl">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/darkGray"
             android:gravity="end"
             android:layoutDirection="rtl"
             android:orientation="horizontal"
-            android:textDirection="rtl" android:padding="5dp">
+            android:paddingTop="50dp"
+            android:textDirection="rtl">
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/fontSlider"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:stepSize="1"
+                android:valueFrom="15"
+                android:valueTo="30"
+                app:thumbColor="@color/black" />
 
             <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/yellow"
-                android:onClick="changeBackgroundColor"
-                android:text="text"
-                android:textColor="@color/yellow" />
+                android:id="@+id/choose_font_size"
+                android:text="@string/font_size" />
 
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/white"
-                android:onClick="changeBackgroundColor"
-                android:text="text"
-                android:textColor="@color/white" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/sea_blue"
-                android:onClick="changeBackgroundColor"
-                android:text="text"
-                android:textColor="@color/sea_blue" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:text="@string/background_color" />
-    </LinearLayout>
-</LinearLayout>
+            android:gravity="end"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            android:paddingTop="50dp"
+            android:textDirection="rtl"
+            android:id="@+id/background_color_container">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/darkGray"
+                android:gravity="end"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:textDirection="rtl">
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/yellow"
+                    android:onClick="changeBackgroundColor"
+                    android:text="text"
+                    android:textColor="@color/yellow"/>
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/white"
+                    android:onClick="changeBackgroundColor"
+                    android:text="text"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/alice_blue"
+                    android:onClick="changeBackgroundColor"
+                    android:text="text"
+                    android:textColor="@color/alice_blue" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/choose_background_color"
+                android:text="@string/background_color" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:paddingTop="50dp">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:onClick="toggleNightMode"
+                android:text="تفعيل الخلفية الليلية"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/night_mode_checkbox"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>

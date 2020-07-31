@@ -45,8 +45,9 @@ public class SurahActivity extends BaseActivity {
     private ArrayAdapter surahArrayAdapter;
     private ListView listView;
     private EditText surahSearchText;
-    private LinearLayout surahRoot;
+    private LinearLayout indexContainer;
     private SettingDAO settingDAO;
+    private TextView backToLastReadPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,20 +56,24 @@ public class SurahActivity extends BaseActivity {
 
         settingDAO = new SettingDAO(this);
 
-        Initializer.execute(settingDAO);
-
-        surahRoot = (LinearLayout) findViewById(R.id.surahRoot);
+        indexContainer = (LinearLayout) findViewById(R.id.index_container);
 
         listView = (ListView) findViewById(R.id.surahListView);
 
-        TextView backToLastReadPage = findViewById(R.id.lastReadPage);
+        backToLastReadPage = findViewById(R.id.lastReadPage);
         backToLastReadPage.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         setSurahListView();
         setEditTextListener();
         addGestureListner();
-
+        setFontAndBackground();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+    }
+
+    @Override
+    public void setFontAndBackground() {
+        backToLastReadPage.setTextColor(Initializer.getNonAyahFontColor());
+        indexContainer.setBackgroundColor(Initializer.getBackgroundColor());
     }
 
     private void setEditTextListener() {
@@ -110,7 +115,7 @@ public class SurahActivity extends BaseActivity {
     }
 
     private void addGestureListner() {
-        surahRoot.setOnTouchListener(new OnSwipe(this));
+        indexContainer.setOnTouchListener(new OnSwipe(this));
         listView.setOnTouchListener(new OnSwipe(this));
     }
 
@@ -124,6 +129,7 @@ public class SurahActivity extends BaseActivity {
         }
         listView.setAdapter(surahArrayAdapter);
         surahSearchText.setText(null);
+        setFontAndBackground();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 

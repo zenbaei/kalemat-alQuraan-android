@@ -32,10 +32,6 @@
             android:launchMode="singleTop"
             android:noHistory="true" />
         <activity
-            android:name=".author.NotesActivity"
-            android:launchMode="singleTop"
-            android:noHistory="true" />
-        <activity
             android:name=".ayah.view.AyahActivity"
             android:launchMode="singleTop"
             android:noHistory="false" />

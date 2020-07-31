@@ -17,7 +17,8 @@ public class Setting extends AbstractEntity {
     public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS SETTINGS (_id INTEGER PRIMARY KEY, key TEXT, value TEXT)";
     public static final String DROP_TABLE = "DROP TABLE IF EXISTS SETTINGS;";
     public static final String[] COLUMNS = {ID_COLUMN, KEY_COLUMN, VALUE_COLUMN};
-    public enum KEY_NAME {DEFAULT_FONT_SIZE, LAST_READ_PAGE, LAST_READ_SURAH_ID, LAST_READ_SURAH_NAME, FAVOURITE}
+    public enum KEY_NAME {DEFAULT_FONT_SIZE, LAST_READ_PAGE, LAST_READ_SURAH_ID, LAST_READ_SURAH_NAME, FAVOURITE,
+        FONT_COLOR, BACKGROUND_COLOR}
 
     public String getKey() {
         return key;

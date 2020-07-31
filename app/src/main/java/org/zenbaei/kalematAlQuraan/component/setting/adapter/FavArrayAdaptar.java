@@ -16,13 +16,13 @@ import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
 import java.util.List;
 import java.util.Set;
 
-public class SettingArrayAdaptar extends ArrayAdapter<Setting> {
+public class FavArrayAdaptar extends ArrayAdapter<Setting> {
 
         private Context context;
         private int resource;
         private List<Setting> objects;
 
-        public SettingArrayAdaptar(Context context, int resource, List<Setting> objects) {
+        public FavArrayAdaptar(Context context, int resource, List<Setting> objects) {
             super(context, resource, objects);
             this.context = context;
             this.resource = resource;
@@ -45,13 +45,20 @@ public class SettingArrayAdaptar extends ArrayAdapter<Setting> {
 
             id.setText(String.valueOf(setting.getId()));
             String[] kalemahAndTafsir = setting.getValue().split("#");
-            kalemah.setText(kalemahAndTafsir[0]+ ":");
+            kalemah.setText(String.format("\"%s\":", kalemahAndTafsir[0]));
             tafsir.setText(kalemahAndTafsir[1]);
 
             kalemah.setTypeface(null, Typeface.BOLD);
             kalemah.setTextSize(Initializer.getFontSize());
             tafsir.setTextSize(Initializer.getFontSize());
+
+            setColor(kalemah, tafsir);
             return row;
+        }
+
+        private void setColor(TextView kalemah, TextView tafsir) {
+            kalemah.setTextColor(Initializer.getFontColor());
+            tafsir.setTextColor(Initializer.getNonAyahFontColor());
         }
 
 }

@@ -18,6 +18,8 @@
     <item name="lightPink" type="color">#ffb6c1</item>
     <item name="white" type="color">#ffff</item>
     <item name="gray" type="color">#CCCCCC</item>
+    <item name="silverGray" type="color">#A9A9A9</item>
     <item name="darkGray" type="color">#565656</item>
-    <item name="sea_blue" type="color">#c1dee2</item>
+    <item name="alice_blue" type="color">#f0f8ff</item>
+    <item name="transparent" type="color">#00000000</item>
 </resources>

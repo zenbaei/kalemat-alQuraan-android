@@ -48,7 +48,9 @@ public class AppSqliteOpenHelper extends SQLiteOpenHelper {
     public static final String FTS_VIRTUAL_TABLE = "FTSdictionary";
 
     private static final String INSERT_FONT_SIZE_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('DEFAULT_FONT_SIZE', '15')";
-
+    private static final String INSERT_FONT_COLOR_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('FONT_COLOR', '-48060')"; //red
+    private static final String INSERT_BACKGROUND_COLOR_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('BACKGROUND_COLOR', '-32')"; //yellow
+    private static final String INSERT_NIGHT_MODE_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('NIGHT_MODE', 'false')";
 
     private final Context mHelperContext;
     private SQLiteDatabase mDatabase;
@@ -78,7 +80,7 @@ public class AppSqliteOpenHelper extends SQLiteOpenHelper {
         executeDatabaseDropStatements();
         executeDatabaseCreateStatements();
         loadKalemat();
-        insertDefaultFontSize();
+        insertDefaultValues();
     }
 
     @Override
@@ -159,9 +161,12 @@ public class AppSqliteOpenHelper extends SQLiteOpenHelper {
         mDatabase.execSQL(Setting.DROP_TABLE);
     }
 
-    private void insertDefaultFontSize() {
+    private void insertDefaultValues() {
         Log.d("insertDefaultFontSize", INSERT_FONT_SIZE_STAT);
         mDatabase.execSQL(INSERT_FONT_SIZE_STAT);
+        mDatabase.execSQL(INSERT_FONT_COLOR_STAT);
+        mDatabase.execSQL(INSERT_BACKGROUND_COLOR_STAT);
+        mDatabase.execSQL(INSERT_NIGHT_MODE_STAT);
     }
 
     private void insertData() throws IOException {

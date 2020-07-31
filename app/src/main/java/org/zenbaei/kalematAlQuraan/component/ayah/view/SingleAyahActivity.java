@@ -19,9 +19,11 @@ import androidx.appcompat.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.zenbaei.kalematAlQuraan.common.Initializer;
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.db.AppSqliteOpenHelper;
 import org.zenbaei.kalematAlQuraan.component.R;
@@ -38,6 +40,10 @@ public class SingleAyahActivity extends BaseActivity {
     //private GestureDetectorCompat mDetector;
     private ClipboardManager clipboard;
     private SettingDAO settingDAO;
+    TextView surah;
+    TextView number;
+    TextView kalemah;
+    TextView tafsir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,25 +52,25 @@ public class SingleAyahActivity extends BaseActivity {
         process();
         this.clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         this.settingDAO = new SettingDAO(this);
+        surah = (TextView) findViewById(R.id.singleAyahSurah);
+        number = (TextView) findViewById(R.id.singleAyahNumber);
+        kalemah = (TextView) findViewById(R.id.singleAyahKalemah);
+        tafsir = (TextView) findViewById(R.id.singleAyahTafsir);
+        setFontAndBackground();
         //mDetector = new GestureDetectorCompat(this, new IntroGestureImpl(this));
         //addGestureListner();
     }
-    /*
-    private void addGestureListner() {
-        RelativeLayout myView = (RelativeLayout) findViewById(R.id.singleAyahRoot);
 
-        myView.setOnTouchListener(new OnSwipeTouchListener(this) {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                mDetector.onTouchEvent(motionEvent);
-                return super.onTouch(view, motionEvent);
-            }
-        });
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        setFontAndBackground();
     }
-    */
 
     @Override
     protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
         setIntent(intent);
         searchView.setQuery("", false);
         searchView.setIconified(true);
@@ -93,11 +99,6 @@ public class SingleAyahActivity extends BaseActivity {
         } else {
             cursor.moveToFirst();
 
-            TextView surah = (TextView) findViewById(R.id.singleAyahSurah);
-            TextView number = (TextView) findViewById(R.id.singleAyahNumber);
-            TextView kalemah = (TextView) findViewById(R.id.singleAyahKalemah);
-            TextView tafsir = (TextView) findViewById(R.id.singleAyahTafsir);
-
             int sIndex = cursor.getColumnIndexOrThrow(AppSqliteOpenHelper.SURAH);
             int nIndex = cursor.getColumnIndexOrThrow(AppSqliteOpenHelper.AYAH_NUMBER);
             int kIndex = cursor.getColumnIndexOrThrow(AppSqliteOpenHelper.KALEMAH);
@@ -110,12 +111,23 @@ public class SingleAyahActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void setFontAndBackground() {
+        surah.setTextColor(Initializer.getFontColor());
+        kalemah.setTextColor(Initializer.getFontColor());
+        number.setTextColor(Initializer.getNonAyahFontColor());
+        tafsir.setTextColor(Initializer.getNonAyahFontColor());
+        ((TextView)findViewById(R.id.ayah)).setTextColor(Initializer.getNonAyahFontColor());
+        ((TextView)findViewById(R.id.kalemah)).setTextColor(Initializer.getNonAyahFontColor());
+        ((TextView)findViewById(R.id.tafsir)).setTextColor(Initializer.getNonAyahFontColor());
+        ((RelativeLayout)findViewById(R.id.singleAyahRoot)).setBackgroundColor(Initializer.getBackgroundColor());
+    }
 
     public void onCopy(View view) {
         String output = getString(R.string.copyDone);
-        TextView kalemah = (TextView) findViewById(R.id.singleAyahKalemah);
-        TextView tafsir = (TextView) findViewById(R.id.singleAyahTafsir);
-        copyToClipboard("\"" + kalemah.getText() + "\": " + tafsir.getText());
+        String text = String.format("\"%s\": %s, %s, %s", kalemah.getText(), tafsir.getText(),
+                surah.getText(), number.getText(), "الآية");
+        copyToClipboard(text);
         Toast.makeText(SingleAyahActivity.this, output , Toast.LENGTH_SHORT).show();
     }
 

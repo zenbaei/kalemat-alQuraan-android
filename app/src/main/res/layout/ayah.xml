@@ -22,16 +22,6 @@
             android:textColor="@color/red"
             android:textStyle="bold"/>
 
-       <!-- <TextView
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:onClick="back"
-            android:padding="10dp"
-            android:text="@string/back"
-            android:textStyle="bold" />-->
-
     </RelativeLayout>
 
 
@@ -57,15 +47,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
 
-        <!--<TextView-->
-        <!--android:id="@+id/pagingNextTextView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_weight="1"-->
-        <!--android:clickable="true"-->
-        <!--android:gravity="right"-->
-        <!--android:text="&lt; " />-->
-
         <TextView
             android:id="@+id/pagingTextView"
             android:layout_width="match_parent"
@@ -74,17 +55,6 @@
             android:gravity="center"
             android:paddingBottom="10dp"
             android:text="paging" />
-
-        <!--        <TextView
-                    android:id="@+id/pagingPreviousTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:gravity="left"
-                    android:onClick="previousPageListener"
-                    android:text=" &gt;" />-->
-
 
     </RelativeLayout>
 

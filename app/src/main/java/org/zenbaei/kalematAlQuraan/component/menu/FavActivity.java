@@ -6,12 +6,12 @@ import android.os.Bundle;
 
 import androidx.core.view.MenuItemCompat;
 
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatCheckBox;
 
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,7 +21,7 @@ import android.widget.Toast;
 import org.zenbaei.kalematAlQuraan.common.Initializer;
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.component.R;
-import org.zenbaei.kalematAlQuraan.component.setting.adapter.SettingArrayAdaptar;
+import org.zenbaei.kalematAlQuraan.component.setting.adapter.FavArrayAdaptar;
 import org.zenbaei.kalematAlQuraan.component.setting.dao.SettingDAO;
 import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
 
@@ -34,7 +34,8 @@ public class FavActivity extends BaseActivity {
     private SettingDAO settingDAO;
     private SearchView searchView;
     private ListView listview;
-    private SettingArrayAdaptar adapter;
+    private FavArrayAdaptar adapter;
+    TextView emptyFav;
 
 
     @Override
@@ -42,7 +43,9 @@ public class FavActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fav);
         settingDAO = new SettingDAO(this);
+        emptyFav = (TextView) findViewById(R.id.emptyFav);
         fillView();
+        setFontAndBackground();
     }
 
     @Override
@@ -53,13 +56,23 @@ public class FavActivity extends BaseActivity {
             searchView.setIconified(true);
         }
         listview.setAdapter(adapter);
+        setFontAndBackground();
+    }
+
+    @Override
+    public void setFontAndBackground() {
+        if (Initializer.getBackgroundColor() == getResources().getColor(R.color.darkGray))
+            emptyFav.setTextColor(getResources().getColor(R.color.white));
+        else
+            emptyFav.setTextColor(getResources().getColor(R.color.gray));
+        ((LinearLayout)findViewById(R.id.fav_container)).setBackgroundColor(Initializer.getBackgroundColor());
     }
 
     private void fillView() {
         listview = (ListView)findViewById(R.id.favListView);
         List<Setting> settings = settingDAO.findAllValByKey(Setting.KEY_NAME.FAVOURITE);
 
-        adapter = new SettingArrayAdaptar
+        adapter = new FavArrayAdaptar
                 (FavActivity.this,
                         R.layout.fav_list_item,
                         settings);
@@ -67,7 +80,7 @@ public class FavActivity extends BaseActivity {
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new OnClickListener());
 
-        TextView emptyFav = (TextView) findViewById(R.id.emptyFav);
+
         if (settings.isEmpty()) {
             emptyFav.setVisibility(View.VISIBLE);
         } else {

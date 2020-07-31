@@ -46,7 +46,7 @@
     <string name="about">عند ملاحظة أي خطأ يرجى مراسلتي على zenbaei@gmail.com، شكراً لكم.\n</string>
     <string name="close">إغلاق</string>
     <string name="surahOnSwipeRightHint">لتصفح السورة قم بالضغط عليها أو إضغط علامة البحث أعلى الشاشة للبحث في الآيات</string>
-    <string name="authorOnSwingLeftHint">للإنتقال للصفحة التالية إسحب بأصبعك جهة اليمين وللرجوع إضغط زر العودة الخاص بالهاتف</string>
+    <string name="authorOnSwingLeftHint">وللرجوع إضغط زر العودة الخاص بالهاتف</string>
     <string name="backHint">للرجوع إضغط زر العودة الخاص بالهاتف</string>
     <string name="ayahOnSwipeLeftHint">للإنتقال للصفحة التالية إسحب بإصبعك جهة اليمين وللرجوع إضغط زر العودة الخاص بالهاتف</string>
     <string name="ayahOnSwipeRightHint">للإنتقال للصفحة السابقة إسحب بإصبعك جهة اليسار وللرجوع إضغط زر العودة الخاص بالهاتف</string>
@@ -55,12 +55,13 @@
     <string name="favouriteDone">تمت الإضافة للمفضلة</string>
     <string name="copyDone">تم النسخ</string>
     <string name="fav">المفضلة</string>
-    <string name="emptyFav">لم تقم بإضافة تفضيلات بعد</string>
+    <string name="emptyFav">لإضافة تفضيلات قم بالضغط على الآية حتى يظهر لك زر "'أضف للمفضلة'"</string>
     <string name="delete">حذف</string>
     <string name="deleted">تم الحذف</string>
     <string name="font_size">اختر حجم الخط:</string>
     <string name="background_color">اختر لون الخلفية:</string>
     <string name="font_background">الخط والخلفية</string>
+    <string name="disable_night_mode">لتغيير اللون قم بتعطيل "'الخلفية الليلية'"</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

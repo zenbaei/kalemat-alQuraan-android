@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.zenbaei.kalematAlQuraan.common.Initializer;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.setting.dao.SettingDAO;
 import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
@@ -35,7 +36,7 @@ public class ProgressActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressText = (TextView) findViewById(R.id.progressText);
         progressText.setText(getString(R.string.loading_data));
-
+        Initializer.execute(settingDAO);
         MyTask myTask = new MyTask();
         myTask.execute();
     }

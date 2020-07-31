@@ -37,6 +37,7 @@ public class SurahArrayAdapter extends ArrayAdapter<Surah> {
         Surah surah = (Surah)objects.get(position);
         index.setText(surah.toString());
         index.setTextSize(Initializer.getFontSize());
+        index.setTextColor(Initializer.getFontColor());
         return row;
     }
 

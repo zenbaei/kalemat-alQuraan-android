@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fav_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
@@ -8,24 +9,27 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/darkGray">
+        android:background="@color/silverGray">
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:onClick="onDeleteButtonClick"
-            android:padding="10dp"
-            android:text="@string/delete"/>
+            android:layout_margin="5dp"
+            android:elevation="5dp"
+            android:background="@color/darkGray"
+            android:textColor="@color/white"
+            android:text="@string/delete" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/favAllCheckbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
             android:layout_alignParentLeft="true"
-            android:padding="10dp"
-            android:checked="false"/>
+            android:checked="false"
+            android:onClick="onCheckboxClicked"
+            android:padding="10dp" />
 
     </RelativeLayout>
 
@@ -43,11 +47,9 @@
         android:id="@+id/emptyFav"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:visibility="invisible"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
         android:text="@string/emptyFav"
         android:textSize="15dp"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_vertical"/>
-
-
+        android:visibility="invisible" />
 </LinearLayout>

@@ -75,4 +75,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(dbManager);
     }
 
+    public abstract void setFontAndBackground();
+
 }
