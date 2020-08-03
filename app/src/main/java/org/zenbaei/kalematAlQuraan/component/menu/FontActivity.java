@@ -11,6 +11,7 @@ import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ScrollView;
@@ -113,7 +114,8 @@ public class FontActivity extends BaseActivity {
             text.setTextColor(color);
             settingDAO.update(Setting.KEY_NAME.FONT_COLOR, String.valueOf(color));
         } else {
-            Toast.makeText(this, R.string.disable_night_mode, Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this, R.string.disable_night_mode, Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 

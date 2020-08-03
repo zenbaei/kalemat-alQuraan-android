@@ -83,6 +83,7 @@ public class AyahActivity extends BaseActivity {
     private ClipboardManager clipboard;
     private TextView pagingTextView;
     private TextView surahNameTV;
+    TextView ayah, kalemah, tafsir;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -111,15 +112,6 @@ public class AyahActivity extends BaseActivity {
             currentPage = lastReadPage;
         }
 
-        addGestureListner();
-
-        // Create our ScaleGestureDetector
-        // mScaleDetector = new ScaleGestureDetector(getApplicationContext(), new ScaleListener());
-
-        //  mDetector = new GestureDetectorCompat(this, this);
-        mDetector = new GestureDetectorCompat(this, new MyGestureListener());
-
-
         calculateColumnSizes();
 
         //  setToolbarLayout();
@@ -132,10 +124,14 @@ public class AyahActivity extends BaseActivity {
         scrollView.setBackgroundColor(Initializer.getBackgroundColor());
         relativeLayout.setBackgroundColor(Initializer.getBackgroundColor());
 
+        addGestureListner();
+        mDetector = new GestureDetectorCompat(this, new MyGestureListener());
+
         handler.post(new DoWork());
     }
 
     private void addGestureListner() {
+
         relativeLayout.setOnTouchListener(new OnSwipeTouchListener(this) {
 
             @Override
@@ -313,8 +309,8 @@ public class AyahActivity extends BaseActivity {
     @Override
     public void setFontAndBackground() {
         for (TextView tv : currentDisplayedNumberAndTafsirTextViews) {
-                tv.setTextColor(Initializer.getNonAyahFontColor());
-            }
+            tv.setTextColor(Initializer.getNonAyahFontColor());
+        }
         for (TextView tv : currentDisplayedAyah) {
             tv.setTextColor(Initializer.getFontColor());
         }
@@ -322,6 +318,16 @@ public class AyahActivity extends BaseActivity {
         scrollView.setBackgroundColor(Initializer.getBackgroundColor());
         relativeLayout.setBackgroundColor(Initializer.getBackgroundColor());
         pagingTextView.setTextColor(Initializer.getNonAyahFontColor());
+        //set color
+        if (Initializer.getBackgroundColor() == getResources().getColor(R.color.darkGray)) {
+            ayah.setBackgroundColor(getResources().getColor(R.color.gray));
+            kalemah.setBackgroundColor(getResources().getColor(R.color.gray));
+            tafsir.setBackgroundColor(getResources().getColor(R.color.gray));
+        } else {
+            ayah.setBackgroundColor(getResources().getColor(R.color.lightPink));
+            kalemah.setBackgroundColor(getResources().getColor(R.color.lightPink));
+            tafsir.setBackgroundColor(getResources().getColor(R.color.lightPink));
+        }
     }
 
     private void setTableRowOnLongPressListener(TableRow tableRow) {
@@ -430,7 +436,7 @@ public class AyahActivity extends BaseActivity {
 
         if (visible)
             //set View background color
-            view.setBackgroundColor(getResources().getColor(R.color.red));
+            view.setBackgroundColor(getResources().getColor(R.color.black));
 
 
         return linearLayout;
@@ -450,9 +456,9 @@ public class AyahActivity extends BaseActivity {
                 LayoutParams.WRAP_CONTENT));
 
         //create TextView
-        TextView ayah = new TextView(this, null);
-        TextView kalemah = new TextView(this, null);
-        TextView tafsir = new TextView(this, null);
+        ayah = new TextView(this, null);
+        kalemah = new TextView(this, null);
+        tafsir = new TextView(this, null);
 
 
         //set content
@@ -461,9 +467,15 @@ public class AyahActivity extends BaseActivity {
         tafsir.setText(getString(R.string.tafsir));
 
         //set color
-        ayah.setBackgroundColor(getResources().getColor(R.color.lightPink));
-        kalemah.setBackgroundColor(getResources().getColor(R.color.lightPink));
-        tafsir.setBackgroundColor(getResources().getColor(R.color.lightPink));
+        if (Initializer.getBackgroundColor() == getResources().getColor(R.color.darkGray)) {
+            ayah.setBackgroundColor(getResources().getColor(R.color.gray));
+            kalemah.setBackgroundColor(getResources().getColor(R.color.gray));
+            tafsir.setBackgroundColor(getResources().getColor(R.color.gray));
+        } else {
+            ayah.setBackgroundColor(getResources().getColor(R.color.lightPink));
+            kalemah.setBackgroundColor(getResources().getColor(R.color.lightPink));
+            tafsir.setBackgroundColor(getResources().getColor(R.color.lightPink));
+        }
 
         //set max width
         ayah.setWidth(ayahColWidth);
@@ -604,8 +616,8 @@ public class AyahActivity extends BaseActivity {
             String output = "";
             if (item.getTitle().equals(getString(R.string.copy))) {
                 output = getString(R.string.copyDone);
-                String text = String.format("\"%s\": %s, %s, %s", targetAyah, targetTafsir,
-                        surahName, targetNumber, "الآية");
+                String text = String.format("\"%s\": %s، %s، %s %s", targetAyah, targetTafsir,
+                        surahName, "الآية", targetNumber);
                 copyToClipboard(text);
             } else {
                 output = getString(R.string.favouriteDone);

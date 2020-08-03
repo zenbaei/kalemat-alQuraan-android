@@ -16,10 +16,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:onClick="onDeleteButtonClick"
-            android:layout_margin="5dp"
-            android:elevation="5dp"
-            android:background="@color/darkGray"
-            android:textColor="@color/white"
             android:text="@string/delete" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
@@ -33,6 +29,17 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/emptyFav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:text="@string/emptyFav"
+        android:textSize="15dp"
+        android:layout_margin="5dp"
+        android:visibility="invisible" />
+
     <ListView
         android:id="@+id/favListView"
         android:layout_width="match_parent"
@@ -43,13 +50,4 @@
         android:layoutDirection="rtl"
         android:textDirection="rtl" />
 
-    <TextView
-        android:id="@+id/emptyFav"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_vertical"
-        android:text="@string/emptyFav"
-        android:textSize="15dp"
-        android:visibility="invisible" />
 </LinearLayout>

@@ -64,7 +64,7 @@ public class FavActivity extends BaseActivity {
         if (Initializer.getBackgroundColor() == getResources().getColor(R.color.darkGray))
             emptyFav.setTextColor(getResources().getColor(R.color.white));
         else
-            emptyFav.setTextColor(getResources().getColor(R.color.gray));
+            emptyFav.setTextColor(getResources().getColor(R.color.darkGray));
         ((LinearLayout)findViewById(R.id.fav_container)).setBackgroundColor(Initializer.getBackgroundColor());
     }
 

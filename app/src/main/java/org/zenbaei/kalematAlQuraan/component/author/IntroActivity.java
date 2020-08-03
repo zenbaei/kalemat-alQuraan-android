@@ -34,6 +34,7 @@ public class IntroActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.intro);
         container = (ScrollView) findViewById(R.id.introRoot);
         allah = (TextView) findViewById(R.id.allah);
         intro = (TextView) findViewById(R.id.intro);
@@ -42,46 +43,13 @@ public class IntroActivity extends BaseActivity {
         note = (TextView) findViewById(R.id.notes_1);
         noteText = (TextView) findViewById(R.id.note_text);
 
-        setContentView(R.layout.intro); addGestureListner();
-        mDetector = new GestureDetectorCompat(this, new GestureDetector.OnGestureListener() {
-            @Override
-            public boolean onDown(MotionEvent motionEvent) {
-                return false;
-            }
-
-            @Override
-            public void onShowPress(MotionEvent motionEvent) {
-
-            }
-
-            @Override
-            public boolean onSingleTapUp(MotionEvent motionEvent) {
-                Toast.makeText(getApplicationContext(), R.string.authorOnSwingLeftHint, Toast.LENGTH_SHORT).show();
-                return true;
-            }
-
-            @Override
-            public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-                return false;
-            }
-
-            @Override
-            public void onLongPress(MotionEvent motionEvent) {
-
-            }
-
-            @Override
-            public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-                return false;
-            }
-        });
         addGestureListner();
+
+        setFontAndBackground();
     }
 
     private void addGestureListner() {
-        ScrollView myView = (ScrollView) findViewById(R.id.introRoot);
-
-        myView.setOnTouchListener(new OnSwipeTouchListener(this) {
+        container.setOnTouchListener(new OnSwipeTouchListener(this) {
 
             @Override
             public void onSwipeRight() {
@@ -91,12 +59,6 @@ public class IntroActivity extends BaseActivity {
             @Override
             public void onSwipeLeft() {
                 Toast.makeText(getApplicationContext(), R.string.authorOnSwingLeftHint, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                mDetector.onTouchEvent(motionEvent);
-                return super.onTouch(view, motionEvent);
             }
 
         });

@@ -37,7 +37,6 @@ import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
 public class SingleAyahActivity extends BaseActivity {
 
     private SearchView searchView;
-    //private GestureDetectorCompat mDetector;
     private ClipboardManager clipboard;
     private SettingDAO settingDAO;
     TextView surah;
@@ -52,15 +51,18 @@ public class SingleAyahActivity extends BaseActivity {
         process();
         this.clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         this.settingDAO = new SettingDAO(this);
+        init();
+        setFontAndBackground();
+    }
+
+    private void init() {
+        if (surah != null)
+            return;
         surah = (TextView) findViewById(R.id.singleAyahSurah);
         number = (TextView) findViewById(R.id.singleAyahNumber);
         kalemah = (TextView) findViewById(R.id.singleAyahKalemah);
         tafsir = (TextView) findViewById(R.id.singleAyahTafsir);
-        setFontAndBackground();
-        //mDetector = new GestureDetectorCompat(this, new IntroGestureImpl(this));
-        //addGestureListner();
     }
-
 
     @Override
     protected void onRestart() {
@@ -103,7 +105,7 @@ public class SingleAyahActivity extends BaseActivity {
             int nIndex = cursor.getColumnIndexOrThrow(AppSqliteOpenHelper.AYAH_NUMBER);
             int kIndex = cursor.getColumnIndexOrThrow(AppSqliteOpenHelper.KALEMAH);
             int tIndex = cursor.getColumnIndexOrThrow(AppSqliteOpenHelper.TAFSIR);
-
+            init();
             surah.setText(getString(R.string.surah, new Object[]{cursor.getString(sIndex)}));
             number.setText(cursor.getString(nIndex));
             kalemah.setText(cursor.getString(kIndex));
@@ -125,8 +127,8 @@ public class SingleAyahActivity extends BaseActivity {
 
     public void onCopy(View view) {
         String output = getString(R.string.copyDone);
-        String text = String.format("\"%s\": %s, %s, %s", kalemah.getText(), tafsir.getText(),
-                surah.getText(), number.getText(), "الآية");
+        String text = String.format("\"%s\": %s، %s، %s %s", kalemah.getText(), tafsir.getText(),
+                surah.getText(), "الآية", number.getText());
         copyToClipboard(text);
         Toast.makeText(SingleAyahActivity.this, output , Toast.LENGTH_SHORT).show();
     }
