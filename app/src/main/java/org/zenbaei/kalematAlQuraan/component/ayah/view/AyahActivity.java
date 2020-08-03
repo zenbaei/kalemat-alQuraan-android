@@ -333,6 +333,17 @@ public class AyahActivity extends BaseActivity {
     private void setTableRowOnLongPressListener(TableRow tableRow) {
 
         tableRow.setOnTouchListener(new OnSwipeTouchListener(this) {
+
+            @Override
+            public void onSwipeLeft() {
+                previousPage();
+            }
+
+            @Override
+            public void onSwipeRight() {
+                nextPage();
+            }
+
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 targetTableRow = view;

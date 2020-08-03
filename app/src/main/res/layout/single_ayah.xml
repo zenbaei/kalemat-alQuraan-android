@@ -123,16 +123,17 @@
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal"
         android:paddingBottom="20dp">
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/favourite"
 
-            android:onClick="onFav"/>
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/copy"
             android:onClick="onCopy"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/favourite"
+            android:onClick="onFav"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

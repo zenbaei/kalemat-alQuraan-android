@@ -29,17 +29,6 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/emptyFav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_vertical"
-        android:text="@string/emptyFav"
-        android:textSize="15dp"
-        android:layout_margin="5dp"
-        android:visibility="invisible" />
-
     <ListView
         android:id="@+id/favListView"
         android:layout_width="match_parent"
@@ -49,5 +38,16 @@
         android:choiceMode="multipleChoice"
         android:layoutDirection="rtl"
         android:textDirection="rtl" />
+
+    <TextView
+        android:id="@+id/emptyFav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:text="@string/emptyFav"
+        android:paddingTop="50dp"
+        android:textSize="15dp"
+        android:visibility="invisible" />
 
 </LinearLayout>

@@ -45,7 +45,7 @@ public class FavArrayAdaptar extends ArrayAdapter<Setting> {
 
             id.setText(String.valueOf(setting.getId()));
             String[] kalemahAndTafsir = setting.getValue().split("#");
-            kalemah.setText(String.format("\"%s\":", kalemahAndTafsir[0]));
+            kalemah.setText(String.format("\"%s\" :", kalemahAndTafsir[0]));
             tafsir.setText(kalemahAndTafsir[1]);
 
             kalemah.setTypeface(null, Typeface.BOLD);
