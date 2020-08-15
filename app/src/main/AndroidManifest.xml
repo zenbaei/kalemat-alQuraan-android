@@ -2,12 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.zenbaei.kalematAlQuraan.component">
 
+    <uses-permission android:name="com.android.alarm.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".menu.FontActivity"></activity>
+        <activity android:name=".setting.SettingsActivity" />
 
         <meta-data
             android:name="android.app.default_searchable"
@@ -61,6 +63,7 @@
         <provider
             android:name=".ayah.contentProvider.KalematContentProvider"
             android:authorities="com.example.android.searchabledict.DictionaryProvider" />
-    </application>
 
+        <receiver android:name="org.zenbaei.kalematAlQuraan.common.notification.NotificationReceiver" ></receiver>
+    </application>
 </manifest>

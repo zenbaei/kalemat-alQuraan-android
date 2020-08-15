@@ -1,8 +1,7 @@
-package org.zenbaei.kalematAlQuraan.component.menu;
+package org.zenbaei.kalematAlQuraan.component.setting;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatCheckBox;
-import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 
@@ -10,8 +9,6 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ScrollView;
@@ -22,31 +19,35 @@ import com.google.android.material.slider.Slider;
 
 import org.zenbaei.kalematAlQuraan.common.Initializer;
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
+import org.zenbaei.kalematAlQuraan.common.notification.NotificationReceiver;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.setting.dao.SettingDAO;
 import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
 
-public class FontActivity extends BaseActivity {
+public class SettingsActivity extends BaseActivity {
 
     private TextView text;
     private SettingDAO settingDAO;
-    private AppCompatCheckBox nightModeCheckBox;
+    private AppCompatCheckBox nightModeCheckBox, enableNotificationCheckBox;
     private ScrollView container;
     private SearchView searchView;
     TextView chooseBackCol, chooseFontCol, chooseFontSize;
     Slider slider;
+    NotificationReceiver notification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_font);
+        setContentView(R.layout.activity_settings);
         settingDAO = new SettingDAO(this);
+        notification = new NotificationReceiver();
 
         this.text = findViewById(R.id.fontText);
         slider = findViewById(R.id.fontSlider);
         slider.addOnChangeListener(new SliderListener());
 
         nightModeCheckBox = (AppCompatCheckBox) findViewById(R.id.night_mode_checkbox);
+        enableNotificationCheckBox = (AppCompatCheckBox) findViewById(R.id.enable_ntf_checkbox);
         container = (ScrollView) findViewById(R.id.font_actv_container);
         chooseBackCol = (TextView) findViewById(R.id.choose_background_color);
         chooseFontCol = (TextView) findViewById(R.id.choose_font_color);
@@ -70,11 +71,18 @@ public class FontActivity extends BaseActivity {
     @Override
     public void setFontAndBackground() {
         container.setBackgroundColor(Initializer.getBackgroundColor());
-        text.setTextColor(Initializer.getNonAyahFontColor());
+        text.setTextColor(Initializer.getFontColor());
         chooseBackCol.setTextColor(Initializer.getNonAyahFontColor());
         chooseFontCol.setTextColor(Initializer.getNonAyahFontColor());
         chooseFontSize.setTextColor(Initializer.getNonAyahFontColor());
         nightModeCheckBox.setTextColor(Initializer.getNonAyahFontColor());
+        enableNotificationCheckBox.setTextColor(Initializer.getNonAyahFontColor());
+        int flag = Paint.HINTING_OFF;
+        if (nightModeCheckBox.isChecked()) {
+            flag = Paint.STRIKE_THRU_TEXT_FLAG;
+        }
+        chooseBackCol.setPaintFlags(flag);
+        chooseFontCol.setPaintFlags(flag);
     }
 
     @Override
@@ -130,7 +138,7 @@ public class FontActivity extends BaseActivity {
     }
 
     public void toggleNightMode(View view) {
-        int flag = 0;
+        int flag =  Paint.HINTING_OFF;
         int fontColor, background;
         if (nightModeCheckBox.isChecked()) {
             background = getResources().getColor(R.color.darkGray);
@@ -139,7 +147,6 @@ public class FontActivity extends BaseActivity {
         } else {
             background = getResources().getColor(R.color.yellow);
             fontColor = getResources().getColor(R.color.red);
-            flag = Paint.HINTING_OFF;
         }
         chooseBackCol.setPaintFlags(flag);
         chooseFontCol.setPaintFlags(flag);
@@ -147,6 +154,14 @@ public class FontActivity extends BaseActivity {
         settingDAO.update(Setting.KEY_NAME.BACKGROUND_COLOR, String.valueOf(background));
         Initializer.reInitVariables();
         setFontAndBackground();
+    }
+
+    public void onToggleNotification(View view) {
+        if (enableNotificationCheckBox.isChecked()) {
+            notification.onReceive(getApplicationContext(), null);
+        } else {
+
+        }
     }
 
     @Override

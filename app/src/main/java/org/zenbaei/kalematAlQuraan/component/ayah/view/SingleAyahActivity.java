@@ -37,7 +37,6 @@ import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
 public class SingleAyahActivity extends BaseActivity {
 
     private SearchView searchView;
-    private ClipboardManager clipboard;
     private SettingDAO settingDAO;
     TextView surah;
     TextView number;
@@ -48,11 +47,10 @@ public class SingleAyahActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_ayah);
-        process();
-        this.clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         this.settingDAO = new SettingDAO(this);
         init();
         setFontAndBackground();
+        process();
     }
 
     private void init() {
@@ -139,11 +137,6 @@ public class SingleAyahActivity extends BaseActivity {
         TextView tafsir = (TextView) findViewById(R.id.singleAyahTafsir);
         settingDAO.insertIfNotExists(Setting.KEY_NAME.FAVOURITE, kalemah.getText() + "#" + tafsir.getText());
         Toast.makeText(SingleAyahActivity.this, output , Toast.LENGTH_SHORT).show();
-    }
-
-    private void copyToClipboard(String text) {
-        ClipData clip = ClipData.newPlainText("tafsir", text);
-        clipboard.setPrimaryClip(clip);
     }
 
 }

@@ -24,6 +24,10 @@ public class AyahService {
         return ayahDAO.findBySurahIdLanguageId(surahId, languageId, from, to);
     }
 
+    public List<Ayah> findBySurahIdNoLimit(long surahId) {
+        return ayahDAO.findBySurahIdLanguageId(surahId, 1);
+    }
+
     public List<Ayah> findByAyahNumberLanguageId(long number, long languageId, Integer from, Integer to, boolean like) {
         return ayahDAO.findByAyahNumberLanguageId(number, languageId, from, to, like);
     }

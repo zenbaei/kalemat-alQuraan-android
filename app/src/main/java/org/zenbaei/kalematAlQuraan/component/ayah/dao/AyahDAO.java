@@ -35,6 +35,10 @@ public class AyahDAO extends AbstractDAO<Ayah> {
         return findByAsList(Ayah.SURAH_ID_COLUMN, surahId, languageId, from, to, false);
     }
 
+    public List<Ayah> findBySurahIdLanguageId(long surahId, long languageId) {
+        return findByAsListNoLimit(Ayah.SURAH_ID_COLUMN, surahId, languageId, false);
+    }
+
     private List<Ayah> findByAsList(String column, Object value, long languageId, int from, int to, boolean like) {
         List<Ayah> ayahList;
         String query = String.format("SELECT ayah.%s, ayah.%s, ayah.%s, tafsir.%s FROM %s ayah,%s tafsir WHERE %s AND %s AND %s ORDER BY %s LIMIT %s, %s ;",
@@ -45,6 +49,43 @@ public class AyahDAO extends AbstractDAO<Ayah> {
                 "ayah._ID",
                 from,
                 to
+        );
+        Log.i(AyahDAO.class.getSimpleName(), query);
+
+        Cursor cursor = getReadableDatabase().rawQuery(query, null);
+
+        //TODO: if cursor is empty then return
+        ayahList = new ArrayList<>();
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Ayah ayah = new Ayah();
+            Tafsir tafsir = new Tafsir();
+            ayah.setTafsir(tafsir);
+
+            ayah.setId(cursor.getLong(0));
+            ayah.setNumber(cursor.getLong(1));
+            ayah.setKalemah(cursor.getString(2));
+            tafsir.setTafsir(cursor.getString(3));
+
+            ayahList.add(ayah);
+
+            cursor.moveToNext();
+        }
+
+        cursor.close();
+        getReadableDatabase().close();
+        return ayahList;
+    }
+
+    private List<Ayah> findByAsListNoLimit(String column, Object value, long languageId, boolean like) {
+        List<Ayah> ayahList;
+        String query = String.format("SELECT ayah.%s, ayah.%s, ayah.%s, tafsir.%s FROM %s ayah,%s tafsir WHERE %s AND %s AND %s ORDER BY %s ;",
+                Ayah.ID_COLUMN, Ayah.NUMBER_COLUMN, Ayah.KALEMAH_COLUMN, Tafsir.TAFSIR_COLUMN, Ayah.TABLE_NAME, Tafsir.TABLE_NAME,
+                String.format("ayah.%s %s", column, like ? "LIKE '%" + value + "%'" : "= " + value),
+                String.format("ayah.%s = tafsir.%s", Ayah.ID_COLUMN, Tafsir.AYAH_ID_COLUMN),
+                String.format("tafsir.%s = %s", Tafsir.LANGUAGE_ID_COLUMN, languageId),
+                "ayah._ID"
         );
         Log.i(AyahDAO.class.getSimpleName(), query);
 

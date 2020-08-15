@@ -8,12 +8,13 @@ import androidx.core.view.MenuItemCompat;
 
 import androidx.appcompat.widget.AppCompatCheckBox;
 
+import android.text.Layout;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.appcompat.widget.SearchView;
 import android.widget.Toast;
@@ -93,8 +94,8 @@ public class FavActivity extends BaseActivity {
         // Is the view now checked?
         boolean checked = ((AppCompatCheckBox) view).isChecked();
         for (int i = 0; i < listview.getChildCount(); i++) {
-            RelativeLayout layout = (RelativeLayout) listview.getChildAt(i);
-            AppCompatCheckBox checkBox = (AppCompatCheckBox) layout.getChildAt(3);
+            LinearLayout layout = (LinearLayout) listview.getChildAt(i);
+            AppCompatCheckBox checkBox = (AppCompatCheckBox) layout.getChildAt(1);
             if (checkBox != null) {
                 checkBox.setChecked(checked);
             }
@@ -112,9 +113,9 @@ public class FavActivity extends BaseActivity {
         boolean deleted = false;
         resetCheckAllButton();
         for (int i = 0; i < listview.getChildCount(); i++) {
-            RelativeLayout layout = (RelativeLayout) listview.getChildAt(i);
+            LinearLayout layout = (LinearLayout) listview.getChildAt(i);
             TextView _id = (TextView) layout.getChildAt(0);
-            AppCompatCheckBox checkBox = (AppCompatCheckBox) layout.getChildAt(3);
+            AppCompatCheckBox checkBox = (AppCompatCheckBox) layout.getChildAt(1);
             if (checkBox != null && checkBox.isChecked()) {
                 Setting setting = new Setting();
                 setting.setId(Long.parseLong(_id.getText().toString()));
@@ -148,12 +149,12 @@ public class FavActivity extends BaseActivity {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            RelativeLayout layout = (RelativeLayout)view;
+            ViewGroup layout = (ViewGroup)view;
             TextView _id = (TextView) layout.getChildAt(0);
             if (_id == null) {
                 return;
             }
-            AppCompatCheckBox checkBox = (AppCompatCheckBox) layout.getChildAt(3);
+            AppCompatCheckBox checkBox = (AppCompatCheckBox) layout.getChildAt(1);
             boolean isChecked = checkBox.isChecked() ? false : true;
             checkBox.setChecked(isChecked);
         }

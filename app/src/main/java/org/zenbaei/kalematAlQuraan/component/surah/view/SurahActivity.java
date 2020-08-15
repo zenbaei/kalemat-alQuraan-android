@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.core.view.MenuItemCompat;
 import androidx.appcompat.widget.SearchView;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
@@ -109,7 +110,7 @@ public class SurahActivity extends BaseActivity {
                 filteredSurahList.add(surah);
         }
 
-        ArrayAdapter<Surah> adapter = new ArrayAdapter<Surah>(this,
+        SurahArrayAdapter adapter = new SurahArrayAdapter(this,
                 R.layout.surah_list_item, filteredSurahList);
         listView.setAdapter(adapter);
     }

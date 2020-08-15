@@ -80,7 +80,6 @@ public class AyahActivity extends BaseActivity {
     private String targetTafsir;
     private String targetAyah;
     private String targetNumber;
-    private ClipboardManager clipboard;
     private TextView pagingTextView;
     private TextView surahNameTV;
     TextView ayah, kalemah, tafsir;
@@ -97,8 +96,6 @@ public class AyahActivity extends BaseActivity {
         //initialize DAO
         ayahService = new AyahService(this);
         settingDAO = new SettingDAO(this);
-
-        clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 
         //get parameters from intent
         this.surahId = getIntent().getLongExtra("surahId", 0);
@@ -133,26 +130,6 @@ public class AyahActivity extends BaseActivity {
     private void addGestureListner() {
 
         relativeLayout.setOnTouchListener(new OnSwipeTouchListener(this) {
-
-            @Override
-            public void onSwipeLeft() {
-                previousPage();
-            }
-
-            @Override
-            public void onSwipeRight() {
-                nextPage();
-            }
-
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                mDetector.onTouchEvent(motionEvent);
-                return super.onTouch(view, motionEvent);
-            }
-
-        });
-
-        scrollView.setOnTouchListener(new OnSwipeTouchListenerIgnoreDown(this) {
 
             @Override
             public void onSwipeLeft() {
@@ -590,11 +567,6 @@ public class AyahActivity extends BaseActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void copyToClipboard(String text) {
-        ClipData clip = ClipData.newPlainText("tafsir", text);
-        clipboard.setPrimaryClip(clip);
-    }
-
     private void saveLastReadPage() {
         settingDAO.update(Setting.KEY_NAME.LAST_READ_PAGE, String.valueOf(currentPage));
         settingDAO.update(Setting.KEY_NAME.LAST_READ_SURAH_ID, String.valueOf(surahId));
@@ -627,7 +599,7 @@ public class AyahActivity extends BaseActivity {
             String output = "";
             if (item.getTitle().equals(getString(R.string.copy))) {
                 output = getString(R.string.copyDone);
-                String text = String.format("\"%s\": %s، %s، %s %s", targetAyah, targetTafsir,
+                String text = String.format("\"%s\": %s، %s %s، %s %s", targetAyah, targetTafsir, "سورة",
                         surahName, "الآية", targetNumber);
                 copyToClipboard(text);
             } else {
