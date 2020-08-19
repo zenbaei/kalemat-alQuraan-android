@@ -118,4 +118,13 @@ public class SettingDAO extends AbstractDAO<Setting> {
             insert(key, value);
         }
     }
+
+    public boolean isNotificationEnabled() {
+        String isEnabled = findByKey(Setting.KEY_NAME.NOTIFICATION_ENABLED);
+        if (isEnabled.equals("true")) {
+            return true;
+        }
+        Log.d("SettingDAO", "Notification is disabled");
+        return false;
+    }
 }

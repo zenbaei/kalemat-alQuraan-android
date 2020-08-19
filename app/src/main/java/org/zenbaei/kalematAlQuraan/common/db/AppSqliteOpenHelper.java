@@ -51,6 +51,7 @@ public class AppSqliteOpenHelper extends SQLiteOpenHelper {
     private static final String INSERT_FONT_COLOR_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('FONT_COLOR', '-48060')"; //red
     private static final String INSERT_BACKGROUND_COLOR_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('BACKGROUND_COLOR', '-32')"; //yellow
     private static final String INSERT_NIGHT_MODE_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('NIGHT_MODE', 'false')";
+    private static final String INSERT_NOTIFICATION_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('NOTIFICATION_ENABLED', 'true')";
 
     private final Context mHelperContext;
     private SQLiteDatabase mDatabase;
@@ -167,6 +168,7 @@ public class AppSqliteOpenHelper extends SQLiteOpenHelper {
         mDatabase.execSQL(INSERT_FONT_COLOR_STAT);
         mDatabase.execSQL(INSERT_BACKGROUND_COLOR_STAT);
         mDatabase.execSQL(INSERT_NIGHT_MODE_STAT);
+        mDatabase.execSQL(INSERT_NOTIFICATION_STAT);
     }
 
     private void insertData() throws IOException {

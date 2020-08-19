@@ -11,6 +11,7 @@ import androidx.annotation.IntegerRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.AlarmManagerCompat;
 
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -84,12 +85,10 @@ public class ProgressActivity extends AppCompatActivity {
 
     private void addNewFeatures() {
         addLastReadPageFeature();
-        int hour = Integer.valueOf(getResources().getString(R.string.alarm_hour));
-        int minutes = Integer.valueOf(getResources().getString(R.string.alarm_minutes));
-        new Alarm(getApplicationContext()).addAlarm(hour, minutes);
+        if (settingDAO.isNotificationEnabled()) {
+            new Alarm(getApplicationContext()).addAlarm();
+        }
     }
-
-
 
     private void addLastReadPageFeature() {
         String lastReadPage = settingDAO.findByKey(Setting.KEY_NAME.LAST_READ_PAGE);

@@ -1,14 +1,21 @@
 package org.zenbaei.kalematAlQuraan.common.notification;
 
+import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.widget.ListAdapter;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -46,14 +53,18 @@ public class NotificationReceiver extends BroadcastReceiver {
         int surahId = getSurahId();
         List<Surah> surahList = surahService.findAll();
         Ayah ayah = getAyah(surahId);
-        String title = String.format("قوله تعالى: %s%s%s", "\"", ayah.getKalemah(), "\"") ;
-        String content = String.format("%s %s، سورة %s، الآية %s", "أي",ayah.getTafsir().getTafsir(), surahList.get(surahId - 1).getName(), ayah.getNumber());
-        /**
-         * To launch an activity when notification pressed
-         * Intent intent = new Intent(this, AlertDetails.class);
-         * intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-         * PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-         */
+        String title = String.format("قوله تعالى: %s%s%s", "\"", ayah.getKalemah(), "\"");
+        String content = String.format("%s %s. %sسورة %s، الآية %s", "أي", ayah.getTafsir().getTafsir(),"\r", surahList.get(surahId - 1).getName(), ayah.getNumber());
+        String index = String.format(" سورة %s، الآية %s", surahList.get(surahId - 1).getName(), ayah.getNumber());
+
+        // To launch an activity when notification pressed
+        Intent intent = new Intent(mContext, NotificationActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        int uniqueInt = (int) (System.currentTimeMillis() & 0xfffffff);
+        intent.putExtra("ayah", ayah.getKalemah());
+        intent.putExtra("tafsir", "أي " + ayah.getTafsir().getTafsir());
+        intent.putExtra("index", index);
+        PendingIntent pendingIntent = PendingIntent.getActivity(mContext, uniqueInt, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext, CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(title)
@@ -61,7 +72,7 @@ public class NotificationReceiver extends BroadcastReceiver {
                 .setDefaults(NotificationCompat.DEFAULT_SOUND)
                 .setAutoCancel(true)
                 // Set the intent that will fire when the user taps the notification
-                //.setContentIntent(pendingIntent)
+                .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
         createNotificationChannel();
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(mContext);
@@ -85,12 +96,12 @@ public class NotificationReceiver extends BroadcastReceiver {
     }
 
     private int getUniqueId() {
-        String day =  String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+        String day = String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         String month = String.valueOf(Calendar.getInstance().get(Calendar.MONTH));
         String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
         int unique = Integer.valueOf(day + month + year);
         Log.d("Notification", String.valueOf(unique));
-        return  unique;
+        return unique;
     }
 
     private Ayah getAyah(int surahId) {
@@ -109,17 +120,5 @@ public class NotificationReceiver extends BroadcastReceiver {
     private int getAyahIndex(List ayahList) {
         // Returns number between 0- ayahList - 1
         return new Random().nextInt(ayahList.size());
-    }
-
-    private boolean isNotificationEnabled() {
-        String isEnabled = settingDAO.findByKey(Setting.KEY_NAME.NOTIFICATION_ENABLED);
-        if (isEnabled.equals("true")) {
-            return true;
-        }
-        return false;
-    }
-
-    private String getContent() {
-        return "";
     }
 }

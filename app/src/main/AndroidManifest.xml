@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.zenbaei.kalematAlQuraan.component">
 
-    <uses-permission android:name="com.android.alarm.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -21,7 +21,6 @@
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -58,12 +57,26 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
+            android:name="org.zenbaei.kalematAlQuraan.common.notification.NotificationActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Holo.Dialog"
+            />
+
+        <activity
             android:name="org.zenbaei.kalematAlQuraan.utils.AndroidDatabaseManager"
             android:label="@string/app_name" /> <!-- Provides search suggestions for words and their definitions. -->
         <provider
             android:name=".ayah.contentProvider.KalematContentProvider"
             android:authorities="com.example.android.searchabledict.DictionaryProvider" />
 
-        <receiver android:name="org.zenbaei.kalematAlQuraan.common.notification.NotificationReceiver" ></receiver>
+        <receiver android:name="org.zenbaei.kalematAlQuraan.common.StartOnBoot" >
+        <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name="org.zenbaei.kalematAlQuraan.common.notification.NotificationReceiver" />
     </application>
 </manifest>

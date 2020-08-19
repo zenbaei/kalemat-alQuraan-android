@@ -19,6 +19,7 @@ import com.google.android.material.slider.Slider;
 
 import org.zenbaei.kalematAlQuraan.common.Initializer;
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
+import org.zenbaei.kalematAlQuraan.common.notification.Alarm;
 import org.zenbaei.kalematAlQuraan.common.notification.NotificationReceiver;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.setting.dao.SettingDAO;
@@ -55,6 +56,7 @@ public class SettingsActivity extends BaseActivity {
 
         setCurrentFontSize();
         setNightMode();
+        setEnableNotification();
         setFontAndBackground();
     }
 
@@ -109,6 +111,10 @@ public class SettingsActivity extends BaseActivity {
         nightModeCheckBox.setChecked(isChecked);
     }
 
+    private void setEnableNotification() {
+        this.enableNotificationCheckBox.setChecked(settingDAO.isNotificationEnabled());
+    }
+
     private void changeFontSize(float val) {
         text.setTextSize(val);
         int fontSize = Math.round(val);
@@ -157,11 +163,18 @@ public class SettingsActivity extends BaseActivity {
     }
 
     public void onToggleNotification(View view) {
+        String value = "true";
+        String text = "تم تفعيل الإشعار";
+        Alarm alarm = new Alarm(getApplicationContext());
         if (enableNotificationCheckBox.isChecked()) {
-            notification.onReceive(getApplicationContext(), null);
+            alarm.addAlarm();
         } else {
-
+            value = "false";
+            text = "تم إالغاء الإشعار";
+            alarm.removeAlarm();
         }
+        settingDAO.update(Setting.KEY_NAME.NOTIFICATION_ENABLED, value);
+        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
     }
 
     @Override
