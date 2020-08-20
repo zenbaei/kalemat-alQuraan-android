@@ -1,5 +1,6 @@
 new release:
 - increase versionName + version code in build.gradle
+- in case of db chanages, increase DATABASE_VERSION in AppSqliteOpenHelper
 - use the keyStore 'jks' to sign the new release (password is saved on google drive keys file)
 
 attach external device:

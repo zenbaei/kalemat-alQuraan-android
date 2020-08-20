@@ -36,7 +36,7 @@ public class AppSqliteOpenHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "KalematDatabase";
     public static final String DATABASE_NAME = "kalemat_alQuraan";
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
 
     //The columns we'll include in the dictionary table
     public static final String KALEMAH = SearchManager.SUGGEST_COLUMN_TEXT_1;
@@ -48,8 +48,8 @@ public class AppSqliteOpenHelper extends SQLiteOpenHelper {
     public static final String FTS_VIRTUAL_TABLE = "FTSdictionary";
 
     private static final String INSERT_FONT_SIZE_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('DEFAULT_FONT_SIZE', '15')";
-    private static final String INSERT_FONT_COLOR_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('FONT_COLOR', '-48060')"; //red
-    private static final String INSERT_BACKGROUND_COLOR_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('BACKGROUND_COLOR', '-32')"; //yellow
+    private static final String INSERT_FONT_COLOR_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('FONT_COLOR', '-1')"; //white
+    private static final String INSERT_BACKGROUND_COLOR_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('BACKGROUND_COLOR', '-11119018')"; //dark grey
     private static final String INSERT_NIGHT_MODE_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('NIGHT_MODE', 'false')";
     private static final String INSERT_NOTIFICATION_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('NOTIFICATION_ENABLED', 'true')";
 

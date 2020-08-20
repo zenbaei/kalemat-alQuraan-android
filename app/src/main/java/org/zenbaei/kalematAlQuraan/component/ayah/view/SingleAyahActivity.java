@@ -125,7 +125,7 @@ public class SingleAyahActivity extends BaseActivity {
 
     public void onCopy(View view) {
         String output = getString(R.string.copyDone);
-        String text = String.format("\"%s\": %s، %s، %s %s", kalemah.getText(), tafsir.getText(),
+        String text = String.format("\"%s\": %s. %s، %s %s", kalemah.getText(), tafsir.getText(),
                 surah.getText(), "الآية", number.getText());
         copyToClipboard(text);
         Toast.makeText(SingleAyahActivity.this, output , Toast.LENGTH_SHORT).show();

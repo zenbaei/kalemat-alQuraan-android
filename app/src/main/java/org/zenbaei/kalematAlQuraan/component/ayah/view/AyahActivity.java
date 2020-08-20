@@ -2,8 +2,6 @@
 package org.zenbaei.kalematAlQuraan.component.ayah.view;
 
 import android.app.SearchManager;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -35,7 +33,6 @@ import android.widget.Toast;
 import org.zenbaei.kalematAlQuraan.common.Initializer;
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
-import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListenerIgnoreDown;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
 import org.zenbaei.kalematAlQuraan.component.ayah.entity.Ayah;
@@ -121,8 +118,8 @@ public class AyahActivity extends BaseActivity {
         scrollView.setBackgroundColor(Initializer.getBackgroundColor());
         relativeLayout.setBackgroundColor(Initializer.getBackgroundColor());
 
-        addGestureListner();
         mDetector = new GestureDetectorCompat(this, new MyGestureListener());
+        addGestureListner();
 
         handler.post(new DoWork());
     }
@@ -143,7 +140,6 @@ public class AyahActivity extends BaseActivity {
 
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                mDetector.onTouchEvent(motionEvent);
                 return super.onTouch(view, motionEvent);
             }
 
@@ -244,6 +240,7 @@ public class AyahActivity extends BaseActivity {
 
             tableRow.addView(textView4Number);
 
+            tableRow.setBackgroundColor(getResources().getColor(R.color.red));
             this.setTableRowOnLongPressListener(tableRow);
 
 
@@ -599,7 +596,7 @@ public class AyahActivity extends BaseActivity {
             String output = "";
             if (item.getTitle().equals(getString(R.string.copy))) {
                 output = getString(R.string.copyDone);
-                String text = String.format("\"%s\": %s، %s %s، %s %s", targetAyah, targetTafsir, "سورة",
+                String text = String.format("\"%s\": %s. %s %s، %s %s", targetAyah, targetTafsir, "سورة",
                         surahName, "الآية", targetNumber);
                 copyToClipboard(text);
             } else {

@@ -66,7 +66,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         intent.putExtra("index", index);
         PendingIntent pendingIntent = PendingIntent.getActivity(mContext, uniqueInt, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext, CHANNEL_ID)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.ic_stat_name)
                 .setContentTitle(title)
                 .setContentText(content)
                 .setDefaults(NotificationCompat.DEFAULT_SOUND)

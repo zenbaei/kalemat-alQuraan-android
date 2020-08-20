@@ -170,7 +170,7 @@ public class SettingsActivity extends BaseActivity {
             alarm.addAlarm();
         } else {
             value = "false";
-            text = "تم إالغاء الإشعار";
+            text = "تم إلغاء الإشعار";
             alarm.removeAlarm();
         }
         settingDAO.update(Setting.KEY_NAME.NOTIFICATION_ENABLED, value);
