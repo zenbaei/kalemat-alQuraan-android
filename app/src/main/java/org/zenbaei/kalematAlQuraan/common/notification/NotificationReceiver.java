@@ -23,7 +23,6 @@ import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
 import org.zenbaei.kalematAlQuraan.component.ayah.entity.Ayah;
 import org.zenbaei.kalematAlQuraan.component.setting.dao.SettingDAO;
-import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
 import org.zenbaei.kalematAlQuraan.component.surah.business.SurahService;
 import org.zenbaei.kalematAlQuraan.component.surah.entity.Surah;
 
@@ -54,7 +53,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         List<Surah> surahList = surahService.findAll();
         Ayah ayah = getAyah(surahId);
         String title = String.format("قوله تعالى: %s%s%s", "\"", ayah.getKalemah(), "\"");
-        String content = String.format("%s %s. %sسورة %s، الآية %s", "أي", ayah.getTafsir().getTafsir(),"\r", surahList.get(surahId - 1).getName(), ayah.getNumber());
+        String content = String.format("%s %s. سورة %s، الآية %s", "أي", ayah.getTafsir().getTafsir(), surahList.get(surahId - 1).getName(), ayah.getNumber());
         String index = String.format(" سورة %s، الآية %s", surahList.get(surahId - 1).getName(), ayah.getNumber());
 
         // To launch an activity when notification pressed

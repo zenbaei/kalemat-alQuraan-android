@@ -240,7 +240,6 @@ public class AyahActivity extends BaseActivity {
 
             tableRow.addView(textView4Number);
 
-            tableRow.setBackgroundColor(getResources().getColor(R.color.red));
             this.setTableRowOnLongPressListener(tableRow);
 
 

@@ -18,7 +18,7 @@ public class Alarm {
     public Alarm (Context ctx) {
         this.ctx = ctx;
         this.notificationIntent = new Intent(ctx, NotificationReceiver.class);
-        this.pendingIntent = PendingIntent.getBroadcast(ctx, 0, notificationIntent, 0);
+        this.pendingIntent = PendingIntent.getBroadcast(ctx, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         this.alarmManager = (AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE);
 
     }
@@ -30,7 +30,7 @@ public class Alarm {
         calendar.set(Calendar.MINUTE, 42);
         if (alarmManager != null) {
             Log.d("Alarm","Add alarm on: " + calendar.getTimeInMillis());
-            alarmManager.setRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), 1 * 60 * 1000, pendingIntent);
+            alarmManager.setInexactRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), 1 * 60 * 1000, pendingIntent);
         }
     }
 

@@ -27,7 +27,11 @@
         <activity
             android:name=".surah.view.SurahActivity"
             android:launchMode="singleTop"
-            android:noHistory="false" />
+            android:noHistory="false" >
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".author.IntroActivity"
             android:launchMode="singleTop"
