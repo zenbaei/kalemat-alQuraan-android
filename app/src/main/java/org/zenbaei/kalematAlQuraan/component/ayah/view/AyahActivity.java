@@ -77,9 +77,7 @@ public class AyahActivity extends BaseActivity {
     private String targetTafsir;
     private String targetAyah;
     private String targetNumber;
-    private TextView pagingTextView;
-    private TextView surahNameTV;
-    TextView ayah, kalemah, tafsir;
+    private TextView pagingTextView, surahNameTV, ayah, tafsir, kalemah;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -291,16 +289,6 @@ public class AyahActivity extends BaseActivity {
         scrollView.setBackgroundColor(Initializer.getBackgroundColor());
         relativeLayout.setBackgroundColor(Initializer.getBackgroundColor());
         pagingTextView.setTextColor(Initializer.getNonAyahFontColor());
-        //set color
-        if (Initializer.getBackgroundColor() == getResources().getColor(R.color.darkGray)) {
-            ayah.setBackgroundColor(getResources().getColor(R.color.gray));
-            kalemah.setBackgroundColor(getResources().getColor(R.color.gray));
-            tafsir.setBackgroundColor(getResources().getColor(R.color.gray));
-        } else {
-            ayah.setBackgroundColor(getResources().getColor(R.color.lightPink));
-            kalemah.setBackgroundColor(getResources().getColor(R.color.lightPink));
-            tafsir.setBackgroundColor(getResources().getColor(R.color.lightPink));
-        }
     }
 
     private void setTableRowOnLongPressListener(TableRow tableRow) {
@@ -444,28 +432,27 @@ public class AyahActivity extends BaseActivity {
         kalemah = new TextView(this, null);
         tafsir = new TextView(this, null);
 
-
         //set content
         ayah.setText(getString(R.string.ayah));
         kalemah.setText(getString(R.string.kalemah));
         tafsir.setText(getString(R.string.tafsir));
 
-        //set color
-        if (Initializer.getBackgroundColor() == getResources().getColor(R.color.darkGray)) {
-            ayah.setBackgroundColor(getResources().getColor(R.color.gray));
-            kalemah.setBackgroundColor(getResources().getColor(R.color.gray));
-            tafsir.setBackgroundColor(getResources().getColor(R.color.gray));
-        } else {
-            ayah.setBackgroundColor(getResources().getColor(R.color.lightPink));
-            kalemah.setBackgroundColor(getResources().getColor(R.color.lightPink));
-            tafsir.setBackgroundColor(getResources().getColor(R.color.lightPink));
-        }
+        int black = getResources().getColor(R.color.black);
+
+        ayah.setTextColor(black);
+        kalemah.setTextColor(black);
+        tafsir.setTextColor(black);
+
+        int white = getResources().getColor(R.color.white);
+
+        ayah.setBackgroundColor(white);
+        kalemah.setBackgroundColor(white);
+        tafsir.setBackgroundColor(white);
 
         //set max width
         ayah.setWidth(ayahColWidth);
         kalemah.setWidth(kalemahColWidth);
         tafsir.setWidth(tafsirColWidth);
-
 
         //set text padding
         ayah.setPadding(0, 0, 35, 0);

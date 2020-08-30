@@ -31,7 +31,7 @@ public class Alarm {
 
         if (alarmManager != null) {
             Log.d("Alarm","Add alarm on: " + calendar1.getTimeInMillis());
-            alarmManager.setInexactRepeating(AlarmManager.RTC, calendar1.getTimeInMillis(), AlarmManager.INTERVAL_HALF_DAY, pendingIntent);
+            alarmManager.setInexactRepeating(AlarmManager.RTC, calendar1.getTimeInMillis(), 12*60*60*1000, pendingIntent);
         }
     }
 
