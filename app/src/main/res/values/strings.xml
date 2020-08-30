@@ -20,7 +20,7 @@
     <string name="font_color">لون الخط:</string>
     <string name="share_link">تم نسخ رابط البرنامج</string>
     <string name="app_link">https://play.google.com/store/apps/details?id=org.zenbaei.kalematAlQuraan</string>
-    <string name="enable_notification">تفعيل إظهار إشعار لمعنى كلمة يوميا</string>
+    <string name="enable_notification">تفعيل إظهار إشعار لمعنى كلمة مرتين يوميا</string>
     <string name="alarm_hour">13</string>
     <string name="alarm_minutes">30</string>
 

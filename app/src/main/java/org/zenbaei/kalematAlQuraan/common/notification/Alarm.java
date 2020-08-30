@@ -24,13 +24,14 @@ public class Alarm {
     }
 
     public void addAlarm() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 7);
-        calendar.set(Calendar.MINUTE, 42);
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTimeInMillis(System.currentTimeMillis());
+        calendar1.set(Calendar.HOUR_OF_DAY, 11);
+        //calendar1.set(Calendar.MINUTE, 10);
+
         if (alarmManager != null) {
-            Log.d("Alarm","Add alarm on: " + calendar.getTimeInMillis());
-            alarmManager.setInexactRepeating(AlarmManager.RTC, calendar.getTimeInMillis(), 1 * 60 * 1000, pendingIntent);
+            Log.d("Alarm","Add alarm on: " + calendar1.getTimeInMillis());
+            alarmManager.setInexactRepeating(AlarmManager.RTC, calendar1.getTimeInMillis(), AlarmManager.INTERVAL_HALF_DAY, pendingIntent);
         }
     }
 
