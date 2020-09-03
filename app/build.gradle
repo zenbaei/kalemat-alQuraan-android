@@ -8,7 +8,7 @@ android {
         applicationId "org.zenbaei.kalematAlQuraan"
         minSdkVersion 15
         targetSdkVersion 29
-        versionCode 15
+        versionCode 16
         versionName "2"
     }
     buildTypes {
