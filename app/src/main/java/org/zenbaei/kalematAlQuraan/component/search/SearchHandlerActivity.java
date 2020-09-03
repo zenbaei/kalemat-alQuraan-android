@@ -14,23 +14,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 import org.zenbaei.kalematAlQuraan.common.Initializer;
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.db.AppSqliteOpenHelper;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.ayah.contentProvider.KalematContentProvider;
 import org.zenbaei.kalematAlQuraan.component.ayah.view.SingleAyahActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SearchHandlerActivity extends BaseActivity {
 
@@ -53,11 +49,6 @@ public class SearchHandlerActivity extends BaseActivity {
         mListView.setBackgroundColor(Initializer.getBackgroundColor());
 
         handleIntent(getIntent());
-
-    }
-
-    @Override
-    public void setFontAndBackground() {
     }
 
     @Override
@@ -65,7 +56,10 @@ public class SearchHandlerActivity extends BaseActivity {
         super.onNewIntent(intent);
         setIntent(intent);
         handleIntent(intent);
-        setFontAndBackground();
+    }
+
+    @Override
+    public void setFontAndBackground() {
     }
 
     /**
@@ -119,14 +113,12 @@ public class SearchHandlerActivity extends BaseActivity {
 
             mTextView.setText(countString);
 
-            List<String[]> list = cursorToList(cursor);
+            // Create a simple cursor adapter for the definitions and apply them to the ListView
+            SearchCursorAdapter cursorAdapter = new SearchCursorAdapter(this, cursor);
 
-            SearchListAdapter words = new SearchListAdapter(this,
-                    R.layout.result, list);
+            mListView.setAdapter(cursorAdapter);
 
-            mListView.setAdapter(words);
-
-            // Define the on-click listener for the list items
+                        // Define the on-click listener for the list items
             mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 @Override
@@ -139,6 +131,7 @@ public class SearchHandlerActivity extends BaseActivity {
                     startActivity(wordIntent);
                 }
             });
+
         }
     }
 
@@ -157,22 +150,4 @@ public class SearchHandlerActivity extends BaseActivity {
         super.onBackPressed();
     }
 
-    private List<String[]> cursorToList(Cursor cursor) {
-        List<String[]> list = new ArrayList<>();
-        boolean exists = cursor.moveToFirst();
-        if (!exists) {
-            return list;
-        }
-
-        int id = cursor.getColumnIndex(AppSqliteOpenHelper.AYAH_NUMBER);
-        int ayah = cursor.getColumnIndex(AppSqliteOpenHelper.KALEMAH);
-        int surah = cursor.getColumnIndex(AppSqliteOpenHelper.SURAH);
-
-        while (!cursor.isAfterLast()) {
-            String[] strings = {cursor.getString(id), cursor.getString(ayah), cursor.getString(surah)};
-            list.add(strings);
-            cursor.moveToNext();
-        }
-        return list;
-    }
 }
