@@ -7,14 +7,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.core.view.MenuItemCompat;
-import androidx.cursoradapter.widget.SimpleCursorAdapter;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,7 +17,6 @@ import android.widget.TextView;
 
 import org.zenbaei.kalematAlQuraan.common.Initializer;
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
-import org.zenbaei.kalematAlQuraan.common.db.AppSqliteOpenHelper;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.ayah.contentProvider.KalematContentProvider;
 import org.zenbaei.kalematAlQuraan.component.ayah.view.SingleAyahActivity;
@@ -38,14 +31,8 @@ public class SearchHandlerActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
 
-        // get the action bar
-        //  ActionBar actionBar = getSupportActionBar();
-
-        // Enabling Back navigation on Action Bar icon
-        //actionBar.setDisplayHomeAsUpEnabled(true);
-
-        mTextView = (TextView) findViewById(R.id.searchText);
-        mListView = (ListView) findViewById(R.id.searchList);
+        mTextView = findViewById(R.id.searchText);
+        mListView = findViewById(R.id.searchList);
         mListView.setBackgroundColor(Initializer.getBackgroundColor());
 
         handleIntent(getIntent());
@@ -79,7 +66,6 @@ public class SearchHandlerActivity extends BaseActivity {
         }
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -99,7 +85,7 @@ public class SearchHandlerActivity extends BaseActivity {
      */
     private void showResults(String query) {
 
-        Cursor cursor = managedQuery(KalematContentProvider.CONTENT_URI, null, null,
+        Cursor cursor = getContentResolver().query(KalematContentProvider.CONTENT_URI, null, null,
                 new String[]{query}, null);
 
         if (cursor == null) {

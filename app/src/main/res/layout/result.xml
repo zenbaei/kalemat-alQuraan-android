@@ -3,6 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:id="@+id/rl_result"
     android:padding="2dip">
 
     <TextView

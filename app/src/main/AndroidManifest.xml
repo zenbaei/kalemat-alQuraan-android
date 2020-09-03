@@ -50,7 +50,7 @@
             android:noHistory="true" /> <!-- Search results activity -->
         <activity
             android:name=".search.SearchHandlerActivity"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:noHistory="false">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -63,7 +63,6 @@
         <activity
             android:name="org.zenbaei.kalematAlQuraan.common.notification.NotificationActivity"
             android:launchMode="singleTask"
-            android:taskAffinity=""
             android:excludeFromRecents="true"
             android:theme="@android:style/Theme.Holo.Dialog"
             />
