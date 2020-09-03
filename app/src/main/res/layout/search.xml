@@ -11,17 +11,6 @@
         android:layout_height="wrap_content"
         android:background="@android:drawable/title_bar">
 
-
-        <!--<TextView
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:onClick="back"
-            android:text="@string/back"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="15dp" />-->
-
         <TextView
             android:id="@+id/searchText"
             android:layout_width="wrap_content"
@@ -38,10 +27,5 @@
         android:id="@+id/searchList"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/yellow" />
-</LinearLayout><!--<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/emptyListView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/yellow" />-->
+        android:layout_weight="1" />
+</LinearLayout>

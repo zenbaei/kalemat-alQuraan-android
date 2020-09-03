@@ -12,17 +12,25 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+import org.zenbaei.kalematAlQuraan.common.Initializer;
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.db.AppSqliteOpenHelper;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.ayah.contentProvider.KalematContentProvider;
 import org.zenbaei.kalematAlQuraan.component.ayah.view.SingleAyahActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SearchHandlerActivity extends BaseActivity {
 
@@ -42,13 +50,14 @@ public class SearchHandlerActivity extends BaseActivity {
 
         mTextView = (TextView) findViewById(R.id.searchText);
         mListView = (ListView) findViewById(R.id.searchList);
+        mListView.setBackgroundColor(Initializer.getBackgroundColor());
 
         handleIntent(getIntent());
+
     }
 
     @Override
     public void setFontAndBackground() {
-
     }
 
     @Override
@@ -56,6 +65,7 @@ public class SearchHandlerActivity extends BaseActivity {
         super.onNewIntent(intent);
         setIntent(intent);
         handleIntent(intent);
+        setFontAndBackground();
     }
 
     /**
@@ -109,17 +119,10 @@ public class SearchHandlerActivity extends BaseActivity {
 
             mTextView.setText(countString);
 
-            // Specify the columns we want to display in the result
-            String[] from = new String[]{AppSqliteOpenHelper.AYAH_NUMBER,
-                    AppSqliteOpenHelper.KALEMAH, AppSqliteOpenHelper.SURAH};
+            List<String[]> list = cursorToList(cursor);
 
-            // Specify the corresponding fav_list_item elements where we want the columns to go
-            int[] to = new int[]{R.id.ayahNumberTextView,
-                    R.id.kalemahTextView, R.id.surahNameTextView};
-
-            // Create a simple cursor adapter for the definitions and apply them to the ListView
-            SimpleCursorAdapter words = new SimpleCursorAdapter(this,
-                    R.layout.result, cursor, from, to);
+            SearchListAdapter words = new SearchListAdapter(this,
+                    R.layout.result, list);
 
             mListView.setAdapter(words);
 
@@ -136,7 +139,6 @@ public class SearchHandlerActivity extends BaseActivity {
                     startActivity(wordIntent);
                 }
             });
-
         }
     }
 
@@ -153,5 +155,24 @@ public class SearchHandlerActivity extends BaseActivity {
 
     public void back(View view) {
         super.onBackPressed();
+    }
+
+    private List<String[]> cursorToList(Cursor cursor) {
+        List<String[]> list = new ArrayList<>();
+        boolean exists = cursor.moveToFirst();
+        if (!exists) {
+            return list;
+        }
+
+        int id = cursor.getColumnIndex(AppSqliteOpenHelper.AYAH_NUMBER);
+        int ayah = cursor.getColumnIndex(AppSqliteOpenHelper.KALEMAH);
+        int surah = cursor.getColumnIndex(AppSqliteOpenHelper.SURAH);
+
+        while (!cursor.isAfterLast()) {
+            String[] strings = {cursor.getString(id), cursor.getString(ayah), cursor.getString(surah)};
+            list.add(strings);
+            cursor.moveToNext();
+        }
+        return list;
     }
 }
