@@ -60,7 +60,7 @@
     <string name="favouriteDone">تمت الإضافة للمفضلة</string>
     <string name="copyDone">تم النسخ</string>
     <string name="fav">المفضلة</string>
-    <string name="emptyFav">لإضافة تفضيلات قم بالضغط على الآية حتى يظهر لك زر "'أضف للمفضلة'"</string>
+    <string name="emptyFav">لإضافة تفضيلات قم بالضغط على الآية لفترة حتى يظهر لك زر "'أضف للمفضلة'"</string>
     <string name="delete">حذف</string>
     <string name="deleted">تم الحذف</string>
     <string name="font_size">اختر حجم الخط:</string>

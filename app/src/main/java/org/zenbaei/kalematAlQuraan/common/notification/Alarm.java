@@ -11,16 +11,15 @@ import java.util.Calendar;
 public class Alarm {
 
     private Context ctx;
-    Intent notificationIntent;
-    PendingIntent pendingIntent;
-    AlarmManager alarmManager;
+    private Intent notificationIntent;
+    private PendingIntent pendingIntent;
+    private AlarmManager alarmManager;
 
     public Alarm (Context ctx) {
         this.ctx = ctx;
         this.notificationIntent = new Intent(ctx, NotificationReceiver.class);
         this.pendingIntent = PendingIntent.getBroadcast(ctx, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         this.alarmManager = (AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE);
-
     }
 
     public void addAlarm() {
@@ -40,5 +39,10 @@ public class Alarm {
             alarmManager.cancel(pendingIntent);
             Log.d("Alarm", "Alarm is canceled");
         }
+    }
+
+    //NOT WORKING RIGHT
+    private boolean isWorking() {
+        return (PendingIntent.getBroadcast(ctx, 0, notificationIntent, PendingIntent.FLAG_NO_CREATE) != null);
     }
 }

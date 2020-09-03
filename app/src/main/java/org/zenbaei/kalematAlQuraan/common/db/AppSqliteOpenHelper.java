@@ -51,7 +51,9 @@ public class AppSqliteOpenHelper extends SQLiteOpenHelper {
     private static final String INSERT_FONT_COLOR_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('FONT_COLOR', '-1')"; //white
     private static final String INSERT_BACKGROUND_COLOR_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('BACKGROUND_COLOR', '-11119018')"; //dark grey
     private static final String INSERT_NIGHT_MODE_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('NIGHT_MODE', 'false')";
-    private static final String INSERT_NOTIFICATION_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('NOTIFICATION_ENABLED', 'true')";
+    private static final String INSERT_LAST_READ_PAGE_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('LAST_READ_PAGE', '0')";
+    private static final String INSERT_LAST_READ_SURAH_ID_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('LAST_READ_SURAH_ID', '0')";
+    private static final String INSERT_LAST_READ_SURAH_NAME_STAT = "INSERT INTO SETTINGS (key, value) VALUES ('LAST_READ_SURAH_NAME', '')";
 
     private final Context mHelperContext;
     private SQLiteDatabase mDatabase;
@@ -168,7 +170,10 @@ public class AppSqliteOpenHelper extends SQLiteOpenHelper {
         mDatabase.execSQL(INSERT_FONT_COLOR_STAT);
         mDatabase.execSQL(INSERT_BACKGROUND_COLOR_STAT);
         mDatabase.execSQL(INSERT_NIGHT_MODE_STAT);
-        mDatabase.execSQL(INSERT_NOTIFICATION_STAT);
+
+        mDatabase.execSQL(INSERT_LAST_READ_PAGE_STAT);
+        mDatabase.execSQL(INSERT_LAST_READ_SURAH_ID_STAT);
+        mDatabase.execSQL(INSERT_LAST_READ_SURAH_NAME_STAT);
     }
 
     private void insertData() throws IOException {

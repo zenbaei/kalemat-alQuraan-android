@@ -3,11 +3,8 @@ package org.zenbaei.kalematAlQuraan.common;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-
 import org.zenbaei.kalematAlQuraan.common.notification.Alarm;
 import org.zenbaei.kalematAlQuraan.component.setting.dao.SettingDAO;
-import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
 
 public class StartOnBoot extends BroadcastReceiver {
     @Override
