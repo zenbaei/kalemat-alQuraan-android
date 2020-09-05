@@ -272,7 +272,7 @@ public class AyahActivity extends BaseActivity {
             // bold
             textView4Ayah.setTypeface(null, Typeface.BOLD);
 
-            addCurrentNumberAndTafsir(textView4Number, textView4Tafsir);
+            addCurrentNumberAndTafsir(textView4Number, textView4Ayah, textView4Tafsir);
             currentDisplayedAyah.add(textView4Ayah);
         }
     }
@@ -331,8 +331,9 @@ public class AyahActivity extends BaseActivity {
      * @param textView4Ayah
      * @param textView4Tafsir
      */
-    private void addCurrentNumberAndTafsir(TextView textView4Ayah, TextView textView4Tafsir) {
+    private void addCurrentNumberAndTafsir(TextView numberTV, TextView textView4Ayah, TextView textView4Tafsir) {
         Log.d("AyahActivity", String.format("Adding Kalemah [%s]", textView4Ayah.getText()));
+        currentDisplayedNumberAndTafsirTextViews.add(numberTV);
         currentDisplayedNumberAndTafsirTextViews.add(textView4Ayah);
         currentDisplayedNumberAndTafsirTextViews.add(textView4Tafsir);
     }
