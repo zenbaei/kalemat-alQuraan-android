@@ -174,6 +174,7 @@ public class AppSqliteOpenHelper extends SQLiteOpenHelper {
         mDatabase.execSQL(INSERT_LAST_READ_PAGE_STAT);
         mDatabase.execSQL(INSERT_LAST_READ_SURAH_ID_STAT);
         mDatabase.execSQL(INSERT_LAST_READ_SURAH_NAME_STAT);
+
     }
 
     private void insertData() throws IOException {

@@ -11,6 +11,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,43 +21,39 @@ import com.google.android.material.slider.Slider;
 import org.zenbaei.kalematAlQuraan.common.Initializer;
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.notification.Alarm;
-import org.zenbaei.kalematAlQuraan.common.notification.NotificationReceiver;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.setting.dao.SettingDAO;
 import org.zenbaei.kalematAlQuraan.component.setting.entity.Setting;
 
 public class SettingsActivity extends BaseActivity {
 
-    private TextView text;
+    private TextView text, ntfText, chooseBackCol, chooseFontCol, chooseFontSize;
     private SettingDAO settingDAO;
-    private AppCompatCheckBox nightModeCheckBox, enableNotificationCheckBox;
+    private AppCompatCheckBox nightModeCheckBox;
     private ScrollView container;
     private SearchView searchView;
-    TextView chooseBackCol, chooseFontCol, chooseFontSize;
     Slider slider;
-    NotificationReceiver notification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         settingDAO = new SettingDAO(this);
-        notification = new NotificationReceiver();
 
         this.text = findViewById(R.id.fontText);
         slider = findViewById(R.id.fontSlider);
         slider.addOnChangeListener(new SliderListener());
 
         nightModeCheckBox = (AppCompatCheckBox) findViewById(R.id.night_mode_checkbox);
-        enableNotificationCheckBox = (AppCompatCheckBox) findViewById(R.id.enable_ntf_checkbox);
         container = (ScrollView) findViewById(R.id.font_actv_container);
         chooseBackCol = (TextView) findViewById(R.id.choose_background_color);
         chooseFontCol = (TextView) findViewById(R.id.choose_font_color);
         chooseFontSize = (TextView) findViewById(R.id.choose_font_size);
+        ntfText = (TextView) findViewById(R.id.ntf_text);
 
         setCurrentFontSize();
         setNightMode();
-        setEnableNotification();
+        onStartsetNotificationRadio();
         setFontAndBackground();
     }
 
@@ -78,7 +75,8 @@ public class SettingsActivity extends BaseActivity {
         chooseFontCol.setTextColor(Initializer.getNonAyahFontColor());
         chooseFontSize.setTextColor(Initializer.getNonAyahFontColor());
         nightModeCheckBox.setTextColor(Initializer.getNonAyahFontColor());
-        enableNotificationCheckBox.setTextColor(Initializer.getNonAyahFontColor());
+
+        setRadioButtonTextColor();
         int flag = Paint.HINTING_OFF;
         if (nightModeCheckBox.isChecked()) {
             flag = Paint.STRIKE_THRU_TEXT_FLAG;
@@ -111,8 +109,33 @@ public class SettingsActivity extends BaseActivity {
         nightModeCheckBox.setChecked(isChecked);
     }
 
-    private void setEnableNotification() {
-        this.enableNotificationCheckBox.setChecked(settingDAO.isNotificationEnabled());
+    private void onStartsetNotificationRadio() {
+        String number = settingDAO.getNotificationNumber();
+        switch (number) {
+            case "0" :
+                ((RadioButton)findViewById(R.id.ntf_zero)).setChecked(true);
+                break;
+            case "1":
+                ((RadioButton)findViewById(R.id.ntf_once)).setChecked(true);
+                break;
+            case "2":
+                ((RadioButton)findViewById(R.id.ntf_twice)).setChecked(true);
+                break;
+            case "3":
+                ((RadioButton)findViewById(R.id.ntf_three)).setChecked(true);
+                break;
+            case "4":
+                ((RadioButton)findViewById(R.id.ntf_four)).setChecked(true);
+                break;
+        }
+    }
+
+    private void setRadioButtonTextColor() {
+        ((RadioButton)findViewById(R.id.ntf_zero)).setTextColor(Initializer.getNonAyahFontColor());
+        ((RadioButton)findViewById(R.id.ntf_once)).setTextColor(Initializer.getNonAyahFontColor());
+        ((RadioButton)findViewById(R.id.ntf_twice)).setTextColor(Initializer.getNonAyahFontColor());
+        ((RadioButton)findViewById(R.id.ntf_three)).setTextColor(Initializer.getNonAyahFontColor());
+        ((RadioButton)findViewById(R.id.ntf_four)).setTextColor(Initializer.getNonAyahFontColor());
     }
 
     private void changeFontSize(float val) {
@@ -144,7 +167,7 @@ public class SettingsActivity extends BaseActivity {
     }
 
     public void toggleNightMode(View view) {
-        int flag =  Paint.HINTING_OFF;
+        int flag = Paint.HINTING_OFF;
         int fontColor, background;
         if (nightModeCheckBox.isChecked()) {
             background = getResources().getColor(R.color.darkGray);
@@ -162,20 +185,49 @@ public class SettingsActivity extends BaseActivity {
         setFontAndBackground();
     }
 
-    public void onToggleNotification(View view) {
-        String value = "true";
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
         String text = "تم تفعيل الإشعار";
         Alarm alarm = new Alarm(getApplicationContext());
-        if (enableNotificationCheckBox.isChecked()) {
-            alarm.addAlarm();
-        } else {
-            value = "false";
-            text = "تم إلغاء الإشعار";
-            alarm.removeAlarm();
+        String number = "0";
+
+        switch (view.getId()) {
+            case R.id.ntf_zero:
+                if (checked) {
+                    number = "0";
+                    break;
+                }
+            case R.id.ntf_once:
+                if (checked) {
+                    number = "1";
+                    break;
+                }
+            case R.id.ntf_twice:
+                if (checked) {
+                    number = "2";
+                    break;
+                }
+            case R.id.ntf_three:
+                if (checked) {
+                    number = "3";
+                    break;
+                }
+            case R.id.ntf_four:
+                if (checked) {
+                    number = "4";
+                    break;
+                }
         }
-        settingDAO.update(Setting.KEY_NAME.NOTIFICATION_ENABLED, value);
+        settingDAO.update(Setting.KEY_NAME.NOTIFICATION_NUMBER, number);
+        if (number.equals("0")) {
+            alarm.removeAlarm();
+            text = "تم إلغاء الإشعار";
+        } else {
+            alarm.addAlarm();
+        }
         Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
     }
+
 
     @Override
     protected void onPause() {

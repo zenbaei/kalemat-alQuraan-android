@@ -69,10 +69,13 @@ public class ProgressActivity extends AppCompatActivity {
         addNotificationOnFirstRun();
     }
 
+    /**
+     * To avoid adding Alarm every time Progress activity runs (every startup)
+     */
     private void addNotificationOnFirstRun() {
-        String notification = settingDAO.findByKey(Setting.KEY_NAME.NOTIFICATION_ENABLED);
+        String notification = settingDAO.findByKey(Setting.KEY_NAME.NOTIFICATION_NUMBER);
         if (notification.isEmpty()) {
-            settingDAO.insert(Setting.KEY_NAME.NOTIFICATION_ENABLED, "true");
+            settingDAO.insert(Setting.KEY_NAME.NOTIFICATION_NUMBER, "2");
             new Alarm(getApplicationContext()).addAlarm();
         }
 

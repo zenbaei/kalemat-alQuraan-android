@@ -9,27 +9,68 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ntf_text"
+                android:text="@string/nu_of_times"
+                android:layout_gravity="right"
+                android:paddingTop="30dp"
+                android:layout_marginRight="10dp"
+                android:gravity="right"/>
+           <RadioGroup
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:id="@+id/ntf_grp"
+               android:layout_gravity="right"
+               android:gravity="right"
+               android:layout_marginTop="10dp"
+               android:layout_marginRight="15dp"
+               android:layoutDirection="rtl"
+               android:textDirection="rtl">
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/four_times"
+                   android:id="@+id/ntf_four"
+                   android:onClick="onRadioButtonClicked"/>
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/three_times"
+                   android:id="@+id/ntf_three"
+                   android:onClick="onRadioButtonClicked"/>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="end">
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/enable_ntf_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onToggleNotification"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="10dp"
-            android:text="@string/enable_notification" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/twice"
+                   android:id="@+id/ntf_twice"
+                   android:onClick="onRadioButtonClicked"/>
+
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/once"
+                   android:id="@+id/ntf_once"
+                   android:onClick="onRadioButtonClicked"/>
+
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/zero"
+                   android:id="@+id/ntf_zero"
+                   android:onClick="onRadioButtonClicked"/>
+
+           </RadioGroup>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:orientation="horizontal"
-            android:paddingTop="30dp">
+            android:paddingTop="20dp">
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/night_mode_checkbox"

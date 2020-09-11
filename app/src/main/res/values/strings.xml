@@ -68,6 +68,12 @@
     <string name="settings">إعدادات البرنامج</string>
     <string name="disable_night_mode">لتغيير اللون قم بتعطيل "'الخلفية الليلية'"</string>
     <string name="allah_saying">قوله تعالى:</string>
+    <string name="nu_of_times">عدد الإشعارات اليومية:</string>
+    <string name="zero">إلغاء</string>
+    <string name="once">مرة</string>
+    <string name="twice">مرتين</string>
+    <string name="three_times">ثلاث مرات</string>
+    <string name="four_times">اربع مرات</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

@@ -120,11 +120,15 @@ public class SettingDAO extends AbstractDAO<Setting> {
     }
 
     public boolean isNotificationEnabled() {
-        String isEnabled = findByKey(Setting.KEY_NAME.NOTIFICATION_ENABLED);
-        if (isEnabled.equals("true")) {
-            return true;
+        String number = findByKey(KEY_NAME.NOTIFICATION_NUMBER);
+        if (number.equals("0")) {
+            Log.d("SettingDAO", "Notification is disabled");
+            return false;
         }
-        Log.d("SettingDAO", "Notification is disabled");
-        return false;
+        return true;
+    }
+
+    public String getNotificationNumber() {
+        return findByKey(KEY_NAME.NOTIFICATION_NUMBER);
     }
 }
