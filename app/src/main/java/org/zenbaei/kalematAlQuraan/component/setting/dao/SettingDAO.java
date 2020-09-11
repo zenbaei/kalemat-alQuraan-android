@@ -42,7 +42,7 @@ public class SettingDAO extends AbstractDAO<Setting> {
         String stat = String.format(UPDATE_STAT, value, key.name());
         Log.d("Update Statement", stat);
         getWritableDatabase().execSQL(stat);
-        getWritableDatabase().close();
+
     }
 
     public String findByKey(KEY_NAME key) {
@@ -58,7 +58,7 @@ public class SettingDAO extends AbstractDAO<Setting> {
 
         String value = cursor.getString(0);
         cursor.close();
-        getReadableDatabase().close();
+
         return value == null ? "" : value;
     }
 
@@ -84,7 +84,7 @@ public class SettingDAO extends AbstractDAO<Setting> {
         }
 
         cursor.close();
-        getReadableDatabase().close();
+
         return settings;
     }
 
@@ -101,7 +101,7 @@ public class SettingDAO extends AbstractDAO<Setting> {
 
         String result = cursor.getString(0);
         cursor.close();
-        getReadableDatabase().close();
+
         return result == null ? "" : result;
     }
 
@@ -110,7 +110,7 @@ public class SettingDAO extends AbstractDAO<Setting> {
         String stat = String.format(INSERT_STAT, key.name(), value);
         Log.d("Insert Statement", stat);
         getWritableDatabase().execSQL(stat);
-        getWritableDatabase().close();
+
     }
 
     public void insertIfNotExists(KEY_NAME key, String value) {

@@ -74,7 +74,7 @@ public class AyahDAO extends AbstractDAO<Ayah> {
         }
 
         cursor.close();
-        getReadableDatabase().close();
+
         return ayahList;
     }
 
@@ -111,7 +111,7 @@ public class AyahDAO extends AbstractDAO<Ayah> {
         }
 
         cursor.close();
-        getReadableDatabase().close();
+
         return ayahList;
     }
 
@@ -129,7 +129,7 @@ public class AyahDAO extends AbstractDAO<Ayah> {
         Log.i(AyahDAO.class.getSimpleName(), query);
 
         Cursor cursor = getReadableDatabase().rawQuery(query, null);
-        getReadableDatabase().close();
+
     }
 
 
