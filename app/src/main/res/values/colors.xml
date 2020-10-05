@@ -20,6 +20,7 @@
     <item name="gray" type="color">#CCCCCC</item>
     <item name="silverGray" type="color">#A9A9A9</item>
     <item name="darkGray" type="color">#565656</item>
+    <item name="very_darkGray" type="color">#2a2a2a</item>
     <item name="alice_blue" type="color">#f0f8ff</item>
     <item name="transparent" type="color">#00000000</item>
 </resources>
