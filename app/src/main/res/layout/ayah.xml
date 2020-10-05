@@ -17,46 +17,73 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:paddingRight="15dp"
             android:paddingTop="15dp"
+            android:paddingRight="15dp"
             android:textColor="@color/red"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
     </RelativeLayout>
-
 
     <RelativeLayout
         android:id="@+id/headerRoot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/titleRoot">
+        android:layout_below="@id/titleRoot"
+        android:background="@color/transparent">
 
         <TableLayout
             android:id="@+id/ayahHeaderTableLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="2dp"
             android:paddingLeft="10dp"
+            android:paddingTop="10dp"
             android:paddingRight="10dp"
-            android:paddingTop="10dp"/>
+            android:paddingBottom="2dp" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/footerRoot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="@color/red"
+        android:orientation="horizontal"
+        android:gravity="center">
 
-        <TextView
-            android:id="@+id/pagingTextView"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:paddingBottom="10dp"
-            android:text="paging" />
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
 
-    </RelativeLayout>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:onClick="next"
+                android:padding="5dp"
+                android:src="@drawable/next" />
+
+            <TextView
+                android:id="@+id/pagingTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="paging"
+                android:textColor="@color/white"/>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:onClick="previous"
+                android:src="@drawable/previous" />
+        </LinearLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/contentRoot"
@@ -65,7 +92,8 @@
         android:layout_above="@id/footerRoot"
         android:layout_below="@id/headerRoot">
 
-        <ScrollView android:id="@+id/ayahScrollRoot"
+        <ScrollView
+            android:id="@+id/ayahScrollRoot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="vertical">

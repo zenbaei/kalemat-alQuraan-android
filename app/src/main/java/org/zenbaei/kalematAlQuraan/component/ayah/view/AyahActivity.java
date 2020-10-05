@@ -33,6 +33,7 @@ import android.widget.Toast;
 import org.zenbaei.kalematAlQuraan.common.Initializer;
 import org.zenbaei.kalematAlQuraan.common.activity.BaseActivity;
 import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListener;
+import org.zenbaei.kalematAlQuraan.common.helper.OnSwipeTouchListenerIgnoreDown;
 import org.zenbaei.kalematAlQuraan.component.R;
 import org.zenbaei.kalematAlQuraan.component.ayah.business.AyahService;
 import org.zenbaei.kalematAlQuraan.component.ayah.entity.Ayah;
@@ -142,6 +143,27 @@ public class AyahActivity extends BaseActivity {
             }
 
         });
+/*
+        scrollView.setOnTouchListener(new OnSwipeTouchListenerIgnoreDown(this) {
+
+            @Override
+            public void onSwipeLeft() {
+                previousPage();
+            }
+
+            @Override
+            public void onSwipeRight() {
+                nextPage();
+            }
+
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return super.onTouch(view, motionEvent);
+            }
+
+        });
+
+ */
     }
 
     private void calculateColumnSizes() {
@@ -279,6 +301,9 @@ public class AyahActivity extends BaseActivity {
 
     @Override
     public void setFontAndBackground() {
+        int black = getResources().getColor(R.color.black);
+        int white = getResources().getColor(R.color.white);
+
         for (TextView tv : currentDisplayedNumberAndTafsirTextViews) {
             tv.setTextColor(Initializer.getNonAyahFontColor());
         }
@@ -288,7 +313,16 @@ public class AyahActivity extends BaseActivity {
         surahNameTV.setTextColor(Initializer.getFontColor());
         scrollView.setBackgroundColor(Initializer.getBackgroundColor());
         relativeLayout.setBackgroundColor(Initializer.getBackgroundColor());
-        pagingTextView.setTextColor(Initializer.getNonAyahFontColor());
+
+        if (Initializer.getBackgroundColor() == getResources().getColor(R.color.darkGray)) {
+            ayah.setTextColor(white);
+            kalemah.setTextColor(white);
+            tafsir.setTextColor(white);
+        } else {
+            ayah.setTextColor(black);
+            kalemah.setTextColor(black);
+            tafsir.setTextColor(black);
+        }
     }
 
     private void setTableRowOnLongPressListener(TableRow tableRow) {
@@ -344,7 +378,6 @@ public class AyahActivity extends BaseActivity {
 
         //bold
         pagingTextView.setTypeface(null, Typeface.BOLD);
-        pagingTextView.setTextColor(Initializer.getNonAyahFontColor());
     }
 
     public TableRow getHorizontalLine() {
@@ -424,6 +457,9 @@ public class AyahActivity extends BaseActivity {
     public TableRow getHeaderRow() {
         TableRow headerRow = new TableRow(this);
 
+        int black = getResources().getColor(R.color.black);
+        int white = getResources().getColor(R.color.white);
+
         //set TableRow width & height
         headerRow.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT));
@@ -438,17 +474,15 @@ public class AyahActivity extends BaseActivity {
         kalemah.setText(getString(R.string.kalemah));
         tafsir.setText(getString(R.string.tafsir));
 
-        int black = getResources().getColor(R.color.black);
-
-        ayah.setTextColor(black);
-        kalemah.setTextColor(black);
-        tafsir.setTextColor(black);
-
-        int white = getResources().getColor(R.color.white);
-
-        ayah.setBackgroundColor(white);
-        kalemah.setBackgroundColor(white);
-        tafsir.setBackgroundColor(white);
+        if (Initializer.getBackgroundColor() == getResources().getColor(R.color.darkGray)) {
+            ayah.setTextColor(white);
+            kalemah.setTextColor(white);
+            tafsir.setTextColor(white);
+        } else {
+            ayah.setTextColor(black);
+            kalemah.setTextColor(black);
+            tafsir.setTextColor(black);
+        }
 
         //set max width
         ayah.setWidth(ayahColWidth);
@@ -555,6 +589,14 @@ public class AyahActivity extends BaseActivity {
         settingDAO.update(Setting.KEY_NAME.LAST_READ_PAGE, String.valueOf(currentPage));
         settingDAO.update(Setting.KEY_NAME.LAST_READ_SURAH_ID, String.valueOf(surahId));
         settingDAO.update(Setting.KEY_NAME.LAST_READ_SURAH_NAME, surahName);
+    }
+
+    public void next(View view) {
+        nextPage();
+    }
+
+    public void previous(View view) {
+        previousPage();
     }
 
     class DoWork implements Runnable {

@@ -14,8 +14,8 @@ public class Initializer {
     private volatile static int FONT_SIZE = 15; //default
     private volatile static int FONT_COLOR;
     private volatile static int BACKGROUND_COLOR;
-    private static final int RED = -48060;
-    private static final int BLACK = -16777216;
+    public static final int RED = -48060;
+    public static final int BLACK = -16777216;
 
     private Initializer() {
     }
