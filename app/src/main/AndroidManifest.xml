@@ -18,7 +18,8 @@
         <activity
             android:name=".progress.ProgressActivity"
             android:launchMode="singleTop"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,7 +28,8 @@
         <activity
             android:name=".surah.view.SurahActivity"
             android:launchMode="singleTop"
-            android:noHistory="false" >
+            android:noHistory="false"
+            android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.VIEW" />
         </intent-filter>
@@ -51,7 +53,8 @@
         <activity
             android:name=".search.SearchHandlerActivity"
             android:launchMode="singleTask"
-            android:noHistory="false">
+            android:noHistory="false"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -74,7 +77,8 @@
             android:name=".ayah.contentProvider.KalematContentProvider"
             android:authorities="com.example.android.searchabledict.DictionaryProvider" />
 
-        <receiver android:name="org.zenbaei.kalematAlQuraan.common.StartOnBoot" >
+        <receiver android:name="org.zenbaei.kalematAlQuraan.common.StartOnBoot"
+            android:exported="true">
         <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
