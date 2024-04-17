@@ -1,15 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "org.zenbaei.kalematAlQuraan"
-    signingConfigs {
-        debug {
-            storeFile file('/home/zenbaei/Documents/workspace/kalemat-alQuraan-android/kalemat-key-store.jks')
-            storePassword 'muslim123@'
-        }
-    }
+    namespace "org.zenbaei.kalematAlQuraan.component"
     compileSdk 34
-    buildToolsVersion '35.0.0 rc3'
 
     defaultConfig {
         applicationId "org.zenbaei.kalematAlQuraan"
